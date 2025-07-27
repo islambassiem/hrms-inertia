@@ -9,6 +9,8 @@ class Entity extends BaseModel
     /** @use HasFactory<\Database\Factories\EntityFactory> */
     use HasFactory;
 
+    protected $table = '_entities';
+
     protected $fillable = [
         'code',
         'entity_en',

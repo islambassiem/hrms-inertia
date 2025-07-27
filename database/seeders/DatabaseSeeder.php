@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             CollegeSeeder::class,
             DepartmentSeeder::class,
             DepartmentHierarchySeeder::class,
+            CountrySeeder::class,
+            SponsorshipSeeder::class,
         ]);
     }
 }

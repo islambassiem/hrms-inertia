@@ -10,6 +10,8 @@ class Branch extends BaseModel
     /** @use HasFactory<\Database\Factories\BranchFactory> */
     use HasFactory;
 
+    protected $table = '_branches';
+
     protected $fillable = [
         'code',
         'branch_en',

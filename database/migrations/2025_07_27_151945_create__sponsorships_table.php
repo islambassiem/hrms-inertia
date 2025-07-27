@@ -12,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entities', function (Blueprint $table) {
+        Schema::create('_sponsorships', function (Blueprint $table) {
             $table->id();
             $table->string('code', 10)->nullable()->unique();
-            $table->string('entity_en', 30)->unique();
-            $table->string('entity_ar', 30)->unique();
+            $table->string('sponsorship_en', 30)->unique();
+            $table->string('sponsorship_ar', 30)->unique();
             $table->foreignIdFor(User::class, 'created_by')->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entities');
+        Schema::dropIfExists('_sponsorships');
     }
 };

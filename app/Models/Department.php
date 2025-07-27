@@ -10,6 +10,8 @@ class Department extends BaseModel
     /** @use HasFactory<\Database\Factories\DepartmentFactory> */
     use HasFactory;
 
+    protected $table = '_departments';
+
     protected $fillable = [
         'code',
         'department_en',

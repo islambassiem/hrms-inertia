@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Branch;
+use App\Models\Entity;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colleges', function (Blueprint $table) {
+        Schema::create('_branches', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Branch::class)->constrained();
-            $table->string('code', 10)->nullable()->unique();
-            $table->string('college_en', 50)->nullable()->unique();
-            $table->string('college_ar', 50)->nullable()->unique();
+            $table->foreignIdFor(Entity::class, 'entity_id')->constrained();
+            $table->string('code', 10);
+            $table->string('branch_en', 30);
+            $table->string('branch_ar', 30);
             $table->foreignIdFor(User::class, 'created_by')->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colleges');
+        Schema::dropIfExists('_branches');
     }
 };

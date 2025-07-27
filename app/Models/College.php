@@ -10,6 +10,8 @@ class College extends BaseModel
     /** @use HasFactory<\Database\Factories\CollegeFactory> */
     use HasFactory;
 
+    protected $table = '_colleges';
+
     protected $fillable = [
         'branch_id',
         'code',
