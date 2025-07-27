@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             BranchSeeder::class,
             CollegeSeeder::class,
             DepartmentSeeder::class,
+            DepartmentHierarchySeeder::class,
         ]);
     }
 }

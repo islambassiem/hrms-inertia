@@ -18,8 +18,8 @@ class BranchFactory extends Factory
     {
         return [
             'code' => fake()->text(10),
-            'branch_en' => fake()->company(),
-            'branch_ar' => fake()->company(),
+            'branch_en' => fake()->unique()->company(),
+            'branch_ar' => fake()->unique()->company(),
             'created_by' => 1,
         ];
     }

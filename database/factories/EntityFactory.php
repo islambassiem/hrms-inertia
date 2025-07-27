@@ -17,9 +17,9 @@ class EntityFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => fake()->text(10),
-            'entity_en' => fake()->company(),
-            'entity_ar' => fake()->company(),
+            'code' => fake()->unique()->text(10),
+            'entity_en' => fake()->unique()->company(),
+            'entity_ar' => fake()->unique()->company(),
             'created_by' => 1,
         ];
     }

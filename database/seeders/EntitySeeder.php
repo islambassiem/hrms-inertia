@@ -12,21 +12,22 @@ class EntitySeeder extends Seeder
      */
     public function run(): void
     {
-        Entity::create([
-            'code' => 'INY',
-            'entity_en' => 'Inaya Medical Colleges',
-            'entity_ar' => 'كليات العناية الطبية',
-            'created_by' => 1,
-        ]);
+        Entity::factory()
+            ->create([
+                'code' => 'INY',
+                'entity_en' => 'Inaya Medical Colleges',
+                'entity_ar' => 'كليات العناية الطبية',
+                'created_by' => 1,
+            ]);
 
-        Entity::create([
+        Entity::factory()->create([
             'code' => 'SHDC',
             'entity_en' => 'Shining Horizon Dental College',
             'entity_ar' => 'مجمع الآفاق لطب الأسنان',
             'created_by' => 1,
         ]);
 
-        Entity::create([
+        Entity::factory()->create([
             'code' => 'INYCLN',
             'entity_en' => 'Inaya Cleaning',
             'entity_ar' => 'العناية للنظافة',
