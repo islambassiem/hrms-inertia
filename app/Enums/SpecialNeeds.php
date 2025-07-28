@@ -41,4 +41,17 @@ enum SpecialNeeds: string
             self::OTHER => ['id' => '14', 'special_needs_en' => 'Other', 'special_needs_ar' => 'أخرى'],
         };
     }
+
+    /**
+     * @return array<string>
+     */
+    public static function toArray(): array
+    {
+        $array = [];
+        foreach (self::cases() as $case) {
+            $array[] = $case->value;
+        }
+
+        return $array;
+    }
 }

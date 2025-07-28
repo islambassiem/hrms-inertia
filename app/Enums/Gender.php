@@ -17,4 +17,17 @@ enum Gender: string
             self::FEMALE => ['id' => '2', 'gender_en' => 'Female', 'gender_ar' => 'أنثى'],
         };
     }
+
+    /**
+     * @return array<string>
+     */
+    public static function toArray(): array
+    {
+        $array = [];
+        foreach (self::cases() as $case) {
+            $array[] = $case->value;
+        }
+
+        return $array;
+    }
 }

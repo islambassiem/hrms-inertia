@@ -16,4 +16,17 @@ enum VacationClass: int
             self::ZERO => 0,
         };
     }
+
+    /**
+     * @return array<int>
+     */
+    public static function toArray(): array
+    {
+        $array = [];
+        foreach (self::cases() as $case) {
+            $array[] = $case->value;
+        }
+
+        return $array;
+    }
 }

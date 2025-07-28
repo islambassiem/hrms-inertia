@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,14 @@ class DatabaseSeeder extends Seeder
             DepartmentHierarchySeeder::class,
             CountrySeeder::class,
             SponsorshipSeeder::class,
+            EmployeeSeeder::class,
         ]);
+
+        $employees = Employee::all(['id', 'head_id']);
+        foreach ($employees as $employee) {
+            $employee->update([
+                'head_id' => $employees->random()->id,
+            ]);
+        }
     }
 }

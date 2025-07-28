@@ -19,4 +19,17 @@ enum MaritalStatus: string
             self::OTHER => ['id' => '9', 'marital_status_en' => 'Other', 'maretal_status_ar' => 'أخرى'],
         };
     }
+
+    /**
+     * @return array<string>
+     */
+    public static function toArray(): array
+    {
+        $array = [];
+        foreach (self::cases() as $case) {
+            $array[] = $case->value;
+        }
+
+        return $array;
+    }
 }

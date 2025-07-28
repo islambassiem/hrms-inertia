@@ -29,4 +29,17 @@ enum Religion: string
             self::UNDEFINED => ['id' => '8', 'religion_en' => 'Undefined', 'religion_ar' => 'غير محدد'],
         };
     }
+
+    /**
+     * @return array<string>
+     */
+    public static function toArray(): array
+    {
+        $array = [];
+        foreach (self::cases() as $case) {
+            $array[] = $case->value;
+        }
+
+        return $array;
+    }
 }
