@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends BaseModel
 {
@@ -75,5 +77,37 @@ class Employee extends BaseModel
     public function sponsorship(): BelongsTo
     {
         return $this->belongsTo(Sponsorship::class);
+    }
+
+    /**
+     * @return BelongsToMany<Category, $this>
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * @return BelongsToMany<Position, $this>
+     */
+    public function positions(): BelongsToMany
+    {
+        return $this->belongsToMany(Position::class);
+    }
+
+    /**
+     * @return BelongsToMany<Department, $this>
+     */
+    public function departments(): BelongsToMany
+    {
+        return $this->belongsToMany(Department::class, 'department_employee');
+    }
+
+    /**
+     * @return HasMany<Dependent, $this>
+     */
+    public function dependents(): HasMany
+    {
+        return $this->hasMany(Dependent::class);
     }
 }

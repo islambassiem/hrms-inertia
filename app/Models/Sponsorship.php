@@ -13,8 +13,8 @@ class Sponsorship extends BaseModel
 
     protected $fillable = [
         'code',
-        'country_en',
-        'country_ar',
+        'sponsorship_en',
+        'sponsorship_ar',
         'created_by',
         'updated_by',
     ];

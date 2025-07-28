@@ -22,11 +22,16 @@ class DatabaseSeeder extends Seeder
             EntitySeeder::class,
             BranchSeeder::class,
             CollegeSeeder::class,
-            DepartmentSeeder::class,
-            DepartmentHierarchySeeder::class,
             CountrySeeder::class,
             SponsorshipSeeder::class,
             EmployeeSeeder::class,
+            DepartmentSeeder::class,
+            DepartmentHierarchySeeder::class,
+            CategorySeeder::class,
+            PositionSeeder::class,
+            IdentificationSeeder::class,
+            AcademicRankSeeder::class,
+            DependentSeeder::class,
         ]);
 
         $employees = Employee::all(['id', 'head_id']);

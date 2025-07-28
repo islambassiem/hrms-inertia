@@ -2,22 +2,22 @@
 
 namespace Database\Seeders;
 
-use App\Models\Department;
+use App\Models\Category;
 use App\Models\Employee;
 use Illuminate\Database\Seeder;
 
-class DepartmentSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Department::factory()->count(10)->create();
+        Category::factory()->count(10)->create();
 
         $employees = Employee::all(['id']);
         foreach ($employees as $employee) {
-            $employee->departments()->attach(Department::all(['id'])->random(1)->pluck('id'));
+            $employee->categories()->attach(Category::all(['id'])->random(1)->pluck('id'));
         }
     }
 }
