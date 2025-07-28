@@ -22,7 +22,6 @@ class AchievementFactory extends Factory
             'title' => fake()->sentence(),
             'donor' => fake()->company(),
             'year' => fake()->year(),
-            'created_by' => 1,
         ];
     }
 }

@@ -20,7 +20,6 @@ class BranchFactory extends Factory
             'code' => fake()->text(10),
             'branch_en' => fake()->unique()->company(),
             'branch_ar' => fake()->unique()->company(),
-            'created_by' => 1,
         ];
     }
 }

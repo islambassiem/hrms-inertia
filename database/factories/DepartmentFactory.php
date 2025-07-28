@@ -20,7 +20,6 @@ class DepartmentFactory extends Factory
             'code' => fake()->unique()->text(10),
             'department_en' => fake()->unique()->text(10),
             'department_ar' => fake()->unique()->text(10),
-            'created_by' => 1,
         ];
     }
 }

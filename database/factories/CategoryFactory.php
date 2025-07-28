@@ -20,7 +20,6 @@ class CategoryFactory extends Factory
             'code' => fake()->unique()->text(6),
             'category_en' => fake()->unique()->text(10),
             'category_ar' => fake()->unique()->text(10),
-            'created_by' => 1,
         ];
     }
 }

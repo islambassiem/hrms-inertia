@@ -25,7 +25,6 @@ class DepartmentHierarchyFactory extends Factory
             'college_id' => fake()->randomElement([College::inRandomOrder()->first()->id, null]),
             'department_id' => Department::inRandomOrder()->first()->id,
             'entity_id' => fake()->randomElement([Entity::inRandomOrder()->first()->id, null]),
-            'created_by' => 1,
         ];
     }
 }

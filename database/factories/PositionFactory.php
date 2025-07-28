@@ -24,7 +24,6 @@ class PositionFactory extends Factory
             'position_ar' => fake()->unique()->jobTitle(),
             'entity_id' => fake()->randomElement([Entity::inRandomOrder()->first()->id, null]),
             'type' => fake()->randomElement([fake()->randomElement(PositionType::toArray()), null]),
-            'created_by' => 1,
         ];
     }
 }

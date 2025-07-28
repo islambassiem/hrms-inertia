@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('position_ar', 30)->unique();
             $table->foreignIdFor(Entity::class, 'entity_id')->nullable()->constrained();
             $table->enum('type', PositionType::toArray())->nullable();
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

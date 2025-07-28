@@ -22,7 +22,6 @@ class CollegeFactory extends Factory
             'code' => fake()->unique()->text(6),
             'college_en' => fake()->unique()->company(),
             'college_ar' => fake()->unique()->company(),
-            'created_by' => 1,
         ];
     }
 }

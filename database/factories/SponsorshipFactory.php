@@ -20,7 +20,6 @@ class SponsorshipFactory extends Factory
             'code' => fake()->unique()->text(6),
             'sponsorship_en' => fake()->unique()->text(10),
             'sponsorship_ar' => fake()->unique()->text(10),
-            'created_by' => 1,
         ];
     }
 }

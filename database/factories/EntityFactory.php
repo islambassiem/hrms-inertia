@@ -20,7 +20,6 @@ class EntityFactory extends Factory
             'code' => fake()->unique()->text(10),
             'entity_en' => fake()->unique()->company(),
             'entity_ar' => fake()->unique()->company(),
-            'created_by' => 1,
         ];
     }
 }

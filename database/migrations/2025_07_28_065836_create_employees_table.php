@@ -53,7 +53,7 @@ return new class extends Migration
             $table->enum('vacation_class', VacationClass::toArray())->default(VacationClass::ZERO->value);
             $table->enum('special_needs_id', SpecialNeeds::toArray())->nullable();
 
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

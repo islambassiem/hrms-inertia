@@ -26,7 +26,6 @@ class DependentFactory extends Factory
             'gender' => fake()->randomElement(Gender::toArray()),
             'date_of_birth' => fake()->date(),
             'relationship' => fake()->randomElement(FamilyRelationship::toArray()),
-            'created_by' => 1,
         ];
     }
 }

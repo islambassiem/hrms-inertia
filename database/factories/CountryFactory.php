@@ -20,7 +20,6 @@ class CountryFactory extends Factory
             'code' => fake()->unique()->text(6),
             'country_en' => fake()->unique()->text(10),
             'country_ar' => fake()->unique()->text(10),
-            'created_by' => 1,
         ];
     }
 }

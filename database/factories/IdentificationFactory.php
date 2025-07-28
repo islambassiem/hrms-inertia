@@ -24,7 +24,6 @@ class IdentificationFactory extends Factory
             'place_of_issue' => fake()->randomElement([null, fake()->city()]),
             'date_of_issue' => fake()->randomElement([null, fake()->date()]),
             'date_of_expiry' => fake()->date(),
-            'created_by' => 1,
         ];
     }
 }

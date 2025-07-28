@@ -28,7 +28,6 @@ class CourseFactory extends Factory
             'period' => fake()->text(10),
             'city' => fake()->randomElement([null, fake()->city()]),
             'country_id' => Country::inRandomOrder()->first('id')->id,
-            'created_by' => 1,
         ];
     }
 }

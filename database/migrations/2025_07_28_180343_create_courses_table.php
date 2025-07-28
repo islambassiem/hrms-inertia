@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('period', 100)->nullable();
             $table->string('city', 30)->nullable();
             $table->foreignIdFor(Country::class)->nullable()->constrained();
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

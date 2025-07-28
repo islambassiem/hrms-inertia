@@ -37,7 +37,7 @@ return new class extends Migration
             $table->enum('study_nature', StudyNature::toArray())->nullable();
             $table->boolean('is_attested')->default(false);
             $table->boolean('is_active')->default(true);
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

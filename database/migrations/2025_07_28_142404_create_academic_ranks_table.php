@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('academic_rank', AcademicRank::toArray());
             $table->date('effective_date');
             $table->date('end_date')->nullable();
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

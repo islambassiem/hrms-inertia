@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('gender', Gender::toArray());
             $table->date('date_of_birth');
             $table->enum('relationship', FamilyRelationship::toArray());
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

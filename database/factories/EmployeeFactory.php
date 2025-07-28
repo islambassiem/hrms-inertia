@@ -54,8 +54,6 @@ class EmployeeFactory extends Factory
             'has_married_contract' => fake()->boolean(30),
             'vacation_class' => fake()->randomElement(VacationClass::toArray()),
             'special_needs_id' => fake()->randomElement([null, fake()->randomElement(SpecialNeeds::toArray())]),
-
-            'created_by' => 1,
         ];
     }
 }

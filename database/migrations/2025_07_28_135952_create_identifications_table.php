@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('place_of_issue')->nullable();
             $table->date('date_of_issue')->nullable();
             $table->date('date_of_expiry');
-            $table->foreignIdFor(User::class, 'created_by')->constrained();
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
         });

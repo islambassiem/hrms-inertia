@@ -40,7 +40,6 @@ class QualificationFactory extends Factory
             'study_nature' => fake()->randomElement([null, fake()->randomElement(StudyNature::toArray())]),
             'is_attested' => fake()->boolean(90),
             'is_active' => fake()->boolean(70),
-            'created_by' => 1,
         ];
     }
 }

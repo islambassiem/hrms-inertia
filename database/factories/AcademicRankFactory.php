@@ -23,7 +23,6 @@ class AcademicRankFactory extends Factory
             'academic_rank' => fake()->randomElement(AcademicRank::toArray()),
             'effective_date' => fake()->date(),
             'end_date' => fake()->randomElement([null, fake()->date()]),
-            'created_by' => 1,
         ];
     }
 }
