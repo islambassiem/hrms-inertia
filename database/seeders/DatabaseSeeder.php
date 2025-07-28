@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             DependentSeeder::class,
             SpecialtySeeder::class,
             QualificationSeeder::class,
+            AchievementSeeder::class,
+            CourseSeeder::class,
         ]);
 
         $employees = Employee::all(['id', 'head_id']);
