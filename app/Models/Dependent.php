@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\FamilyRelationship;
+use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -20,6 +22,15 @@ class Dependent extends BaseModel
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'gender' => Gender::class,
+            'date_of_birth' => 'date',
+            'releationship' => FamilyRelationship::class,
+        ];
+    }
 
     /**
      * @return BelongsTo<Employee, $this>

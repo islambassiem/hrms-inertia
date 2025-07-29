@@ -53,7 +53,7 @@ class EmployeeFactory extends Factory
             'sponsorship_id' => Sponsorship::inRandomOrder()->first()->id,
             'has_married_contract' => fake()->boolean(30),
             'vacation_class' => fake()->randomElement(VacationClass::toArray()),
-            'special_needs_id' => fake()->randomElement([null, fake()->randomElement(SpecialNeeds::toArray())]),
+            'special_needs' => fake()->randomElement([null, fake()->randomElement(SpecialNeeds::toArray())]),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AcademicRank as AcademicRankEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -18,6 +19,15 @@ class AcademicRank extends BaseModel
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'academic_rank' => AcademicRankEnum::class,
+            'effective_date' => 'date',
+            'end_date' => 'date',
+        ];
+    }
 
     /**
      * @return BelongsTo<Employee, $this>

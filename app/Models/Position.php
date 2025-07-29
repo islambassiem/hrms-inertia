@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PositionType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -21,6 +22,13 @@ class Position extends BaseModel
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'type' => PositionType::class,
+        ];
+    }
 
     /**
      * @return BelongsToMany<Employee, $this>

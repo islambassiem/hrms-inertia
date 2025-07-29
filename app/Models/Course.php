@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CourseType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends BaseModel
@@ -21,4 +22,12 @@ class Course extends BaseModel
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'status' => CourseType::class,
+            'date_of_issue' => 'date',
+        ];
+    }
 }

@@ -51,7 +51,7 @@ return new class extends Migration
             $table->foreignIdFor(Sponsorship::class, 'sponsorship_id')->nullable()->constrained();
             $table->boolean('has_married_contract')->default(false);
             $table->enum('vacation_class', VacationClass::toArray())->default(VacationClass::ZERO->value);
-            $table->enum('special_needs_id', SpecialNeeds::toArray())->nullable();
+            $table->enum('special_needs', SpecialNeeds::toArray())->nullable();
 
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();

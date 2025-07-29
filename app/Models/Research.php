@@ -2,6 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\ResearchCitation;
+use App\Enums\ResearchDomain;
+use App\Enums\ResearchLanguage;
+use App\Enums\ResearchNature;
+use App\Enums\ResearchProgress;
+use App\Enums\ResearchStatus;
+use App\Enums\ResearchType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Research extends BaseModel
@@ -32,4 +39,19 @@ class Research extends BaseModel
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'type' => ResearchType::class,
+            'status' => ResearchStatus::class,
+            'progress' => ResearchProgress::class,
+            'nature' => ResearchNature::class,
+            'domain' => ResearchDomain::class,
+            'citation' => ResearchCitation::class,
+            'language' => ResearchLanguage::class,
+            'publication_date' => 'date',
+
+        ];
+    }
 }

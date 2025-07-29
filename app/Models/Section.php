@@ -15,5 +15,7 @@ class Section extends BaseModel
         'code',
         'section_en',
         'section_ar',
+        'created_by',
+        'updated_by',
     ];
 }

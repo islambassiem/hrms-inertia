@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\Gender;
+use App\Enums\MaritalStatus;
+use App\Enums\Religion;
+use App\Enums\SpecialNeeds;
+use App\Enums\VacationClass;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -41,11 +46,30 @@ class Employee extends BaseModel
         'sponsorship_id',
         'has_married_contract',
         'vacation_class',
-        'special_needs_id',
+        'special_needs',
 
         'created_by',
         'updated_by',
     ];
+
+    public function casts(): array
+    {
+        return [
+            'gender' => Gender::class,
+            'marital_status' => MaritalStatus::class,
+            'religion' => Religion::class,
+            'date_of_birth' => 'date',
+            'is_active' => 'boolean',
+            'has_salary' => 'boolean',
+            'has_biometric' => 'boolean',
+            'works_on_saturday' => 'boolean',
+            'joining_date' => 'date',
+            'resignation_date' => 'date',
+            'has_married_contract' => 'boolean',
+            'vacation_class' => VacationClass::class,
+            'special_needs' => SpecialNeeds::class,
+        ];
+    }
 
     /**
      * @return BelongsTo<Country, $this>
