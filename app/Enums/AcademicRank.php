@@ -20,6 +20,10 @@ enum AcademicRank: string
     case TEACHER_FOURTH_LEVEL = '24';
     case TEACHER_FIFTH_LEVEL = '25';
     case TEACHER_SIXTH_LEVEL = '26';
+    case ASSISTANT_TEACHER = '27';
+    case PRACTICING_TEACHER = '28';
+    case ADVANCED_TEACHER = '29';
+    case EXPERT_TEACHER = '30';
     case TRAINER = '31';
     case TRAINER_ASSISTANT = '32';
     case TECHNICIAN = '33';
@@ -48,6 +52,10 @@ enum AcademicRank: string
             self::TEACHER_FOURTH_LEVEL => ['id' => '24', 'academic_rank_en' => 'Teacher Fourth Level', 'academic_rank_ar' => 'مدرس رابع'],
             self::TEACHER_FIFTH_LEVEL => ['id' => '25', 'academic_rank_en' => 'Teacher Fifth Level', 'academic_rank_ar' => 'مدرس خامس'],
             self::TEACHER_SIXTH_LEVEL => ['id' => '26', 'academic_rank_en' => 'Teacher Sixth Level', 'academic_rank_ar' => 'مدرس سادس'],
+            self::ASSISTANT_TEACHER => ['id' => '27', 'academic_rank_en' => 'Assistant Teacher / Teacher', 'academic_rank_ar' => 'مساعد معلم / معلم'],
+            self::PRACTICING_TEACHER => ['id' => '28', 'academic_rank_en' => 'Practicing Teacher', 'academic_rank_ar' => 'معلم ممارس'],
+            self::ADVANCED_TEACHER => ['id' => '29', 'academic_rank_en' => 'Advanced Teacher', 'academic_rank_ar' => 'معلم متقدم'],
+            self::EXPERT_TEACHER => ['id' => '30', 'academic_rank_en' => 'Expert Teacher', 'academic_rank_ar' => 'معلم خبير'],
             self::TRAINER => ['id' => '31', 'academic_rank_en' => 'Trainer', 'academic_rank_ar' => 'مدرب'],
             self::TRAINER_ASSISTANT => ['id' => '32', 'academic_rank_en' => 'Trainer Assistant', 'academic_rank_ar' => 'مساعد مدرب'],
             self::TECHNICIAN => ['id' => '33', 'academic_rank_en' => 'Technician', 'academic_rank_ar' => 'فني'],
