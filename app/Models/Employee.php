@@ -7,6 +7,8 @@ use App\Enums\MaritalStatus;
 use App\Enums\Religion;
 use App\Enums\SpecialNeeds;
 use App\Enums\VacationClass;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -72,6 +74,15 @@ class Employee extends BaseModel
     }
 
     /**
+     * @param  Builder<Employee>  $query
+     */
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->where('is_active', 1);
+    }
+
+    /**
      * @return BelongsTo<Country, $this>
      */
     public function nationality(): BelongsTo
@@ -133,5 +144,13 @@ class Employee extends BaseModel
     public function dependents(): HasMany
     {
         return $this->hasMany(Dependent::class);
+    }
+
+    /**
+     * @return BelongsToMany<Extention, $this>
+     */
+    public function extentions(): BelongsToMany
+    {
+        return $this->belongsToMany(Extention::class);
     }
 }

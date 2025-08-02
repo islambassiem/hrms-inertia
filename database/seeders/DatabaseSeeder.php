@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             FacultySeeder::class,
             AcademicExperienceSeeder::class,
+            ExtentionSeeder::class,
         ]);
 
         $employees = Employee::all(['id', 'head_id']);
