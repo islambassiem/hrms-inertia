@@ -1,4 +1,5 @@
 import { useAppearance } from "@/hooks/useApperance";
+import { Link } from "@inertiajs/react";
 import { useState } from "react";
 
 
@@ -15,10 +16,12 @@ const Home = () => {
         <div className="bg-white text-black dark:bg-gray-900 absolute">
             <button className="text-black dark:text-white" onClick={() => setshowDropDown(!showDropDown)}>Change Theme</button>
             {showDropDown && <div className="bg-indigo-600 dark:bg-white flex flex-col w-[100px] relative left-2 top-2">
-                <button className={`${appearance === 'light' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('light') }>Light</button>
+                <button className={`${appearance === 'light' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('light')}>Light</button>
                 <button className={`${appearance === 'dark' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('dark')}>Dark</button>
                 <button className={`${appearance === 'system' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('system')}>System</button>
             </div>}
+
+            <Link href={route('about')} className="text-black dark:text-white">About</Link>
         </div>
     );
 };
