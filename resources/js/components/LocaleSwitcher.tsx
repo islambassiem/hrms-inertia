@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
                 id="lang-select"
                 onChange={(e) => setLanguage(e.target.value)}
                 value={language}
-                className="border px-2 py-1 rounded text-sm"
+                className="w-full max-w-xs rounded-md border border-border bg-surface px-3 py-2 text-sm text-text shadow-sm focus:border-primary focus:ring-2 focus:ring-primary/50 transition-colors"
             >
                 {languages.map((lang) => (
                     <option key={lang.code} value={lang.code}>

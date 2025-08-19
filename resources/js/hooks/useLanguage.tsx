@@ -2,7 +2,7 @@ import { router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { usePage } from '@inertiajs/react';
-import { PageProps } from "@/layouts/App";
+import { PageProps } from "@/types";
 
 export function useLanguage() {
     const { locale: serverLocale } = usePage<PageProps>().props;
@@ -39,6 +39,10 @@ export function useLanguage() {
         // Make the server request
         router.post(route("locale"), {
             locale: newLang
+        }, {
+            onFinish: () => {
+                router.reload();
+            }
         });
     };
 

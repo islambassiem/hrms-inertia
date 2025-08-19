@@ -1,11 +1,16 @@
 import App from "@/layouts/App";
-import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 const Home = () => {
-    const { t } = useTranslation();
     return (
         <App>
-            <h1 className='text-black dark:text-white bg-white dark:bg-black p-3'>{t('Home')}</h1>
+            <div className="bg-surface text-text p-6 rounded-lg border border-border">
+                <h1 className="text-2xl font-bold text-primary">{t('Hello World')}</h1>
+                <p className="text-text-muted">{t('This is a semantic palette demo')}</p>
+
+                <button className="btn btn-primary mt-4">{t('Save')}</button>
+                <button className="btn btn-secondary mt-4 ms-2">{t('Cancel')}</button>
+            </div>
         </App>
     );
 };

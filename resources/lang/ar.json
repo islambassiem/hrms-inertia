@@ -1,5 +1,9 @@
 {
     "Home": "الصفحة الرئيسية",
     "About": "حول",
-    "language": "اللغة"
+    "language": "اللغة",
+    "Save": "حفظ",
+    "Cancel": "إلغاء",
+    "Hello World": "مرحبا بالعالم",
+    "This is a semantic palette demo": "هذا هو عرض تجريبي للبيانات السمانية"
 }

@@ -9,7 +9,7 @@ const App = ({ children }: { children: React.ReactNode }) => {
     const { locale } = usePage<PageProps>().props;
     return (
         <>
-            <header className='flex justify-between items-center p-6 h-[60px] bg-gray-200'>
+            <header className='flex justify-between items-center p-6 h-[60px]'>
                 <nav>
                     <div className='flex gap-5'>
                         <p><Link href={route('home')}>{t('Home')}</Link></p>
@@ -25,7 +25,7 @@ const App = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <LocaleSwitcher />
             </header>
-            <main className='p-6 bg-slate-100 h-[calc(100vh-60px)]'>
+            <main className='p-6  h-[calc(100vh-60px)]'>
                 {children}
             </main>
         </>
