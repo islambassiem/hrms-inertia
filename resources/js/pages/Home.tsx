@@ -1,28 +1,12 @@
-import { useAppearance } from "@/hooks/useApperance";
-import { Link } from "@inertiajs/react";
-import { useState } from "react";
-
+import App from "@/layouts/App";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
-    const { appearance, updateAppearance } = useAppearance();
-    const [showDropDown, setshowDropDown] = useState<boolean>(false)
-
-    const setApperance = (appearance: 'light' | 'dark' | 'system') => {
-        updateAppearance(appearance);
-        setshowDropDown(false);
-    }
-
+    const { t } = useTranslation();
     return (
-        <div className="bg-white text-black dark:bg-gray-900 absolute">
-            <button className="text-black dark:text-white" onClick={() => setshowDropDown(!showDropDown)}>Change Theme</button>
-            {showDropDown && <div className="bg-indigo-600 dark:bg-white flex flex-col w-[100px] relative left-2 top-2">
-                <button className={`${appearance === 'light' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('light')}>Light</button>
-                <button className={`${appearance === 'dark' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('dark')}>Dark</button>
-                <button className={`${appearance === 'system' ? 'bg-blue-700' : ''}`} onClick={() => setApperance('system')}>System</button>
-            </div>}
-
-            <Link href={route('about')} className="text-black dark:text-white">About</Link>
-        </div>
+        <App>
+            <h1 className='text-black dark:text-white bg-white dark:bg-black p-3'>{t('Home')}</h1>
+        </App>
     );
 };
 
