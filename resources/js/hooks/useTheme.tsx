@@ -1,6 +1,5 @@
+import { Theme } from "@/types";
 import { useEffect, useState } from "react";
-
-export type Theme = "light" | "dark";
 
 function applyTheme(theme: Theme) {
     // Toggle the "dark" class on the <html> element
@@ -9,11 +8,11 @@ function applyTheme(theme: Theme) {
 
 export function useTheme() {
     // Default to "light" until we know what’s stored
-    const [theme, setTheme] = useState<Theme>("light");
+    const [theme, setTheme] = useState<Theme>("dark");
 
     // On first render, load saved theme
     useEffect(() => {
-        const saved = (localStorage.getItem("theme") as Theme) || "light";
+        const saved = (localStorage.getItem("theme") as Theme) || "dark";
         setTheme(saved);
         applyTheme(saved);
     }, []);
