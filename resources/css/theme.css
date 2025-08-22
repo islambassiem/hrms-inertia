@@ -1,0 +1,330 @@
+@theme {
+  /* =============================
+     🎨 Enhanced Foundation Colors
+     ============================= */
+  /* Backgrounds - More sophisticated neutrals */
+  --color-bg: #fafbfc;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+
+  /* Text - Better contrast and hierarchy */
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748b;
+  --color-text-muted: #94a3b8;
+
+  /* =============================
+     🚀 Modern Brand Colors
+     ============================= */
+  /* Primary - Deep professional blue */
+  --color-primary: #1e40af;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-light: #3b82f6;
+  --color-primary-subtle: #eff6ff;
+
+  /* Secondary - Rich violet for distinction */
+  --color-secondary: #7c3aed;
+  --color-secondary-hover: #6d28d9;
+  --color-secondary-light: #8b5cf6;
+  --color-secondary-subtle: #f3f4f6;
+
+  /* Accent - Vibrant emerald for positive actions */
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-accent-light: #10b981;
+  --color-accent-subtle: #ecfdf5;
+
+  /* =============================
+     ⚡ Enhanced Status Colors
+     ============================= */
+  --color-success: #059669;
+  --color-success-light: #34d399;
+  --color-success-subtle: #ecfdf5;
+
+  --color-warning: #d97706;
+  --color-warning-light: #f59e0b;
+  --color-warning-subtle: #fffbeb;
+
+  --color-danger: #dc2626;
+  --color-danger-light: #ef4444;
+  --color-danger-subtle: #fef2f2;
+
+  --color-info: #0284c7;
+  --color-info-light: #0ea5e9;
+  --color-info-subtle: #f0f9ff;
+
+  /* =============================
+     🎯 Additional Semantic Colors
+     ============================= */
+  --color-neutral: #64748b;
+  --color-neutral-light: #94a3b8;
+  --color-neutral-subtle: #f8fafc;
+}
+
+/* =============================
+   🌙 Sophisticated Dark Mode
+   ============================= */
+.dark {
+  /* Backgrounds - Rich, deep tones */
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-elevated: #334155;
+  --color-surface-hover: #475569;
+  --color-border: #475569;
+  --color-border-light: #64748b;
+
+  /* Text - Optimized for dark backgrounds */
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  /* Brand Colors - Adjusted for dark mode readability */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-primary-light: #93c5fd;
+  --color-primary-subtle: #1e3a8a;
+
+  --color-secondary: #8b5cf6;
+  --color-secondary-hover: #a78bfa;
+  --color-secondary-light: #c4b5fd;
+  --color-secondary-subtle: #581c87;
+
+  --color-accent: #10b981;
+  --color-accent-hover: #34d399;
+  --color-accent-light: #6ee7b7;
+  --color-accent-subtle: #064e3b;
+
+  /* Status Colors - Dark mode optimized */
+  --color-success: #10b981;
+  --color-success-light: #34d399;
+  --color-success-subtle: #064e3b;
+
+  --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
+  --color-warning-subtle: #78350f;
+
+  --color-danger: #ef4444;
+  --color-danger-light: #f87171;
+  --color-danger-subtle: #7f1d1d;
+
+  --color-info: #0ea5e9;
+  --color-info-light: #38bdf8;
+  --color-info-subtle: #0c4a6e;
+
+  --color-neutral: #94a3b8;
+  --color-neutral-light: #cbd5e1;
+  --color-neutral-subtle: #334155;
+}
+
+/* =============================
+   🛠️ Enhanced Base Styles
+   ============================= */
+@layer base {
+  body {
+    @apply bg-bg text-text antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Smooth focus rings */
+  *:focus {
+    @apply outline-none ring-2 ring-primary/20 ring-offset-2 ring-offset-bg;
+  }
+
+  /* Better selection colors */
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+}
+
+/* =============================
+   🎨 Enhanced Component Styles
+   ============================= */
+
+/* =============================
+   🔘 Modern Button System
+   ============================= */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2.5 rounded-lg font-semibold text-sm
+         transition-all duration-200 ease-in-out shadow-sm
+         focus:outline-none focus:ring-2 focus:ring-offset-2
+         disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* Primary Button - Professional and bold */
+.btn-primary {
+  @apply bg-primary text-white hover:bg-primary-hover
+         focus:ring-primary/20 shadow-lg hover:shadow-xl
+         active:scale-95 transform;
+}
+
+/* Secondary Button - Elegant violet */
+.btn-secondary {
+  @apply bg-secondary text-white hover:bg-secondary-hover
+         focus:ring-secondary/20 shadow-lg hover:shadow-xl
+         active:scale-95 transform;
+}
+
+/* Accent Button - Success/positive actions */
+.btn-accent {
+  @apply bg-accent text-white hover:bg-accent-hover
+         focus:ring-accent/20 shadow-lg hover:shadow-xl
+         active:scale-95 transform;
+}
+
+/* Outline Button - Subtle and professional */
+.btn-outline {
+  @apply bg-transparent border-2 border-border text-text
+         hover:bg-surface-hover hover:border-primary hover:text-primary
+         focus:ring-primary/20;
+}
+
+/* Ghost Button - Minimal and clean */
+.btn-ghost {
+  @apply bg-transparent text-text-secondary hover:bg-surface-hover hover:text-text
+         focus:ring-primary/20;
+}
+
+/* Danger Button - For destructive actions */
+.btn-danger {
+  @apply bg-danger text-white hover:bg-danger-light
+         focus:ring-danger/20 shadow-lg hover:shadow-xl
+         active:scale-95 transform;
+}
+
+/* =============================
+   🏷️ Status Badges
+   ============================= */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-success {
+  @apply bg-success-subtle text-success border border-success/20;
+}
+
+.badge-warning {
+  @apply bg-warning-subtle text-warning border border-warning/20;
+}
+
+.badge-danger {
+  @apply bg-danger-subtle text-danger border border-danger/20;
+}
+
+.badge-info {
+  @apply bg-info-subtle text-info border border-info/20;
+}
+
+.badge-neutral {
+  @apply bg-neutral-subtle text-neutral border border-neutral/20;
+}
+
+/* =============================
+   📋 Card Components
+   ============================= */
+.card {
+  @apply bg-surface border border-border rounded-xl shadow-sm
+         hover:shadow-md transition-shadow duration-200 p-4;
+}
+
+.card-elevated {
+  @apply bg-surface-elevated border border-border rounded-xl shadow-lg
+         hover:shadow-xl transition-all duration-200;
+}
+
+/* =============================
+   📝 Form Elements
+   ============================= */
+.input {
+  @apply w-full px-4 py-2.5 bg-surface border border-border rounded-lg
+         text-text placeholder:text-text-muted
+         focus:border-primary focus:ring-2 focus:ring-primary/20
+         transition-colors duration-200;
+}
+
+.textarea {
+  @apply w-full px-4 py-3 bg-surface border border-border rounded-lg
+         text-text placeholder:text-text-muted resize-none
+         focus:border-primary focus:ring-2 focus:ring-primary/20
+         transition-colors duration-200;
+}
+
+.select {
+  @apply w-full px-4 py-2.5 bg-surface border border-border rounded-lg
+         text-text cursor-pointer
+         focus:border-primary focus:ring-2 focus:ring-primary/20
+         transition-colors duration-200;
+}
+
+/* =============================
+   📊 Data Display
+   ============================= */
+.table {
+  @apply w-full border-collapse bg-surface rounded-lg overflow-hidden
+         shadow-sm border border-border;
+}
+
+.table th {
+  @apply px-6 py-4 text-left text-xs font-semibold text-text-secondary
+         uppercase tracking-wider bg-surface-hover border-b border-border;
+}
+
+.table td {
+  @apply px-6 py-4 text-sm text-text border-b border-border-light;
+}
+
+.table tr:hover {
+  @apply bg-surface-hover;
+}
+
+/* =============================
+   🎯 Utility Classes
+   ============================= */
+.gradient-primary {
+  @apply bg-gradient-to-r from-primary to-primary-light;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-r from-secondary to-secondary-light;
+}
+
+.gradient-accent {
+  @apply bg-gradient-to-r from-accent to-accent-light;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-primary via-secondary to-accent
+         bg-clip-text text-transparent;
+}
+
+/* =============================
+   🌊 Animation Utilities
+   ============================= */
+.animate-fade-in {
+  @apply opacity-0 animate-pulse;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-up {
+  @apply transform translate-y-4 opacity-0 transition-all duration-300;
+}
+
+.animate-slide-up.show {
+  @apply translate-y-0 opacity-100;
+}
+
+.animate-scale-in {
+  @apply transform scale-95 opacity-0 transition-all duration-200;
+}
+
+.animate-scale-in.show {
+  @apply scale-100 opacity-100;
+}

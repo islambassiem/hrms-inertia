@@ -19,8 +19,8 @@ export default function LanguageSwitcher({ isOpen, onToggle, onClose }: ModeSwit
             <div onClick={() => onToggle()}
                 className="relative flex items-center gap-2 cursor-pointer hover:text-primary after:content-[''] after:absolute after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:transition after:duration-300 hover:after:scale-x-100 after:-bottom-6"
             >
-                <HiMiniGlobeAlt className='size-10' />
-                <span className='font-sans font-extrabold'>
+                <HiMiniGlobeAlt className='size-6' />
+                <span className='font-alexandria text-lg'>
                     {language === 'ar' ? 'EN' : 'ع'}
                 </span>
             </div>
@@ -35,7 +35,7 @@ export default function LanguageSwitcher({ isOpen, onToggle, onClose }: ModeSwit
                 <Button option='ar' isOpen={isOpen} handleClick={handleClick}>
                     <div className='flex justify-between gap-2'>
                         <Saudi className='size-6 items-center inline-flex mt-1.5' />
-                        <span className='font-sans'>العربية</span>
+                        <span className='font-alexandria'>العربية</span>
                     </div>
                     {language === 'ar' && <IoIosCheckmarkCircle className='text-primary size-6' />}
                 </Button>

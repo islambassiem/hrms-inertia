@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@import './theme.css';
+@import './fonts.css';
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -12,87 +15,9 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-alexandria: 'Alexandria', serif;
+    --font-fustat: 'Fustat', serif;
+    --font-cairo: 'Cairo', serif;
+    --font-playfair: 'playfair', serif;
 }
 
-@theme {
-  /* Backgrounds */
-  --color-bg: #f9fafb;
-  --color-surface: #ffffff;
-  --color-border: #e5e7eb;
-
-  /* Text */
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-
-  /* Primary */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-
-  /* Secondary */
-  --color-secondary: #6366f1;
-  --color-secondary-hover: #4f46e5;
-
-  /* Accent */
-  --color-accent: #22c55e;
-  --color-accent-hover: #16a34a;
-
-  /* Status colors */
-  --color-success: #16a34a;
-  --color-warning: #f59e0b;
-  --color-danger: #dc2626;
-}
-
-/* =============================
-   🌙 Dark Mode Overrides
-   ============================= */
-.dark {
-  --color-bg: #111827;
-  --color-surface: #1f2937;
-  --color-border: #374151;
-
-  --color-text: #f9fafb;
-  --color-text-muted: #9ca3af;
-
-  --color-primary: #60a5fa;
-  --color-primary-hover: #93c5fd;
-
-  --color-secondary: #818cf8;
-  --color-secondary-hover: #a5b4fc;
-
-  --color-accent: #4ade80;
-  --color-accent-hover: #86efac;
-
-  --color-success: #22c55e;
-  --color-warning: #fbbf24;
-  --color-danger: #f87171;
-}
-
-/* =============================
-   🛠️ Base Styles
-   ============================= */
-@layer base {
-  body {
-    @apply bg-bg text-text;
-  }
-}
-
-/* =============================
-   🎨 Example Utilities
-   ============================= */
-
-/* Buttons */
-.btn {
-  @apply inline-flex items-center px-4 py-2 rounded-lg font-medium shadow-sm;
-}
-
-.btn-primary {
-  @apply bg-primary text-bg hover:bg-primary-hover;
-}
-
-.btn-secondary {
-  @apply bg-secondary text-bg hover:bg-secondary-hover;
-}
-
-.btn-accent {
-  @apply bg-accent text-bg hover:bg-accent-hover;
-}
