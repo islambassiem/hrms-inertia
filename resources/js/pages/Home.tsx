@@ -1,4 +1,4 @@
-import App from "@/layouts/App";
+import App from "@/layouts/AppLayout";
 import { t } from "i18next";
 
 const Home = () => {

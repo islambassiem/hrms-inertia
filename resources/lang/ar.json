@@ -1,11 +1,8 @@
 {
-    "Home": "الصفحة الرئيسية",
-    "About": "حول",
-    "language": "اللغة",
-    "Save": "حفظ",
-    "Cancel": "إلغاء",
-    "Hello World": "مرحبا بالعالم",
-    "This is a semantic palette demo": "هذا هو عرض تجريبي للبيانات السمانية",
     "Dark": "ليلي",
-    "Light": "نهاري"
+    "Light": "نهاري",
+    "Login": "تسجيل الدخول",
+    "Employee ID": "رقم الموظف",
+    "Password": "كلمة المرور",
+    "Login with Google": "تسجيل الدخول باستخدام جوجل"
 }
