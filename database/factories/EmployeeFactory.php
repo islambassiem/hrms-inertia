@@ -24,15 +24,17 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $users = User::pluck('id')->toArray();
+
         return [
-            'first_name_en' => fake()->firstName(),
-            'middle_name_en' => fake()->randomElement([null, fake()->firstName()]),
-            'third_name_en' => fake()->randomElement([null, fake()->firstName()]),
-            'family_name_en' => fake()->lastName(),
+            'first_name_en' => fake('en')->firstName(),
+            'middle_name_en' => fake('en')->randomElement([null, fake('en')->firstName()]),
+            'third_name_en' => fake('en')->randomElement([null, fake('en')->firstName()]),
+            'family_name_en' => fake('en')->lastName(),
             'first_name_ar' => fake('ar')->firstName(),
-            'middle_name_ar' => fake()->randomElement([null, fake('ar')->firstName()]),
-            'third_name_ar' => fake()->randomElement([null, fake('ar')->firstName()]),
-            'family_name_ar' => fake()->lastName('ar'),
+            'middle_name_ar' => fake('ar')->randomElement([null, fake('ar')->firstName()]),
+            'third_name_ar' => fake('ar')->randomElement([null, fake('ar')->firstName()]),
+            'family_name_ar' => fake('ar')->lastName(),
             'gender' => fake()->randomElement(Gender::toArray()),
             'marital_status' => fake()->randomElement([fake()->randomElement(MaritalStatus::toArray()), null]),
             'nationality_id' => Country::inRandomOrder()->first()->id,
@@ -41,7 +43,7 @@ class EmployeeFactory extends Factory
             'date_of_birth' => fake()->date(),
             'place_of_birth' => Country::inRandomOrder()->first()->id,
 
-            'user_id' => User::factory(),
+            'user_id' => fake()->unique()->randomElement($users),
             'code' => fake()->unique()->numberBetween(500001, 501999),
             'head_id' => null,
             'is_active' => fake()->boolean(70),

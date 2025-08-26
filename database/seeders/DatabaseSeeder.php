@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'email' => 'test@example.com',
+        $hr = User::factory()->create([
+            'email' => 'hr@example.com',
         ]);
+
+        Role::create(['name' => 'hr']);
+        Role::create(['name' => 'head']);
+
+        $hr->assignRole('hr');
 
         $this->call([
             EntitySeeder::class,
@@ -24,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CollegeSeeder::class,
             CountrySeeder::class,
             SponsorshipSeeder::class,
+            UserSeeder::class,
             EmployeeSeeder::class,
             DepartmentSeeder::class,
             DepartmentHierarchySeeder::class,
@@ -51,6 +58,16 @@ class DatabaseSeeder extends Seeder
             $employee->update([
                 'head_id' => $employees->random()->id,
             ]);
+        }
+
+        $heads = Employee::whereNotNull('head_id')
+            ->with('head.user')
+            ->get()
+            ->pluck('head.user')
+            ->unique(['id'])
+            ->values();
+        foreach ($heads as $head) {
+            $head->assignRole('head');
         }
     }
 }
