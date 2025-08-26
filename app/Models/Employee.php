@@ -9,6 +9,7 @@ use App\Enums\SpecialNeeds;
 use App\Enums\VacationClass;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -71,6 +72,44 @@ class Employee extends BaseModel
             'vacation_class' => VacationClass::class,
             'special_needs' => SpecialNeeds::class,
         ];
+    }
+
+    /**
+     * @return Attribute<string, string>
+     */
+    public function englishName(): Attribute
+    {
+        $name = $this->first_name_en.' ';
+        if ($this->middle_name_en) {
+            $name .= $this->middle_name_en.' ';
+        }
+        if ($this->third_name_en) {
+            $name .= $this->third_name_en.' ';
+        }
+        $name .= $this->family_name_en;
+
+        return new Attribute(
+            get: fn () => $name,
+        );
+    }
+
+    /**
+     * @return Attribute<string, string>
+     */
+    public function arabicName(): Attribute
+    {
+        $name = $this->first_name_ar.' ';
+        if ($this->middle_name_ar) {
+            $name .= $this->middle_name_ar.' ';
+        }
+        if ($this->third_name_ar) {
+            $name .= $this->third_name_ar.' ';
+        }
+        $name .= $this->family_name_ar;
+
+        return new Attribute(
+            get: fn () => $name,
+        );
     }
 
     /**

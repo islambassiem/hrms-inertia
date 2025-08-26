@@ -1,13 +1,18 @@
 import LocaleSwitcher from '@/components/Settings/LocaleSwitcher';
 
 import logo from '@/assets/images/image.png';
-import { Link } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import ModeSwitcher from '@/components/Settings/ModeSwitcher';
 import { useState } from 'react';
 import { MenuType } from '@/types';
+import Button from '@/components/ui/Button';
+import { VscSignOut } from 'react-icons/vsc';
+import { t } from 'i18next';
 
 const App = ({ children }: { children: React.ReactNode }) => {
     const [openMenu, setOpenMenu] = useState<MenuType>(null);
+    const { auth } = usePage().props;
+    const { post } = useForm();
     const height = 90;
     return (
         <>
@@ -27,6 +32,12 @@ const App = ({ children }: { children: React.ReactNode }) => {
                         onToggle={() => setOpenMenu(openMenu === "locale" ? null : "locale")}
                         onClose={() => setOpenMenu(null)}
                     />
+                    {auth !== null && (<form action={route('logout')} method="post" onSubmit={(e) => { e.preventDefault(); post(route('logout')) }}>
+                        <Button variant="danger" type="submit" className='bg-danger'>
+                            <VscSignOut className="rtl:rotate-180 text-bg" />
+                            <span className="text-bg text-sm">{t('Logout')}</span>
+                        </Button>
+                    </form>)}
                 </div>
             </header>
             <main className={`p-6 h-[calc(100vh-${height}px)]`}>

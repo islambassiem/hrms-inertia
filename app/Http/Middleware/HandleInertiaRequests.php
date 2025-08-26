@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\AuthUser;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'locale' => session('locale', config('app.locale')),
+            'auth' => $request->user() ? AuthUser::make($request->user()->load('employee')) : null,
         ]);
     }
 }
