@@ -1,6 +1,4 @@
 {
-    "Dark": "ليلي",
-    "Light": "نهاري",
     "Login": "تسجيل الدخول",
     "Employee ID": "رقم الموظف",
     "Password": "كلمة المرور",
@@ -12,5 +10,7 @@
     "Employee Account": "حساب الموظف",
     "Manage your account": "ادارة حسابك",
     "Manage your department and subordinates": "ادارة قسمك والموظفين التابعين",
-    "Choose your account type": "اختر نوع حسابك"
+    "Choose your account type": "اختر نوع حسابك",
+    "Theme": "الوضع",
+    "Language": "اللغة"
 }

@@ -8,7 +8,7 @@ const RoleCard = ({ card }: CardProps) => {
         <Link
             key={card.key}
             href={card.href}
-            className="block rounded-xl border-border bg-bg hover:bg-primary/30 group shadow-2xl transition p-6"
+            className="block rounded-xl border-border bg-bg hover:bg-primary/50 group shadow-2xl transition p-6"
         >
             <div className="flex items-center gap-4">
                 <div

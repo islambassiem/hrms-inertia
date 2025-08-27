@@ -10,17 +10,17 @@ const Home = () => {
 
     return (
         <App>
-            <div className="flex flex-col items-center text-center mt-32">
+            <div className="relative flex flex-col items-center text-center">
 
-                <div className="absolute top-40 -z-1 w-1/2 flex items-center justify-center opacity-5 ">
-                    <img src={logo} alt="Logo watermark" />
+                <div className={`absolute top-2 -z-1 w-1/2 flex items-center justify-center opacity-30 bg-[url(${logo})]`}>
+                    <img src={logo} alt="Logo watermark" className="max-w-[500px]"/>
                 </div>
 
-                <h1 className="text-3xl font-bold mb-10 text-text">
+                <h1 className="text-3xl font-bold mb-5 mt-12 text-text">
                     {t('Choose your account type')}
                 </h1>
 
-                <div className="w-full max-w-md space-y-6">
+                <div className="w-full max-w-md space-y-3">
                     <RoleCard card={roles.employee} />
                     {auth?.data.roles.includes("head") && <RoleCard card={roles.head} />}
                     {auth?.data.roles.includes("hr") && <RoleCard card={roles.hr} />}
