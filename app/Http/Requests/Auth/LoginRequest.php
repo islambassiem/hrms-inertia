@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -49,6 +50,12 @@ class LoginRequest extends FormRequest
         })->first();
 
         if (! $user) {
+            throw ValidationException::withMessages([
+                'empid' => __('auth.failed'),
+            ]);
+        }
+
+        if (! Hash::check(request()->string('password'), $user->password)) {
             throw ValidationException::withMessages([
                 'empid' => __('auth.failed'),
             ]);

@@ -9,7 +9,8 @@ const Home = () => {
         <App>
             <div className="card">
                 <h1 className="text-2xl font-bold text-primary">{t('Hello World')}</h1>
-                <p className="text-text-muted">{auth?.data.english_name}</p>
+                <p className="text-text-muted">{auth?.data.name_en}</p>
+                <p className="text-text-muted">{auth?.data.email}</p>
                 {auth?.data.roles.includes('hr') && <>
                     <div>
                         I am an hr

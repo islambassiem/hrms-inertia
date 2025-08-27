@@ -13,7 +13,7 @@ class ExtentionSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 100; $i <= 300; $i++) {
+        for ($i = 100; $i <= 120; $i++) {
             Extention::create([
                 'number' => $i,
                 'is_active' => fake()->boolean(),

@@ -12,6 +12,6 @@ class DependentSeeder extends Seeder
      */
     public function run(): void
     {
-        Dependent::factory()->count(100)->create();
+        Dependent::factory()->count(20)->create();
     }
 }

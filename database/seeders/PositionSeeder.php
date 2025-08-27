@@ -13,7 +13,7 @@ class PositionSeeder extends Seeder
      */
     public function run(): void
     {
-        Position::factory()->count(50)->create();
+        Position::factory()->count(20)->create();
 
         $employees = Employee::all(['id']);
         foreach ($employees as $employee) {

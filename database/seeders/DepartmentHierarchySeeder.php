@@ -13,7 +13,7 @@ class DepartmentHierarchySeeder extends Seeder
     public function run(): void
     {
         DepartmentHierarchy::factory()
-            ->count(100)
+            ->count(20)
             ->create();
     }
 }

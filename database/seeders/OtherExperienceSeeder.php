@@ -12,6 +12,6 @@ class OtherExperienceSeeder extends Seeder
      */
     public function run(): void
     {
-        OtherExperience::factory(30)->create();
+        OtherExperience::factory(20)->create();
     }
 }

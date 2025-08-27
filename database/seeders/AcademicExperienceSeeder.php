@@ -12,6 +12,6 @@ class AcademicExperienceSeeder extends Seeder
      */
     public function run(): void
     {
-        AcademicExperience::factory()->count(500)->create();
+        AcademicExperience::factory()->count(20)->create();
     }
 }

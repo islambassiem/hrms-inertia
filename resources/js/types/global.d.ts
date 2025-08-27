@@ -14,8 +14,8 @@ interface User {
         employee_id: number;
         empid: number;
         email: string;
-        english_name: string;
-        arabic_name: string;
+        name_en: string;
+        name_ar: string;
         roles: string[];
         permissions: string[];
     }

@@ -12,6 +12,6 @@ class QualificationSeeder extends Seeder
      */
     public function run(): void
     {
-        Qualification::factory()->count(150)->create();
+        Qualification::factory()->count(20)->create();
     }
 }

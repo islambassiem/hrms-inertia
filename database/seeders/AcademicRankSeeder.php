@@ -12,6 +12,6 @@ class AcademicRankSeeder extends Seeder
      */
     public function run(): void
     {
-        AcademicRank::factory()->count(200)->create();
+        AcademicRank::factory()->count(20)->create();
     }
 }

@@ -12,6 +12,6 @@ class InstitutionSeeder extends Seeder
      */
     public function run(): void
     {
-        Institution::factory(200)->create();
+        Institution::factory(20)->create();
     }
 }
