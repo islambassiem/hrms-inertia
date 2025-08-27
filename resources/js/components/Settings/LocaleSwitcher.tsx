@@ -15,7 +15,7 @@ export default function LanguageSwitcher({ isOpen, onToggle, onClose }: ModeSwit
         onClose();
     }
     return (
-        <div className="relative">
+        <div className="relative z-999999">
             <div onClick={() => onToggle()}
                 className="relative flex items-center gap-2 cursor-pointer hover:text-primary after:content-[''] after:absolute after:left-0 after:right-0 after:h-[2px] after:bg-primary after:scale-x-0 after:transition after:duration-300 hover:after:scale-x-100 after:-bottom-6"
             >

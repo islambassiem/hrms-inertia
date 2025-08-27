@@ -5,5 +5,12 @@
     "Employee ID": "رقم الموظف",
     "Password": "كلمة المرور",
     "Login with Google": "تسجيل الدخول باستخدام جوجل",
-    "Logout": "تسجيل الخروج"
+    "Logout": "تسجيل الخروج",
+    "Human Resources Account": "حساب الموارد البشرية",
+    "Manage all employees": "ادارة كافة الموظفين",
+    "Department Head Account": "حساب رئيس القسم",
+    "Employee Account": "حساب الموظف",
+    "Manage your account": "ادارة حسابك",
+    "Manage your department and subordinates": "ادارة قسمك والموظفين التابعين",
+    "Choose your account type": "اختر نوع حسابك"
 }

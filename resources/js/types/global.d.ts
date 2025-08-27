@@ -1,6 +1,11 @@
 import axios from "axios";
 import type { route as routeFn } from 'ziggy-js';
 
+declare module "*.png";
+declare module "*.svg";
+declare module "*.jpeg";
+declare module "*.jpg";
+
 declare global {
     interface Window {
         axios: typeof axios;
