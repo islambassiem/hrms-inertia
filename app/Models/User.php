@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Employee::class);
     }
+
+    public function isHr(): bool
+    {
+        return $this->hasRole('hr');
+    }
+
+    public function isHead(): bool
+    {
+        return $this->hasRole('head');
+    }
 }

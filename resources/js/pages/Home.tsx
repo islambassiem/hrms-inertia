@@ -7,7 +7,7 @@ import { t } from "i18next";
 
 const Home = () => {
     const { auth } = usePage().props;
-
+    console.log(auth);
     return (
         <App>
             <div className="relative flex flex-col items-center text-center">

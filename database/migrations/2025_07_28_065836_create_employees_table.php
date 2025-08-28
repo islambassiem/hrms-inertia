@@ -22,6 +22,9 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 6)->unique();
+            $table->foreignIdFor(User::class, 'user_id')->unique()->constrained();
+            $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained();
 
             $table->string('first_name_en', 20);
             $table->string('middle_name_en', 20)->nullable();
@@ -39,9 +42,6 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->foreignIdFor(Country::class, 'place_of_birth')->nullable()->constrained();
 
-            $table->foreignIdFor(User::class, 'user_id')->unique()->constrained();
-            $table->string('code', 6)->unique();
-            $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained();
             $table->boolean('is_active')->default(true);
             $table->boolean('has_salary')->default(true);
             $table->boolean('has_biometric')->default(true);

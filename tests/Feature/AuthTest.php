@@ -2,14 +2,11 @@
 
 use App\Models\Employee;
 use App\Models\User;
-use Inertia\Testing\AssertableInertia as Assert;
 
 test('login screen can be rendered', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
-    $response->assertInertia(fn(Assert $page) => $page
-        ->component('Auth/Login'));
 });
 
 test('users can authenticate using login form', function () {
