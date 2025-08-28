@@ -15,7 +15,7 @@ const roles = {
         role: "hr",
         title: "Human Resources Account",
         subtitle: "Manage all employees",
-        href: route("hr.dashboard"),
+        href: route("hr.employees"),
         icon: <FaUsersCog className="text-2xl text-surface" />,
         color: "bg-accent",
     },
