@@ -21,12 +21,6 @@ class EmployeeResource extends JsonResource
         /** @var \App\Enums\Gender $gender */
         $gender = $this->gender;
 
-        /** @var \App\Enums\MaritalStatus $status */
-        $status = $this->marital_status;
-
-        /** @var \App\Enums\Religion $religion */
-        $religion = $this->religion;
-
         return [
             'id' => $this->id,
             'empid' => $this->code,
@@ -34,8 +28,6 @@ class EmployeeResource extends JsonResource
             'name_en' => $this->resource->english_name,
             'email' => UserResource::make($this->whenLoaded('user')),
             'gender' => $gender->label(),
-            'marital_status' => $status?->label(),
-            'religion' => $religion?->label(),
             'date_of_birth' => Carbon::parse($this->date_of_birth)->format('Y-m-d'),
             'is_active' => $this->is_active,
             'has_salary' => $this->has_salary,

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Gender;
+use App\Enums\IdentificationType;
 use App\Enums\MaritalStatus;
 use App\Enums\Religion;
 use App\Enums\SpecialNeeds;
@@ -191,5 +192,40 @@ class Employee extends BaseModel
     public function extentions(): BelongsToMany
     {
         return $this->belongsToMany(Extention::class);
+    }
+
+    /**
+     * @return BelongsTo<Identification, $this>
+     */
+    public function nationalId(): BelongsTo
+    {
+        return $this->belongsTo(Identification::class, 'id', 'employee_id')
+            ->where('type', IdentificationType::NID);
+    }
+
+    /**
+     * @return BelongsTo<Identification, $this>
+     */
+    public function passport(): BelongsTo
+    {
+        return $this->belongsTo(Identification::class, 'id', 'employee_id')
+            ->where('type', IdentificationType::PASSPORT);
+    }
+
+    /**
+     * @return HasMany<Qualification, $this>
+     */
+    public function qualification(): HasMany
+    {
+        return $this->hasMany(Qualification::class)
+            ->where('is_active', true);
+    }
+
+    /**
+     * @return HasMany<Qualification, $this>
+     */
+    public function qualifications(): HasMany
+    {
+        return $this->hasMany(Qualification::class);
     }
 }

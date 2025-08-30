@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-enum Gender: string
+enum JobStatus: string
 {
-    case MALE = '1';
-    case FEMALE = '2';
+    case ACTIVE = '1';
+    case INACTIVE = '2';
 
     /**
      * @return array<string, string>
@@ -13,8 +13,8 @@ enum Gender: string
     public function label(): array
     {
         return match ($this) {
-            self::MALE => ['id' => '1', 'name' => app()->getLocale() == 'en' ? 'Male' : 'ذكر'],
-            self::FEMALE => ['id' => '2', 'name' => app()->getLocale() == 'en' ? 'Female' : 'انثى'],
+            self::ACTIVE => ['id' => '1', 'name' => app()->getLocale() == 'en' ? 'Active' : 'نشط'],
+            self::INACTIVE => ['id' => '0', 'name' => app()->getLocale() == 'en' ? 'Inactive' : 'غير نشط'],
         };
     }
 
