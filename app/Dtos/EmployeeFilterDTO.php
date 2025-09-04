@@ -25,8 +25,12 @@ final class EmployeeFilterDTO
         public readonly ?array $countries = [],
         public readonly ?array $sponsorships = [],
         public readonly ?array $qualifications = [],
-        public readonly ?string $from = null,
-        public readonly ?string $to = null
+        public readonly ?string $active_from = null,
+        public readonly ?string $active_to = null,
+        public readonly ?string $joining_date_from =  null,
+        public readonly ?string $joining_date_to = null,
+        public readonly ?string $resignation_date_from = null,
+        public readonly ?string $resignation_date_to = null,
     ) {
         //
     }

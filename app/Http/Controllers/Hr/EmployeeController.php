@@ -38,12 +38,16 @@ class EmployeeController extends Controller
                 $request->input('countries', []),
                 $request->input('sponsorships', []),
                 $request->input('qualifications', []),
-                $request->input('from'),
-                $request->input('to'),
+                $request->input('active_from'),
+                $request->input('active_to'),
+                $request->input('joining_date_from'),
+                $request->input('joining_date_to'),
+                $request->input('resignation_date_from'),
+                $request->input('resignation_date_to'),
             )
         );
 
-        return Inertia::render('HR/Employees', [
+        return Inertia::render('Hr/Employees', [
             'status' => JobStatusListResource::collection(JobStatus::cases()),
             'genders' => GenderListResource::collection(Gender::cases()),
             'employees' => EmployeeResource::collection($employees),

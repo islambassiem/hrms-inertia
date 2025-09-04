@@ -6,7 +6,15 @@ import MultiSelect from '@/components/ui/MultiSelect';
 import { getArrayParam, getStringParam } from '@/lib/utils';
 
 
-const Employees = ({ employees, departments, categories, countries, sponsorships, genders, status, qualifications }: EmployeeListProps) => {
+const Employees = ({
+    employees,
+    departments,
+    categories,
+    countries,
+    sponsorships,
+    genders,
+    status,
+    qualifications }: EmployeeListProps) => {
 
     const [formData, setFormData] = useState({
         gender: getArrayParam('gender'),
@@ -16,8 +24,12 @@ const Employees = ({ employees, departments, categories, countries, sponsorships
         countries: getArrayParam('countries'),
         sponsorships: getArrayParam('sponsorships'),
         qualifications: getArrayParam('qualifications'),
-        from: getStringParam('from') ?? null,
-        to: getStringParam('from') ?? null,
+        active_from: getStringParam('active_from') ?? null,
+        active_to: getStringParam('active_to') ?? null,
+        joining_date_from: getStringParam('joining_date_from') ?? null,
+        joining_date_to: getStringParam('joining_date_to') ?? null,
+        resignation_date_from: getStringParam('resignation_date_from') ?? null,
+        resignation_date_to: getStringParam('resignation_date_to') ?? null,
     });
 
     const handleGenderChange = useCallback(
@@ -74,13 +86,60 @@ const Employees = ({ employees, departments, categories, countries, sponsorships
 
                     <div className='flex gap-10'>
                         <div>
+                            <h4>Active Employees</h4>
                             <div>
                                 <h3 className='font-bold'>From</h3>
-                                <input type="date" name='from' value={formData.from} onChange={(e) => setFormData((prev) => ({ ...prev, from: e.target.value }))} />
+                                <input
+                                    type="date"
+                                    name='from'
+                                    value={formData.active_from}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, active_from: e.target.value }))} />
                             </div>
                             <div>
                                 <h3 className='font-bold'>To</h3>
-                                <input type="date" name='to' value={formData.to} onChange={(e) => setFormData((prev) => ({ ...prev, to: e.target.value }))} />
+                                <input
+                                    type="date"
+                                    name='to'
+                                    value={formData.active_to}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, active_to: e.target.value }))} />
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Joinin Date</h4>
+                            <div>
+                                <h3 className='font-bold'>From</h3>
+                                <input
+                                    type="date"
+                                    name='joining_date_from'
+                                    value={formData.joining_date_from}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, joining_date_from: e.target.value }))} />
+                            </div>
+                            <div>
+                                <h3 className='font-bold'>To</h3>
+                                <input
+                                    type="date"
+                                    name='to'
+                                    value={formData.joining_date_to}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, joining_date_to: e.target.value }))} />
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Resingation Date</h4>
+                            <div>
+                                <h3 className='font-bold'>From</h3>
+                                <input
+                                    type="date"
+                                    name='resignation_date_from'
+                                    value={formData.resignation_date_from}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, resignation_date_from: e.target.value }))} />
+                            </div>
+                            <div>
+                                <h3 className='font-bold'>To</h3>
+                                <input
+                                    type="date"
+                                    name='resignation_date_to'
+                                    value={formData.resignation_date_to}
+                                    onChange={(e) => setFormData((prev) => ({ ...prev, resignation_date_to: e.target.value }))} />
                             </div>
                         </div>
 

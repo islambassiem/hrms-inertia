@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { memo } from "react";
 
 interface Item {
@@ -36,7 +37,7 @@ const MultiSelect =  ({ items, selected, onChange, name = "items" }: MultiSelect
                         checked={selected.length === items.length && items.length > 0}
                         onChange={(e) => handleSelectAll(e.target.checked)}
                     />
-                    <label htmlFor={`${name}-select-all`}>Select all</label>
+                    <label htmlFor={`${name}-select-all`}>{t('Select All')}</label>
                 </div>
 
                 {items.map((item) => {

@@ -16,12 +16,20 @@ class EmployeeListQuery
         return Employee::with([
             'user', 'nationality', 'sponsorship', 'categories', 'positions', 'departments',
         ])
-            ->when(! empty($dto->from) && ! empty($dto->to), function ($query) use ($dto) {
-                return $query->whereDate('joining_date', '<=', $dto->to)
+            ->when(! empty($dto->active_from) && ! empty($dto->active_to), function ($query) use ($dto) {
+                return $query->whereDate('joining_date', '<=', $dto->active_to)
                     ->where(function ($query) use ($dto) {
-                        return $query->whereDate('resignation_date', '>=', $dto->from)
+                        return $query->whereDate('resignation_date', '>=', $dto->active_from)
                             ->orWhereNull('resignation_date');
                     });
+            })
+            ->when(! empty($dto->joining_date_from) && ! empty($dto->joining_date_to), function ($query) use ($dto) {
+                return $query->whereDate('joining_date', '>=', $dto->joining_date_from)
+                    ->whereDate('joining_date', '<=', $dto->joining_date_to);
+            })
+            ->when(! empty($dto->resignation_date_from) && ! empty($dto->resignation_date_to), function ($query) use ($dto) {
+                return $query->whereDate('resignation_date', '>=', $dto->resignation_date_from)
+                    ->whereDate('resignation_date', '<=', $dto->resignation_date_to);
             })
             ->when(! empty($dto->is_active), function ($query) use ($dto) {
                 return $query->whereIn('is_active', $dto->is_active);
