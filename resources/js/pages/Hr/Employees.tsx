@@ -84,7 +84,7 @@ const Employees = ({
             <section>
                 <form onSubmit={submit} method="post" className=''>
 
-                    <div className='flex gap-10'>
+                    <div className='flex gap-10 flex-wrap'>
                         <div>
                             <h4>Active Employees</h4>
                             <div>
