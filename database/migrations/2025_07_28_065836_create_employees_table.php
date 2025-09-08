@@ -37,7 +37,7 @@ return new class extends Migration
             $table->enum('gender', Gender::toArray());
             $table->enum('marital_status', MaritalStatus::toArray())->nullable();
             $table->foreignIdFor(Country::class, 'nationality_id')->constrained();
-            $table->enum('religion', Religion::toArray());
+            $table->enum('religion', Religion::toArray())->nullable();
             $table->string('home_country_id', 20)->nullable();
             $table->date('date_of_birth');
             $table->foreignIdFor(Country::class, 'place_of_birth')->nullable()->constrained();

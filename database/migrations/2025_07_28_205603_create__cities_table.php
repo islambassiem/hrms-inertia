@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('_cities', function (Blueprint $table) {
             $table->id();
             $table->string('code', 10)->nullable()->unique();
-            $table->string('city_en', 100)->unique();
-            $table->string('city_ar', 100)->unique();
+            $table->string('city_en', 100);
+            $table->string('city_ar', 100);
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
