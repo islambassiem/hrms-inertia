@@ -5,7 +5,6 @@ namespace App\Queries\Hr;
 use App\Dtos\EmployeeFilterDTO;
 use App\Models\Employee;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class EmployeeListQuery
 {

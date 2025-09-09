@@ -24,6 +24,7 @@ class EmployeeResource extends JsonResource
         return [
             'id' => $this->id,
             'empid' => $this->code,
+            'image' => $this->profileImage(),
             'name_ar' => $this->resource->arabic_name,
             'name_en' => $this->resource->english_name,
             'email' => $this->whenLoaded('user', $this->user->email),

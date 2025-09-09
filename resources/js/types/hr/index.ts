@@ -6,6 +6,7 @@
 interface Employee {
     'id': number,
     'empid': number,
+    'image': string,
     'email': string,
     'identification': string,
     'gender': Resource,

@@ -7,6 +7,7 @@ import { getArrayParam, getStringParam } from '@/lib/utils';
 import Calendar from '@/components/ui/Calendar';
 import { t } from 'i18next';
 import { useLanguage } from '@/hooks/useLanguage';
+import image from '@/assets/images/logo.png'
 
 import { SlUser } from "react-icons/sl";
 import { SlUserFemale } from "react-icons/sl";
@@ -23,6 +24,7 @@ const Employees = ({
     qualifications }: EmployeeListProps) => {
 
     const [formData, setFormData] = useState({
+        page: getArrayParam('page') ?? 1,
         gender: getArrayParam('gender'),
         status: getArrayParam('status'),
         departments: getArrayParam('departments'),
@@ -268,7 +270,7 @@ const Employees = ({
                                     <td className='border-2 border-border'>{employee.empid}</td>
                                     <td className='border-2 border-border'>
                                         <img
-                                            src={`https://csmonline.net/storage/profile/${employee.empid}.jpeg`}
+                                            src={employee.image === null ? image : employee.image}
                                             alt={employee.name_en}
                                             className='size-15 p-2 rounded-3xl'
                                         />

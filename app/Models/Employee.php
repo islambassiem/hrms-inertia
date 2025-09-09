@@ -113,6 +113,16 @@ class Employee extends BaseModel
         );
     }
 
+    public function profileImage(): ?string
+    {
+        $path = "storage/profile/{$this->code}.jpeg";
+        if (file_exists($path)) {
+            return asset($path);
+        }
+
+        return null;
+    }
+
     /**
      * @param  Builder<Employee>  $query
      */

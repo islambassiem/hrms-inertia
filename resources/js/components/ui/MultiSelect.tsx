@@ -6,7 +6,8 @@ import { GoChevronDown } from "react-icons/go";
 import { VscClearAll } from "react-icons/vsc";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
-import ToolTip from "./Tooltip";
+import ToolTip from "./ToolTip";
+
 
 
 interface Item {
