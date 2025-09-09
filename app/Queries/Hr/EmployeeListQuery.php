@@ -4,17 +4,26 @@ namespace App\Queries\Hr;
 
 use App\Dtos\EmployeeFilterDTO;
 use App\Models\Employee;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 class EmployeeListQuery
 {
     /**
-     * @return Collection<int, Employee>
+     * @return LengthAwarePaginator<int, Employee>
      */
-    public function handle(EmployeeFilterDTO $dto): mixed
+    public function handle(EmployeeFilterDTO $dto): LengthAwarePaginator
     {
         return Employee::with([
-            'user', 'nationality', 'sponsorship', 'categories', 'positions', 'departments',
+            'user',
+            'nationality',
+            'sponsorship',
+            'categories',
+            'positions',
+            'departments',
+            'nationalId',
+            'extentions',
+            'passport',
         ])
             ->when(! empty($dto->active_from) && ! empty($dto->active_to), function ($query) use ($dto) {
                 return $query->whereDate('joining_date', '<=', $dto->active_to)
@@ -68,6 +77,6 @@ class EmployeeListQuery
                     return $query->whereIn('qualifications.qualification', $dto->qualifications);
                 });
             })
-            ->get();
+            ->paginate();
     }
 }

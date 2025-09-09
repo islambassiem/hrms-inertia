@@ -16,5 +16,20 @@
     "Select All": "اختر الكل",
     "Selected": "مختار",
     "Select": "اختر",
-    "Search": "بحث"
+    "Search": "بحث",
+    "Today": "اليوم",
+    "From": "من",
+    "To": "الى",
+    "Clear": "مسح",
+    "Close": "اغلاق",
+    "Job Status": "الحالة الوظيفية",
+    "Gender": "الجنس",
+    "Sponsorship": "الكفالة",
+    "Nationality": "الجنسية",
+    "Department": "القسم",
+    "Category": "التصنيف الوظيفي",
+    "Resingation Date": "تاريخ الانتهاء",
+    "Joinin Date": "تاريخ التعيين",
+    "Active Employees": "الموظفين النشطين",
+    "Qualification": "المؤهل"
 }

@@ -30,6 +30,7 @@
         "@inertiajs/react": "^2.1.2",
         "@primeuix/themes": "^1.2.3",
         "clsx": "^2.1.1",
+        "framer-motion": "^12.23.12",
         "i18next": "^25.3.6",
         "primereact": "^11.0.0-alpha.1",
         "react": "^19.1.1",

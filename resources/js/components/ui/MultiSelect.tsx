@@ -6,6 +6,8 @@ import { GoChevronDown } from "react-icons/go";
 import { VscClearAll } from "react-icons/vsc";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
+import ToolTip from "./Tooltip";
+
 
 interface Item {
     id: string | number;
@@ -56,17 +58,17 @@ const MultiSelect = ({ items, selected, onChange, name = "items" }: MultiSelectP
                 className="border border-border rounded-md px-4 py-2 cursor-pointer select-none flex justify-between items-center min-w-[150px]"
             >
                 <span>{selected.length > 0 ? `${selected.length} ${t('Selected')}` : t('Select')}</span>
-                <GoChevronDown className={`transition duration-300 ${isOpen ? 'rotate-180' : ''}`}/>
+                <GoChevronDown className={`transition duration-300 ${isOpen ? 'rotate-180' : ''}`} />
             </div>
             {isOpen && (
                 <div className={`absolute z-10 mt-1 border bg-bg border-border rounded-md shadow-lg p-4 max-h-60 overflow-y-auto max-w-fit min-w-56 space-y-3`}>
                     <div className="py-4 px-2 flex gap-2 justify-between items-center">
-                            <input
-                                type="checkbox"
-                                id={`${name}-select-all`}
-                                checked={selected.length === items.length && items.length > 0}
-                                onChange={(e) => handleSelectAll(e.target.checked)}
-                            />
+                        <input
+                            type="checkbox"
+                            id={`${name}-select-all`}
+                            checked={selected.length === items.length && items.length > 0}
+                            onChange={(e) => handleSelectAll(e.target.checked)}
+                        />
                         <div className="flex flex-1 justify-between bg-neutral/10 rounded p-2 focus-within:border focus-within:border-primary">
                             <input
                                 type="text"
@@ -103,20 +105,26 @@ const MultiSelect = ({ items, selected, onChange, name = "items" }: MultiSelectP
                         );
                     })}
                     <div className="flex justify-end gap-1">
-                        <button
-                            type="button"
-                            onClick={() => setIsOpen(false)}
-                            className="mt-2 p-2 bg-primary text-white rounded cursor-pointer hover:bg-primary/80 ">
-                            <IoCloseOutline />
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                onChange([]);
-                            }}
-                            className="mt-2 p-2 bg-danger text-white rounded ml-2 cursor-pointer hover:bg-danger/80 ">
-                            <VscClearAll />
-                        </button>
+                        <ToolTip tooltip={t('Close')}>
+                            <button
+                                type="button"
+                                onClick={() => setIsOpen(false)}
+                                className="mt-2 p-2 bg-primary text-white rounded cursor-pointer hover:bg-primary/80 ">
+                                <IoCloseOutline />
+                            </button>
+
+                        </ToolTip>
+                        <ToolTip tooltip={t('Clear')} >
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    onChange([]);
+                                }}
+                                className="mt-2 p-2 bg-danger text-white rounded ml-2 cursor-pointer hover:bg-danger/80 ">
+                                <VscClearAll />
+                            </button>
+
+                        </ToolTip>
                     </div>
                 </div>
             )}

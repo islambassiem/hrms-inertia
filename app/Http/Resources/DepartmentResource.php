@@ -19,8 +19,7 @@ class DepartmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'department_en' => $this->department_en,
-            'department_ar' => $this->department_ar,
+            'name' => app()->getLocale() === 'ar' ? $this->department_ar : $this->department_en,
         ];
     }
 }

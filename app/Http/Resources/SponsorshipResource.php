@@ -19,8 +19,7 @@ class SponsorshipResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'sponsorship_en' => $this->sponsorship_en,
-            'sponsorship_ar' => $this->sponsorship_ar,
+            'name' => app()->getLocale() === 'ar' ? $this->sponsorship_ar : $this->sponsorship_en,
         ];
     }
 }
