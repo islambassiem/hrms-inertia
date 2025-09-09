@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained();
             $table->enum('type', IdentificationType::toArray());
-            $table->string('id_number', 15)->unique();
+            $table->string('id_number', 15);
             $table->string('place_of_issue')->nullable();
             $table->date('date_of_issue')->nullable();
             $table->date('date_of_expiry')->nullable();
