@@ -30,7 +30,7 @@ class EmployeeResource extends JsonResource
             'email' => $this->whenLoaded('user', $this->user->email),
             'gender' => $gender->label(),
             'date_of_birth' => Carbon::parse($this->date_of_birth)->format('Y-m-d'),
-            'identification' => $this->whenLoaded('nationalId', $this->nationalId->id_number),
+            'identification' => $this->whenLoaded('nationalId', $this->nationalId?->id_number),
             'passprt' => $this->whenLoaded('passport', $this->passport?->id_number),
             'is_active' => $this->is_active,
             'has_salary' => $this->has_salary,

@@ -1,6 +1,6 @@
 import App from '@/layouts/AppLayout'
 import { EmployeeListProps } from '@/types/hr';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { router } from '@inertiajs/react'
 import MultiSelect from '@/components/ui/MultiSelect';
 import { getArrayParam, getStringParam } from '@/lib/utils';
@@ -22,6 +22,8 @@ const Employees = ({
     genders,
     status,
     qualifications }: EmployeeListProps) => {
+
+    const formRef = useRef<HTMLFormElement>(null);
 
     const [formData, setFormData] = useState({
         page: getArrayParam('page') ?? 1,
@@ -76,7 +78,7 @@ const Employees = ({
         []
     );
 
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const cleanFormData = Object.fromEntries(
             Object.entries(formData).filter(([, v]) => v !== null && v !== "")
@@ -88,12 +90,54 @@ const Employees = ({
             preserveScroll: true
         });
     }
-    console.log(employees)
+    const handleExport = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const exportForm = document.createElement('form');
+        exportForm.method = 'POST';
+        exportForm.action = route('hr.employees.export');
+        exportForm.style.display = 'none';
+
+        // Add formData as hidden inputs
+        Object.entries(formData).forEach(([key, value]) => {
+            if (value !== null && value !== "" && value !== undefined) {
+                if (Array.isArray(value) && value.length > 0) {
+                    // Send arrays with proper Laravel array notation
+                    value.forEach((item, index) => {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = `${key}[${index}]`; // This creates gender[0], gender[1], etc.
+                        input.value = String(item);
+                        exportForm.appendChild(input);
+                    });
+                } else if (!Array.isArray(value)) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = String(value);
+                    exportForm.appendChild(input);
+                }
+            }
+        });
+
+        // Add CSRF token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        if (csrfToken) {
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = '_token';
+            csrfInput.value = csrfToken;
+            exportForm.appendChild(csrfInput);
+        }
+
+        document.body.appendChild(exportForm);
+        exportForm.submit();
+        document.body.removeChild(exportForm);
+    };
     return (
         <App>
             <section>
-                <form onSubmit={submit} method="post" className=''>
-
+                <form ref={formRef} onSubmit={handleFilter}>
                     <div className='flex gap-10 flex-wrap'>
                         <div>
                             <h4>{t('Active Employees')}</h4>
@@ -241,27 +285,28 @@ const Employees = ({
                             />
                         </div>
                     </div>
-                    <button type="submit">submit</button>
+                    <button type="submit" >submit</button>
+                    <button type="button" onClick={handleExport}>export</button>
                 </form>
-                <div className='w-full overflow-x-auto border-collapse max-h-[500px] whitespace-nowrap'>
+                <div className='w-full overflow-x-auto border-collapse whitespace-nowrap'>
                     <table className='p-2 min-w-full'>
                         <thead>
                             <tr className='border-2 border-border bg-surface'>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>ID</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Empid</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Name</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>National ID</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Passport</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Gender</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Nationality</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Date of Birth</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Joining Date</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Resignation Date</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Department</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Sponsorship</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Sponsorship</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Sponsorship</th>
-                                <th className='border-2 border-border sticky -top-1 bg-bg z-10 p-2'>Sponsorship</th>
+                                <th className='border-2 border-border'>ID</th>
+                                <th className='border-2 border-border'>Empid</th>
+                                <th className='border-2 border-border'>Name</th>
+                                <th className='border-2 border-border'>National ID</th>
+                                <th className='border-2 border-border'>Passport</th>
+                                <th className='border-2 border-border'>Gender</th>
+                                <th className='border-2 border-border'>Nationality</th>
+                                <th className='border-2 border-border'>Date of Birth</th>
+                                <th className='border-2 border-border'>Joining Date</th>
+                                <th className='border-2 border-border'>Resignation Date</th>
+                                <th className='border-2 border-border'>Department</th>
+                                <th className='border-2 border-border'>Sponsorship</th>
+                                <th className='border-2 border-border'>Sponsorship</th>
+                                <th className='border-2 border-border'>Sponsorship</th>
+                                <th className='border-2 border-border'>Sponsorship</th>
                             </tr>
                         </thead>
                         <tbody>

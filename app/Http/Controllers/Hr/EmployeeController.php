@@ -6,6 +6,7 @@ use App\Dtos\EmployeeFilterDTO;
 use App\Enums\Gender;
 use App\Enums\JobStatus;
 use App\Enums\Qualification;
+use App\Exports\EmployeesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\CountryListResource;
@@ -20,14 +21,46 @@ use App\Models\Country;
 use App\Models\Department;
 use App\Models\Sponsorship;
 use App\Queries\Hr\EmployeeListQuery;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class EmployeeController extends Controller
 {
     public function index(EmployeeListQuery $query, Request $request): \Inertia\Response
     {
-        $employees = $query->handle(
+        $employees = $this->filter($query, $request)->get();
+
+        return Inertia::render('Hr/Employees', [
+            'status' => JobStatusListResource::collection(JobStatus::cases()),
+            'genders' => GenderListResource::collection(Gender::cases()),
+            'employees' => EmployeeResource::collection($employees),
+            'departments' => DepartmentListResource::collection(Department::all()),
+            'categories' => CategoryListResource::collection(Category::all()),
+            'countries' => CountryListResource::collection(Country::all()),
+            'sponsorships' => SponsorshipListResource::collection(Sponsorship::all()),
+            'qualifications' => QualificationListResource::collection(Qualification::cases()),
+        ]);
+    }
+
+    public function export(Request $request, EmployeeListQuery $query): BinaryFileResponse
+    {
+        // dd($request->all());
+        $employees = $this->filter($query, $request);
+
+
+        return (new EmployeesExport($employees->get()))->download('employees.xlsx');
+    }
+
+    /**
+     * @return Builder<Employee>
+     */
+    private function filter(EmployeeListQuery $query, Request $request): Builder
+    {
+        $builder = $query->handle(
             new EmployeeFilterDTO(
                 $request->input('gender', []),
                 $request->input('status', []),
@@ -46,16 +79,6 @@ class EmployeeController extends Controller
                 $request->input('resignation_date_to'),
             )
         );
-
-        return Inertia::render('Hr/Employees', [
-            'status' => JobStatusListResource::collection(JobStatus::cases()),
-            'genders' => GenderListResource::collection(Gender::cases()),
-            'employees' => EmployeeResource::collection($employees),
-            'departments' => DepartmentListResource::collection(Department::all()),
-            'categories' => CategoryListResource::collection(Category::all()),
-            'countries' => CountryListResource::collection(Country::all()),
-            'sponsorships' => SponsorshipListResource::collection(Sponsorship::all()),
-            'qualifications' => QualificationListResource::collection(Qualification::cases()),
-        ]);
+        return $builder;
     }
 }

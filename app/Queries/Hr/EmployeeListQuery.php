@@ -4,14 +4,15 @@ namespace App\Queries\Hr;
 
 use App\Dtos\EmployeeFilterDTO;
 use App\Models\Employee;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class EmployeeListQuery
 {
+
     /**
-     * @return LengthAwarePaginator<int, Employee>
+     * @return Builder<Employee>
      */
-    public function handle(EmployeeFilterDTO $dto): LengthAwarePaginator
+    public function handle(EmployeeFilterDTO $dto): Builder
     {
         return Employee::with([
             'user',
@@ -75,7 +76,6 @@ class EmployeeListQuery
                 return $query->whereHas('qualification', function ($query) use ($dto) {
                     return $query->whereIn('qualifications.qualification', $dto->qualifications);
                 });
-            })
-            ->paginate();
+            });
     }
 }

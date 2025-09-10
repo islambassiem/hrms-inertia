@@ -13,4 +13,5 @@ Route::group([
     })->name('dashboard');
 
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
+    Route::post('/employees/export', [EmployeeController::class, 'export'])->name('employees.export');
 });
