@@ -17,6 +17,12 @@ final class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
+            GenderSeeder::class,
+            CountrySeeder::class,
+            MaritalStatusSeeder::class,
+            RelationshipSeeder::class,
+            ReligionSeeder::class,
+            SpecialNeedsSeeder::class,
         ]);
     }
 }
