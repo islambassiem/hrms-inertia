@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-class RoleSeeder extends Seeder
+final class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -27,8 +28,8 @@ class RoleSeeder extends Seeder
             ]);
         }
 
-        User::where('username', 'admin')->firstOrFail()->assignRole('admin');
-        User::where('username', 'hr')->firstOrFail()->assignRole('hr');
-        User::where('username', 'head')->firstOrFail()->assignRole('head');
+        User::query()->where('name', 'admin')->firstOrFail()->assignRole('admin');
+        User::query()->where('name', 'hr')->firstOrFail()->assignRole('hr');
+        User::query()->where('name', 'head')->firstOrFail()->assignRole('head');
     }
 }
