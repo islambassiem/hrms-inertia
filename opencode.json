@@ -1,0 +1,15 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+        "laravel-boost": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "wsl.exe",
+                "/home/islam/.config/herd-lite/bin/php",
+                "/home/islam/prog/2026/hrms-inertia/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}

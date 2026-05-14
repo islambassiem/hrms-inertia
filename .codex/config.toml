@@ -1,0 +1,4 @@
+[mcp_servers.laravel-boost]
+command = "wsl.exe"
+args = ["/home/islam/.config/herd-lite/bin/php", "/home/islam/prog/2026/hrms-inertia/artisan", "boost:mcp"]
+cwd = "/home/islam/prog/2026/hrms-inertia"
