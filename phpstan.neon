@@ -30,6 +30,7 @@ parameters:
         - ./*/*/UserFactory.php
         - ./routes/settings.php
         - ./routes/web.php
+        - ./database/migrations/2026_05_14_074422_create_permission_tables.php
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
 #
