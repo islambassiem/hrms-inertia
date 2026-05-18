@@ -14,13 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shared_countries', function (Blueprint $table): void {
+        Schema::create('employee_sponsorships', function (Blueprint $table): void {
             $table->id();
             $table->json('name');
-            $table->string('code')->unique();
-            $table->integer('order')->nullable();
-            $table->string('lang', 2)->default('en');
-            $table->boolean('is_active')->default(true);
+            $table->string('code')->nullable()->unique();
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shared_countries');
+        Schema::dropIfExists('employee_sponsorships');
     }
 };

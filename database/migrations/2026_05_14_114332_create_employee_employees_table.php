@@ -1,0 +1,78 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Domain\Employee\Models\Sponsorship;
+use App\Domain\Organization\Models\Department;
+use App\Domain\Shared\Models\Country;
+use App\Domain\Shared\Models\Gender;
+use App\Domain\Shared\Models\MaritalStatus;
+use App\Domain\Shared\Models\Religion;
+use App\Domain\Shared\Models\SpecialNeeds;
+use App\Models\User;`
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('employee_employees', function (Blueprint $table): void {
+            $table->id();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class, 'head_id')->nullable()->constrained('employees');
+
+            $table->string('employee_code', 10);
+
+            $table->string('first_name_ar', 30);
+            $table->string('middle_name_ar', 30)->nullable();
+            $table->string('third_name_ar', 30)->nullable();
+            $table->string('last_name_ar', 30);
+
+            $table->string('first_name_en', 30);
+            $table->string('middle_name_en', 30)->nullable();
+            $table->string('third_name_en', 30)->nullable();
+            $table->string('last_name_en', 30);
+
+            $table->foreignIdFor(MaritalStatus::class)->nullable()->constrained();
+            $table->foreignIdFor(Religion::class)->nullable()->constrained();
+            $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained();
+
+            $table->foreignIdFor(Gender::class)->constrained();
+            $table->foreignIdFor(Sponsorship::class)->constrained();
+            $table->foreignIdFor(Department::class)->constrained();
+            $table->foreignIdFor(Country::class, 'nationality_id')->constrained();
+            $table->foreignIdFor(Country::class, 'place_or_birth')->nullable()->constrained();
+
+            $table->string('email')->nullable()->unique();
+            $table->string('phone')->nullable();
+            $table->string('image')->nullable();
+
+            $table->date('date_of_birth')->nullable();
+            $table->date('joining_date')->nullable();
+            $table->date('leaving_date')->nullable();
+
+            $table->string('home_telephone_number')->nullable();
+            $table->string('home_country_identity')->nullable();
+            $table->string('blood_type')->nullable();
+
+            $table->boolean('is_active')->default(true);
+
+            $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('employee_employees');
+    }
+};

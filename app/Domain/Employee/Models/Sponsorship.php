@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Organization\Models;
+namespace App\Domain\Employee\Models;
 
 use App\Concerns\UserStamp;
-use Database\Factories\DepartmentFactory;
+use Database\Factories\SponsorshipFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,34 +14,29 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int $id
- * @property int|null $parent_id
  */
 #[Fillable([
     'name',
     'code',
-    'type',
-    'is_active',
-    'parent_id',
-    'head_id',
     'created_by',
     'updated_by',
 ])]
-#[Table('organizations_department')]
-final class Department extends Model
+#[Table('employee_sponsorships')]
+final class Sponsorship extends Model
 {
-    /** @use HasFactory<DepartmentFactory> */
+    /** @use HasFactory<SponsorshipFactory> */
     use HasFactory;
 
     use HasTranslations;
 
-    /** @use UserStamp<Department> */
+    /** @use UserStamp<Sponsorship> */
     use UserStamp;
 
     /** @var array<string> */
     public $translatable = ['name'];
 
-    protected static function newFactory(): DepartmentFactory
+    protected static function newFactory(): SponsorshipFactory
     {
-        return DepartmentFactory::new();
+        return SponsorshipFactory::new();
     }
 }

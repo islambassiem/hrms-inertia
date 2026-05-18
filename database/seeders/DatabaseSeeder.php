@@ -23,6 +23,7 @@ final class DatabaseSeeder extends Seeder
             RelationshipSeeder::class,
             ReligionSeeder::class,
             SpecialNeedsSeeder::class,
+            SponsorshipSeeder::class,
         ]);
     }
 }
