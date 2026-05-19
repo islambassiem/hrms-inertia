@@ -22,9 +22,10 @@ final class DepartmentSeeder extends Seeder
         $departments = Department::all();
 
         foreach ($departments as $department) {
-            $parent = $departments->random();
-            $department->parent_id = $parent->id;
-            $department->save();
+            $parent = $departments->where('id', '!=', $department->id)->random();
+            $department->update([
+                'parent_id' => $parent->id,
+            ]);
         }
     }
 }

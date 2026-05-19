@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Employee\Data;
 
 use Carbon\CarbonImmutable;
@@ -14,12 +16,13 @@ use Spatie\LaravelData\Attributes\Validation\Regex;
 use Spatie\LaravelData\Attributes\Validation\Unique;
 use Spatie\LaravelData\Data;
 
-class CreateEmployeeData extends Data
+final class CreateEmployeeData extends Data
 {
     /**
      * Create a new class instance.
      */
     public function __construct(
+
         #[Exists('users', 'id')]
         public int $user_id,
 
@@ -27,8 +30,8 @@ class CreateEmployeeData extends Data
         #[Exists('users', 'id')]
         public ?int $head_id,
 
-        #[Regex('/^50[01][0-9]{3}$/')]
-        #[Unique('employees', 'employee_code')]
+        #[Regex('/^50[01]\d{3}$/')]
+        #[Unique('employee_employees', 'employee_code')]
         public string $employee_code,
 
         #[Max(30)]
@@ -77,7 +80,7 @@ class CreateEmployeeData extends Data
 
         #[Nullable]
         #[Exists('shared_special_needs', 'id')]
-        public ?int $special_need_id,
+        public ?int $special_needs_id,
 
         #[Exists('shared_genders', 'id')]
         public int $gender_id,
@@ -85,7 +88,11 @@ class CreateEmployeeData extends Data
         #[Exists('employee_sponsorships', 'id')]
         public int $sponsorship_id,
 
-        #[Exists('organization_departments', 'id')]
+        #[Nullable]
+        #[Exists('employee_categories', 'id')]
+        public int $category_id,
+
+        #[Exists('organizations_department', 'id')]
         public int $department_id,
 
         #[Exists('shared_countries', 'id')]
@@ -96,15 +103,11 @@ class CreateEmployeeData extends Data
         public ?int $place_of_birth,
 
         #[Email]
-        #[Unique('employee.employees', 'email')]
+        #[Unique('employee_employees', 'email')]
         public string $email,
 
         #[Regex('/^5\d{8}$/')]
         public string $phone,
-
-        #[Nullable]
-        #[File]
-        public ?UploadedFile $image,
 
         public CarbonImmutable $date_of_birth,
         public CarbonImmutable $joining_date,
@@ -113,12 +116,16 @@ class CreateEmployeeData extends Data
         public ?string $home_telephone_number,
         public ?string $home_country_identity,
 
+        #[Nullable]
+        #[File]
+        public ?UploadedFile $image,
+
+        #[Nullable]
         #[In(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])]
-        public ?string $blood_type,
+        public ?string $blood_type = null,
 
         public bool $is_active = true,
-    )
-    {
+    ) {
         //
     }
 }

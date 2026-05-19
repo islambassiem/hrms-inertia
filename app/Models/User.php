@@ -23,6 +23,7 @@ final class User extends Authenticatable
     use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
     /** @use UserStamp<User> */
     use UserStamp;
 

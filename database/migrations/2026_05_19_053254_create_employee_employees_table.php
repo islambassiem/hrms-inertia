@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Domain\Employee\Models\Category;
+use App\Domain\Employee\Models\Employee;
 use App\Domain\Employee\Models\Sponsorship;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
@@ -9,7 +11,7 @@ use App\Domain\Shared\Models\Gender;
 use App\Domain\Shared\Models\MaritalStatus;
 use App\Domain\Shared\Models\Religion;
 use App\Domain\Shared\Models\SpecialNeeds;
-use App\Models\User;`
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +26,7 @@ return new class extends Migration
         Schema::create('employee_employees', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(User::class, 'head_id')->nullable()->constrained('employees');
+            $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained('employee_employees');
 
             $table->string('employee_code', 10);
 
@@ -40,13 +42,14 @@ return new class extends Migration
 
             $table->foreignIdFor(MaritalStatus::class)->nullable()->constrained();
             $table->foreignIdFor(Religion::class)->nullable()->constrained();
-            $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained();
+            $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained('shared_special_needs');
 
             $table->foreignIdFor(Gender::class)->constrained();
             $table->foreignIdFor(Sponsorship::class)->constrained();
+            $table->foreignIdFor(Category::class)->constrained('employee_categories');
             $table->foreignIdFor(Department::class)->constrained();
             $table->foreignIdFor(Country::class, 'nationality_id')->constrained();
-            $table->foreignIdFor(Country::class, 'place_or_birth')->nullable()->constrained();
+            $table->foreignIdFor(Country::class, 'place_of_birth')->nullable()->constrained();
 
             $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable();

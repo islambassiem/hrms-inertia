@@ -6,11 +6,13 @@ namespace Database\Factories;
 
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Domain\Organization\Models\Department;
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<Department>
  */
+#[UseModel(Department::class)]
 final class DepartmentFactory extends Factory
 {
     /**

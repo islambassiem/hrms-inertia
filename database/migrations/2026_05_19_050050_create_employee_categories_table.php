@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Domain\Employee\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,14 +15,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('organizations_department', function (Blueprint $table): void {
+        Schema::create('employee_categories', function (Blueprint $table): void {
             $table->id();
             $table->json('name');
-            $table->string('code')->nullable();
-            $table->string('type')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->foreignId('parent_id')->nullable()->constrained('organizations_department');
-            $table->foreignId('head_id')->nullable()->constrained('employee_employees');
+            $table->string('code')->nullable()->unique();
+            $table->foreignIdFor(Category::class, 'parent_id')->nullable()->constrained('employee_categories');
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organizations_department');
+        Schema::dropIfExists('employee_categories');
     }
 };

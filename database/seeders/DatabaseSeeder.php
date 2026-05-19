@@ -24,6 +24,9 @@ final class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             SpecialNeedsSeeder::class,
             SponsorshipSeeder::class,
+            DepartmentSeeder::class,
+            EmployeeCategorySeeder::class,
+            EmployeeSeeder::class,
         ]);
     }
 }

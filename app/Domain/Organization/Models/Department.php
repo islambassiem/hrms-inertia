@@ -12,10 +12,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-/**
- * @property int $id
- * @property int|null $parent_id
- */
 #[Fillable([
     'name',
     'code',
