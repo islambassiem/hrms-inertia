@@ -45,14 +45,14 @@ expect()->extend('toBeOne', fn () => $this->toBe(1));
 |
 */
 
-function expectValidationError(callable $callback, array $fields)
+function expectValidationError(callable $callback, array $fields): void
 {
     try {
         $callback();
         test()->fail('ValidationException was not thrown');
-    } catch (ValidationException $e) {
+    } catch (ValidationException $validationException) {
         foreach ($fields as $field) {
-            expect($e->errors())->toHaveKey($field);
+            expect($validationException->errors())->toHaveKey($field);
         }
     }
 }

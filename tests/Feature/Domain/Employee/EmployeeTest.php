@@ -16,7 +16,7 @@ it('can create an employee', function (): void {
         'last_name_ar' => 'عبدالله',
     ]);
 
-    $created = app(CreateEmployeeAction::class)->handle(
+    $created = resolve(CreateEmployeeAction::class)->handle(
         CreateEmployeeData::validateAndCreate($employee)
     );
 
@@ -35,7 +35,7 @@ it('can update an employee', function (): void {
         'last_name_ar' => 'عبدالله',
     ]);
 
-    $updated = app(UpdateEmployeeAction::class)->handle(
+    $updated = resolve(UpdateEmployeeAction::class)->handle(
         UpdateEmployeeData::validateAndCreate($newEmployee),
         $employee
     );
@@ -50,13 +50,12 @@ it('can update an employee', function (): void {
 it('fails to create employee if :dataset', function (array $overrides, array $fields): void {
     $employee = Employee::factory()->raw($overrides);
 
-    expectValidationError(function () use ($employee) {
-        app(CreateEmployeeAction::class)
+    expectValidationError(function () use ($employee): void {
+        resolve(CreateEmployeeAction::class)
             ->handle(CreateEmployeeData::from($employee));
     }, $fields);
 })
-    ->with('invalid-employee-data')
-    ->with('non-updatable-fields');
+    ->with('invalid employee data');
 
 it('fails to update employee if :dataset', function (array $overrides, array $fields): void {
     $existing = Employee::factory()->create([
@@ -67,16 +66,16 @@ it('fails to update employee if :dataset', function (array $overrides, array $fi
     ]);
     $employee = Employee::factory()->raw($overrides);
 
-    expectValidationError(function () use ($employee, $existing) {
-        app(UpdateEmployeeAction::class)->handle(
+    expectValidationError(function () use ($employee, $existing): void {
+        resolve(UpdateEmployeeAction::class)->handle(
             UpdateEmployeeData::from($employee),
             $existing
         );
     }, $fields);
 })
-    ->with('invalid-employee-data');
+    ->with('invalid employee data for update');
 
-dataset('non-updatable-fields', [
+$non_updatable_fields = [
     'user_id is null' => [
         ['user_id' => null],
         ['user_id'],
@@ -142,9 +141,9 @@ dataset('non-updatable-fields', [
         ['nationality_id'],
     ],
 
-]);
+];
 
-dataset('invalid-employee-data', [
+$invalid_employee_data_for_update = [
 
     'first_name_ar is short' => [
         ['first_name_ar' => 'a'],
@@ -230,4 +229,11 @@ dataset('invalid-employee-data', [
         ['nationality_id' => 'sau'],
         ['nationality_id'],
     ],
+];
+
+dataset('non updatable fields', $non_updatable_fields);
+dataset('invalid employee data for update', $invalid_employee_data_for_update);
+dataset('invalid employee data', [
+    ...$non_updatable_fields,
+    ...$invalid_employee_data_for_update,
 ]);
