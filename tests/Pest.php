@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
 /*
@@ -44,7 +45,14 @@ expect()->extend('toBeOne', fn () => $this->toBe(1));
 |
 */
 
-function something(): void
+function expectValidationError(callable $callback, array $fields)
 {
-    // ..
+    try {
+        $callback();
+        test()->fail('ValidationException was not thrown');
+    } catch (ValidationException $e) {
+        foreach ($fields as $field) {
+            expect($e->errors())->toHaveKey($field);
+        }
+    }
 }

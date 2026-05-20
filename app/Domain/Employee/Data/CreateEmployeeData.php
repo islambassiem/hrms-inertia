@@ -11,6 +11,7 @@ use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\File;
 use Spatie\LaravelData\Attributes\Validation\In;
 use Spatie\LaravelData\Attributes\Validation\Max;
+use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Attributes\Validation\Regex;
 use Spatie\LaravelData\Attributes\Validation\Unique;
@@ -26,60 +27,43 @@ final class CreateEmployeeData extends Data
         #[Exists('users', 'id')]
         public int $user_id,
 
-        #[Nullable]
-        #[Exists('users', 'id')]
+        #[Nullable, Exists('users', 'id')]
         public ?int $head_id,
 
-        #[Regex('/^50[01]\d{3}$/')]
-        #[Unique('employee_employees', 'employee_code')]
+        #[Regex('/^50[01]\d{3}$/'), Unique('employee_employees', 'employee_code')]
         public string $employee_code,
 
-        #[Max(30)]
-        #[Regex('/^[\p{Arabic}\s]+$/u')]
+        #[Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
         public string $first_name_ar,
 
-        #[Nullable]
-        #[Max(30)]
-        #[Regex('/^[\p{Arabic}\s]+$/u')]
+        #[Nullable, Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
         public ?string $middle_name_ar,
 
-        #[Nullable]
-        #[Max(30)]
-        #[Regex('/^[\p{Arabic}\s]+$/u')]
+        #[Nullable, Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
         public ?string $third_name_ar,
 
-        #[Max(30)]
-        #[Regex('/^[\p{Arabic}\s]+$/u')]
+        #[Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
         public string $last_name_ar,
 
-        #[Max(30)]
-        #[Regex('/^[\p{Latin}\s]+$/u')]
+        #[Max(30), Min(2), Regex('/^[A_Za-z]+$/i')]
         public string $first_name_en,
 
-        #[Nullable]
-        #[Max(30)]
-        #[Regex('/^[\p{Latin}\s]+$/u')]
+        #[Nullable, Max(30), Min(2), Regex('/^[A_Za-z]+$/i')]
         public ?string $middle_name_en,
 
-        #[Nullable]
-        #[Max(30)]
-        #[Regex('/^[\p{Latin}\s]+$/u')]
+        #[Nullable, Max(30), Min(2), Regex('/^[A_Za-z]+$/i')]
         public ?string $third_name_en,
 
-        #[Max(30)]
-        #[Regex('/^[\p{Latin}\s]+$/u')]
+        #[Max(30), Min(2), Regex('/^[A_Za-z]+$/i')]
         public string $last_name_en,
 
-        #[Nullable]
-        #[Exists('shared_marital_statuses', 'id')]
+        #[Nullable, Exists('shared_marital_statuses', 'id')]
         public ?int $marital_status_id,
 
-        #[Nullable]
-        #[Exists('shared_religions', 'id')]
+        #[Nullable, Exists('shared_religions', 'id')]
         public ?int $religion_id,
 
-        #[Nullable]
-        #[Exists('shared_special_needs', 'id')]
+        #[Nullable, Exists('shared_special_needs', 'id')]
         public ?int $special_needs_id,
 
         #[Exists('shared_genders', 'id')]
@@ -88,8 +72,7 @@ final class CreateEmployeeData extends Data
         #[Exists('employee_sponsorships', 'id')]
         public int $sponsorship_id,
 
-        #[Nullable]
-        #[Exists('employee_categories', 'id')]
+        #[Nullable, Exists('employee_categories', 'id')]
         public int $category_id,
 
         #[Exists('organizations_department', 'id')]
@@ -98,12 +81,10 @@ final class CreateEmployeeData extends Data
         #[Exists('shared_countries', 'id')]
         public int $nationality_id,
 
-        #[Nullable]
-        #[Exists('shared_countries', 'id')]
+        #[Nullable, Exists('shared_countries', 'id')]
         public ?int $place_of_birth,
 
-        #[Email]
-        #[Unique('employee_employees', 'email')]
+        #[Email, Unique('employee_employees', 'email')]
         public string $email,
 
         #[Regex('/^5\d{8}$/')]
@@ -116,12 +97,10 @@ final class CreateEmployeeData extends Data
         public ?string $home_telephone_number,
         public ?string $home_country_identity,
 
-        #[Nullable]
-        #[File]
+        #[Nullable, File]
         public ?UploadedFile $image,
 
-        #[Nullable]
-        #[In(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])]
+        #[Nullable, In(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])]
         public ?string $blood_type = null,
 
         public bool $is_active = true,

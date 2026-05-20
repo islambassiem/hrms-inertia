@@ -55,7 +55,7 @@ final class EmployeeFactory extends Factory
             'category_id' => Category::factory(),
             'department_id' => Department::factory(),
             'nationality_id' => Country::factory(),
-            'place_or_birth' => Country::query()->inRandomOrder()->value('id') ?? Country::factory(),
+            'place_of_birth' => Country::query()->inRandomOrder()->value('id') ?? Country::factory(),
 
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->numerify('5########'),

@@ -37,7 +37,7 @@ final class EmployeeSeeder extends Seeder
                 'category_id' => fn () => Category::query()->inRandomOrder()->value('id'),
                 'department_id' => fn () => Department::query()->where('type', DepartmentType::DEPARTMENT)->firstOrFail()->inRandomOrder()->value('id'),
                 'nationality_id' => fn () => Country::query()->inRandomOrder()->value('id'),
-                'place_or_birth' => fn () => Country::query()->inRandomOrder()->value('id'),
+                'place_of_birth' => fn () => Country::query()->inRandomOrder()->value('id'),
             ]);
         }
 
