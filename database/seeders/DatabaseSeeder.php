@@ -27,6 +27,8 @@ final class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             EmployeeCategorySeeder::class,
             EmployeeSeeder::class,
+            IdentityTypeSeeder::class,
+            IdentitySeeder::class,
         ]);
     }
 }
