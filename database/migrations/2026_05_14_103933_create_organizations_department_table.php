@@ -14,13 +14,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('organizations_department', function (Blueprint $table): void {
+        Schema::create('organization_departments', function (Blueprint $table): void {
             $table->id();
             $table->json('name');
             $table->string('code')->nullable();
             $table->string('type')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->foreignId('parent_id')->nullable()->constrained('organizations_department');
+            $table->foreignId('parent_id')->nullable()->constrained('organization_departments');
             $table->foreignId('head_id')->nullable()->constrained('employee_employees');
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organizations_department');
+        Schema::dropIfExists('organization_departments');
     }
 };

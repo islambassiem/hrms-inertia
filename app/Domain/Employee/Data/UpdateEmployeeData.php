@@ -70,7 +70,7 @@ final class UpdateEmployeeData extends Data
         #[Nullable, Exists('employee_categories', 'id')]
         public int|null|Optional $category_id,
 
-        #[Exists('organizations_department', 'id')]
+        #[Exists('organization_departments', 'id')]
         public int|null|Optional $department_id,
 
         #[Exists('shared_countries', 'id')]

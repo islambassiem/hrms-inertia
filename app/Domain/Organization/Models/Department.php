@@ -22,7 +22,7 @@ use Spatie\Translatable\HasTranslations;
     'created_by',
     'updated_by',
 ])]
-#[Table('organizations_department')]
+#[Table('organization_departments')]
 final class Department extends Model
 {
     /** @use HasFactory<DepartmentFactory> */

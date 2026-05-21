@@ -75,7 +75,7 @@ final class CreateEmployeeData extends Data
         #[Nullable, Exists('employee_categories', 'id')]
         public int $category_id,
 
-        #[Exists('organizations_department', 'id')]
+        #[Exists('organization_departments', 'id')]
         public int $department_id,
 
         #[Exists('shared_countries', 'id')]
