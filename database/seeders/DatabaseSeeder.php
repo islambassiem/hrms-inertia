@@ -29,6 +29,7 @@ final class DatabaseSeeder extends Seeder
             IdentityTypeSeeder::class,
             IdentitySeeder::class,
             AddressSeeder::class,
+            OrganizationAttributeTypeSeeder::class,
             OrganizationAttributeSeeder::class,
             EmployeeAttributeSeeder::class,
             DependentSeeder::class,

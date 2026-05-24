@@ -70,6 +70,12 @@
         "lint": [
             "pint --parallel"
         ],
+        "rector": [
+            "./vendor/bin/rector"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan analyse --memory-limit=1024M"
+        ],
         "lint:check": [
             "pint --parallel --test"
         ],

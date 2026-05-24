@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Domain\Organization\Models\Attribute;
 use App\Domain\Organization\Models\AttributeType;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Attribute>
+ * @extends Factory<AttributeType>
  */
-#[UseModel(Attribute::class)]
-final class OrganizationAttributeFactory extends Factory
+#[UseModel(AttributeType::class)]
+final class OrganizationAttributeTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -24,11 +23,10 @@ final class OrganizationAttributeFactory extends Factory
     {
         return [
             'name' => [
-                'ar' => fake('ar')->lexify(),
-                'en' => fake()->lexify(),
+                'ar' => fake('ar')->word(),
+                'en' => fake()->word(),
             ],
-            'code' => fake()->unique()->numberBetween(1, 100000000),
-            'type_id' => AttributeType::factory(),
+            'code' => (string) fake()->unique()->numberBetween(10, 100000000),
         ];
     }
 }

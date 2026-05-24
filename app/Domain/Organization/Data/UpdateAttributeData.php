@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Organization\Data;
 
-use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Shared\Data\TranslatedNameData;
+use Spatie\LaravelData\Attributes\Validation\Exists;
+use Spatie\LaravelData\Attributes\Validation\Max;
+use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
 
@@ -18,9 +20,11 @@ final class UpdateAttributeData extends Data
 
         public TranslatedNameData|null|Optional $name,
 
+        #[Max(30)]
         public string|null|Optional $code,
 
-        public AttributeType|null|Optional $type
+        #[Exists('organization_attribute_types', 'id'), Nullable]
+        public ?Optional $type_id
 
     ) {
         //

@@ -104,3 +104,13 @@ function invalidName(): array
         ],
     ];
 }
+
+function invalidCode(): array
+{
+    return [
+        'code is long' => [
+            ['code' => str_repeat('a', 31)],
+            ['code'],
+        ],
+    ];
+}

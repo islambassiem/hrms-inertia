@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Organization\Models;
 
 use App\Concerns\UserStamp;
-use App\Domain\Shared\Data\TranslatedNameData;
-use Database\Factories\OrganizationAttributeFactory;
+use Database\Factories\OrganizationAttributeTypeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,33 +15,25 @@ use Spatie\Translatable\HasTranslations;
 #[Fillable([
     'name',
     'code',
-    'type',
     'created_by',
     'updated_by',
 ])]
-#[Table('organization_attributes')]
-final class Attribute extends Model
+#[Table('organization_attribute_types')]
+final class AttributeType extends Model
 {
-    /** @use HasFactory<OrganizationAttributeFactory> */
+    /** @use HasFactory<OrganizationAttributeTypeFactory> */
     use HasFactory;
 
     use HasTranslations;
 
-    /** @use UserStamp<Attribute> */
+    /** @use UserStamp<AttributeType> */
     use UserStamp;
 
     /** @var array<string> */
     public $translatable = ['name'];
 
-    public function casts()
+    protected static function newFactory(): OrganizationAttributeTypeFactory
     {
-        return [
-            'name' => TranslatedNameData::class,
-        ];
-    }
-
-    protected static function newFactory(): OrganizationAttributeFactory
-    {
-        return OrganizationAttributeFactory::new();
+        return OrganizationAttributeTypeFactory::new();
     }
 }

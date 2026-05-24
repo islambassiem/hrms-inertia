@@ -37,4 +37,11 @@ final class Dependent extends Model
     {
         return DependentFactory::new();
     }
+
+    public function casts()
+    {
+        return [
+            'date_of_birth' => 'immutable_date'
+        ];
+    }
 }
