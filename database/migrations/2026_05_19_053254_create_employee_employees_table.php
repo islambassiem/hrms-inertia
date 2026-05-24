@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained('employee_employees');
 
-            $table->string('employee_code', 10);
+            $table->string('employee_code', 10)->unique();
 
             $table->string('first_name_ar', 30);
             $table->string('middle_name_ar', 30)->nullable();
@@ -54,18 +54,30 @@ return new class extends Migration
             $table->string('image')->nullable();
 
             $table->date('date_of_birth')->nullable();
-            $table->date('joining_date')->nullable();
+            $table->date('joining_date')->nullable()->index();
             $table->date('leaving_date')->nullable();
 
             $table->string('home_telephone_number')->nullable();
             $table->string('home_country_identity')->nullable();
             $table->string('blood_type')->nullable();
 
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(true)->index();
 
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
+
+
+            $table->index([
+                'first_name_ar',
+                'middle_name_ar',
+                'third_name_ar',
+                'last_name_ar',
+                'first_name_en',
+                'middle_name_en',
+                'third_name_en',
+                'last_name_en',
+            ]);
         });
     }
 

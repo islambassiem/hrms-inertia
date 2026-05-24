@@ -20,10 +20,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained('employee_employees');
             $table->foreignIdFor(IdentityType::class)->constrained('identity_identity_types');
-            $table->string('identity_number');
+            $table->string('identity_number')->index();
             $table->string('place_of_issue')->nullable();
             $table->date('issue_date')->nullable();
-            $table->date('expiry_date')->nullable();
+            $table->date('expiry_date')->nullable()->index();
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users');
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained('users');
             $table->timestamps();
