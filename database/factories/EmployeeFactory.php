@@ -33,7 +33,7 @@ final class EmployeeFactory extends Factory
         return [
             'user_id' => User::factory(),
             'head_id' => null,
-            'employee_code' => fake()->regexify('50[01][0-9]{3}'),
+            'employee_code' => fake()->unique()->regexify('50[01][0-9]{3}'),
 
             'first_name_ar' => fake('ar')->firstName(),
             'middle_name_ar' => fake()->randomElement([null, fake('ar')->firstName()]),

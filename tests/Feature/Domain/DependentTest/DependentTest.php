@@ -29,11 +29,11 @@ it('creates a dependent with valid data', function (): void {
         'name_ar' => $payload['name_ar'],
         'identification' => $payload['identification'],
         'gender_id' => $payload['gender_id'],
-        'date_of_birth' => $payload['date_of_birth'],
         'relationship_id' => $payload['relationship_id'],
         'has_insurance' => $payload['has_insurance'],
         'ticket_ratio' => $payload['ticket_ratio'],
     ]);
+    expect($created->date_of_birth->toDateString())->toBe($payload['date_of_birth']);
 });
 
 it('updates a dependent with valid data', function (): void {
@@ -53,11 +53,11 @@ it('updates a dependent with valid data', function (): void {
         'name_ar' => $payload['name_ar'],
         'identification' => $payload['identification'],
         'gender_id' => $payload['gender_id'],
-        'date_of_birth' => $payload['date_of_birth'],
         'relationship_id' => $payload['relationship_id'],
         'has_insurance' => $payload['has_insurance'],
         'ticket_ratio' => $payload['ticket_ratio'],
     ]);
+    expect($updated->date_of_birth->toDateString())->toBe($payload['date_of_birth']);
 });
 
 it('fails to create a dependent if :dataset', function (array $overrides, array $fields): void {

@@ -30,7 +30,7 @@ final class DependentFactory extends Factory
             'name_ar' => fake('ar')->name(),
             'identification' => fake()->numerify('##########'),
             'gender_id' => Gender::factory(),
-            'date_of_birth' => fake()->date(DATE_ATOM),
+            'date_of_birth' => fake()->date(),
             'relationship_id' => Relationship::factory(),
             'has_insurance' => (bool) random_int(0, 1),
             'ticket_ratio' => fake()->numberBetween(0, 100),

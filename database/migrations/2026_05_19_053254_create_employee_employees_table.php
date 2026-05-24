@@ -67,7 +67,6 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();
 
-
             $table->index([
                 'first_name_ar',
                 'middle_name_ar',

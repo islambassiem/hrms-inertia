@@ -33,15 +33,15 @@ final class Dependent extends Model
     /** @use UserStamp<Dependent> */
     use UserStamp;
 
-    protected static function newFactory(): DependentFactory
-    {
-        return DependentFactory::new();
-    }
-
     public function casts()
     {
         return [
-            'date_of_birth' => 'immutable_date'
+            'date_of_birth' => 'immutable_date',
         ];
+    }
+
+    protected static function newFactory(): DependentFactory
+    {
+        return DependentFactory::new();
     }
 }
