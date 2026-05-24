@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Domain\Organization\Models;
 
 use App\Concerns\UserStamp;
-use App\Domain\Organization\Enums\DepartmentType;
+use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Shared\Data\TranslatedNameData;
-use Database\Factories\DepartmentFactory;
+use Database\Factories\OrganizationAttributeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,37 +18,33 @@ use Spatie\Translatable\HasTranslations;
     'name',
     'code',
     'type',
-    'is_active',
-    'parent_id',
-    'head_id',
     'created_by',
     'updated_by',
 ])]
-#[Table('organization_departments')]
-final class Department extends Model
+#[Table('organization_attributes')]
+final class Attribute extends Model
 {
-    /** @use HasFactory<DepartmentFactory> */
+    /** @use HasFactory<OrganizationAttributeFactory> */
     use HasFactory;
 
     use HasTranslations;
 
-    /** @use UserStamp<Department> */
+    /** @use UserStamp<Attribute> */
     use UserStamp;
 
     /** @var array<string> */
     public $translatable = ['name'];
 
-    public function casts(): array
+    public function casts()
     {
         return [
             'name' => TranslatedNameData::class,
-            'type' => DepartmentType::class,
-            'is_active' => 'boolean',
+            'type' => AttributeType::class,
         ];
     }
 
-    protected static function newFactory(): DepartmentFactory
+    protected static function newFactory(): OrganizationAttributeFactory
     {
-        return DepartmentFactory::new();
+        return OrganizationAttributeFactory::new();
     }
 }
