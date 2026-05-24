@@ -38,8 +38,8 @@ final class Identity extends Model
     protected function casts(): array
     {
         return [
-            'issue_date' => 'immutable_datetime',
-            'expiry_date' => 'immutable_datetime',
+            'issue_date' => 'immutable_date',
+            'expiry_date' => 'immutable_date',
         ];
     }
 }

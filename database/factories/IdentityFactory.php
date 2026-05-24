@@ -28,7 +28,7 @@ final class IdentityFactory extends Factory
             'identity_type_id' => IdentityType::factory(),
             'identity_number' => fake()->unique()->regexify('[12][0-9]{9}'),
             'place_of_issue' => fake()->city(),
-            'issue_date' => $issueDate = fake()->date(DATE_ATOM),
+            'issue_date' => $issueDate = fake()->date(),
             'expiry_date' => fake()->dateTimeBetween($issueDate, '+2 years')->format('Y-m-d'),
         ];
     }

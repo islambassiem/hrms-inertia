@@ -26,8 +26,8 @@ final class DepartmentFactory extends Factory
 
         return [
             'name' => [
-                'en' => fake()->text(30),
                 'ar' => fake('ar')->text(30),
+                'en' => fake()->text(30),
             ],
             'code' => fake()->unique()->bothify('DEPT-###'),
             'type' => $types[array_rand($types)],

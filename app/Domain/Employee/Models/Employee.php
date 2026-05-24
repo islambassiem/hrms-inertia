@@ -149,6 +149,9 @@ final class Employee extends Model
     public function casts()
     {
         return [
+            'date_of_birth' => 'immutable_date',
+            'joining_date' => 'immutable_date',
+            'leaving_date' => 'immutable_date',
             'is_active' => 'boolean',
         ];
     }
