@@ -69,9 +69,6 @@ final class CreateEmployeeData extends Data
         #[Exists('shared_genders', 'id')]
         public int $gender_id,
 
-        #[Exists('employee_sponsorships', 'id')]
-        public int $sponsorship_id,
-
         #[Nullable, Exists('employee_categories', 'id')]
         public int $category_id,
 

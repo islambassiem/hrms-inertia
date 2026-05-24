@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
-use App\Domain\Employee\Models\Sponsorship;
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
@@ -33,7 +32,6 @@ final class EmployeeSeeder extends Seeder
                 'religion_id' => fn () => Religion::query()->inRandomOrder()->value('id'),
                 'special_needs_id' => fn () => SpecialNeeds::query()->inRandomOrder()->value('id'),
                 'gender_id' => fn () => Gender::query()->inRandomOrder()->value('id'),
-                'sponsorship_id' => fn () => Sponsorship::query()->inRandomOrder()->value('id'),
                 'category_id' => fn () => Category::query()->inRandomOrder()->value('id'),
                 'department_id' => fn () => Department::query()->where('type', DepartmentType::DEPARTMENT)->firstOrFail()->inRandomOrder()->value('id'),
                 'nationality_id' => fn () => Country::query()->inRandomOrder()->value('id'),

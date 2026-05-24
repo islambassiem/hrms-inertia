@@ -6,7 +6,6 @@ namespace Database\Factories;
 
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
-use App\Domain\Employee\Models\Sponsorship;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
 use App\Domain\Shared\Models\Gender;
@@ -51,7 +50,6 @@ final class EmployeeFactory extends Factory
             'special_needs_id' => SpecialNeeds::factory(),
 
             'gender_id' => Gender::factory(),
-            'sponsorship_id' => Sponsorship::factory(),
             'category_id' => Category::factory(),
             'department_id' => Department::factory(),
             'nationality_id' => Country::factory(),

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
-use App\Domain\Employee\Models\Sponsorship;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
 use App\Domain\Shared\Models\Gender;
@@ -45,7 +44,6 @@ return new class extends Migration
             $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained('shared_special_needs');
 
             $table->foreignIdFor(Gender::class)->constrained();
-            $table->foreignIdFor(Sponsorship::class)->constrained();
             $table->foreignIdFor(Category::class)->constrained('employee_categories');
             $table->foreignIdFor(Department::class)->constrained();
             $table->foreignIdFor(Country::class, 'nationality_id')->constrained();

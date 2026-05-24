@@ -64,9 +64,6 @@ final class UpdateEmployeeData extends Data
         #[Exists('shared_genders', 'id')]
         public int|null|Optional $gender_id,
 
-        #[Exists('employee_sponsorships', 'id')]
-        public int|null|Optional $sponsorship_id,
-
         #[Nullable, Exists('employee_categories', 'id')]
         public int|null|Optional $category_id,
 

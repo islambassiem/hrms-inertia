@@ -8,7 +8,6 @@ use App\Domain\Employee\Data\CreateEmployeeData;
 use App\Domain\Employee\Data\UpdateEmployeeData;
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
-use App\Domain\Employee\Models\Sponsorship;
 use App\Domain\Organization\Models\Department;
 use Illuminate\Http\UploadedFile;
 
@@ -44,7 +43,6 @@ it('can create an employee', function (): void {
         'religion_id' => $payload['religion_id'],
         'special_needs_id' => $payload['special_needs_id'],
         'gender_id' => $payload['gender_id'],
-        'sponsorship_id' => $payload['sponsorship_id'],
         'category_id' => $payload['category_id'],
         'department_id' => $payload['department_id'],
         'nationality_id' => $payload['nationality_id'],
@@ -71,7 +69,6 @@ it('can update an employee', function (): void {
         'middle_name_ar' => 'بسيم',
         'third_name_ar' => 'عبد الفتاح',
         'last_name_ar' => 'عبدالله',
-        'sponsorship_id' => Sponsorship::factory(),
         'category_id' => Category::factory(),
         'department_id' => Department::factory(),
         'image' => UploadedFile::fake()->image('avatar.jpg'),
@@ -88,7 +85,6 @@ it('can update an employee', function (): void {
     expect($updated->exists)->toBeTrue();
     assertDatabaseHas('employee_employees', [
         'head_id' => $payload['head_id'],
-        'sponsorship_id' => $payload['sponsorship_id'],
         'category_id' => $payload['category_id'],
         'department_id' => $payload['department_id'],
         'image' => $payload['image'],
@@ -173,11 +169,6 @@ function nonUpdatablefields(): array
         'gender_id is null' => [
             ['gender_id' => null],
             ['gender_id'],
-        ],
-
-        'sponsorship_id is null' => [
-            ['sponsorship_id' => null],
-            ['sponsorship_id'],
         ],
 
         'department_id is null' => [
@@ -269,11 +260,6 @@ function invalidEmployeeDataForUpdate(): array
         'department_id is invalid' => [
             ['department_id' => 999999],
             ['department_id'],
-        ],
-
-        'sponsorship_id is string' => [
-            ['sponsorship_id' => 'csm'],
-            ['sponsorship_id'],
         ],
 
         'category_id is string' => [

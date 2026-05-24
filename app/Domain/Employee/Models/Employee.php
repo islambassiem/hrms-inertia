@@ -35,7 +35,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'religion_id',
     'special_needs_id',
     'gender_id',
-    'sponsorship_id',
     'category_id',
     'department_id',
     'nationality_id',
@@ -112,14 +111,6 @@ final class Employee extends Model
     public function gender(): BelongsTo
     {
         return $this->belongsTo(Gender::class);
-    }
-
-    /**
-     * @return BelongsTo<Sponsorship, $this>
-     */
-    public function sponsorship(): BelongsTo
-    {
-        return $this->belongsTo(Sponsorship::class);
     }
 
     /**

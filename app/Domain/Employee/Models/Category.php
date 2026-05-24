@@ -28,7 +28,7 @@ final class Category extends Model
 
     use HasTranslations;
 
-    /** @use UserStamp<Sponsorship> */
+    /** @use UserStamp<Category> */
     use UserStamp;
 
     /** @var array<string> */
