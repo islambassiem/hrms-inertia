@@ -32,11 +32,11 @@ it('can create an identity', function (): void {
 });
 
 it('can update an identity', function (): void {
-    $identity = Identity::factory()->create();
     $payload = Identity::factory()->make();
 
     $updated = (new UpdateIdentityAction())
-        ->handle(UpdateIdentityData::validateAndCreate($payload), $identity);
+        ->handle(UpdateIdentityData::validateAndCreate($payload),
+            Identity::factory()->create());
 
     expect($updated)->toBeInstanceOf(Identity::class);
     expect($updated->exists)->tobeTrue();
@@ -56,7 +56,7 @@ it('creation fails because :dataset', function ($overrides, array $fields): void
 
     expectValidationError(function () use ($payload): void {
         resolve(CreateIdentityAction::class)->handle(
-            CreateIdentityData::from($payload)
+            CreateIdentityData::validateAndCreate($payload)
         );
     }, $fields);
 })->with('create');
@@ -66,7 +66,7 @@ it('update fails because :dataset', function ($overrides, array $fields): void {
 
     expectValidationError(function () use ($payload): void {
         resolve(CreateIdentityAction::class)->handle(
-            CreateIdentityData::from($payload)
+            CreateIdentityData::validateAndCreate($payload)
         );
     }, $fields);
 })->with('update');

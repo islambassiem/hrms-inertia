@@ -27,10 +27,9 @@ it('creates an attribute type', function (): void {
 
 it('updates an attribute type', function (): void {
     $payload = AttributeType::factory()->raw();
-    $type = AttributeType::factory()->create();
     $updated = resolve(UpdateAttributeTypeAction::class)->handle(
         UpdateAttributeTypeData::validateAndCreate($payload),
-        $type
+        AttributeType::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(AttributeType::class);
@@ -52,10 +51,10 @@ it('fails to create if :dataset', function (array $overrides, array $fields): vo
 
 it('fails to update if :dataset', function (array $overrides, array $fields): void {
     $payload = AttributeType::factory()->raw($overrides);
-    $type = AttributeType::factory()->create();
+
     expectValidationError(fn () => resolve(UpdateAttributeTypeAction::class)->handle(
         UpdateAttributeTypeData::validateAndCreate($payload),
-        $type
+        AttributeType::factory()->create()
     ), $fields);
 })
     ->with('invalid type');

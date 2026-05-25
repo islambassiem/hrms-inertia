@@ -39,10 +39,9 @@ it('updates an experience', function (): void {
         'start_date' => '2020-01-01',
         'end_date' => '2024-12-31',
     ]);
-    $experience = Experience::factory()->create();
     $updated = resolve(UpdateExperienceAction::class)->handle(
         UpdateExperienceData::validateAndCreate($payload),
-        $experience
+        Experience::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(Experience::class);
@@ -68,11 +67,10 @@ it('fails to create experience if :dataset', function (array $overrides, array $
 
 it('fails to update experience if :dataset', function (array $overrides, array $fields): void {
     $payload = Experience::factory()->raw($overrides);
-    $experience = Experience::factory()->create();
 
     expectValidationError(fn () => resolve(UpdateExperienceAction::class)->handle(
         UpdateExperienceData::validateAndCreate($payload),
-        $experience
+        Experience::factory()->create()
     ), $fields);
 })
     ->with('update');

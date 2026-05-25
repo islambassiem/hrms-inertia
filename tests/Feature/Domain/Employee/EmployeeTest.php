@@ -64,7 +64,6 @@ it('can create an employee', function (): void {
 });
 
 it('can update an employee', function (): void {
-    $employee = Employee::factory()->create();
     $payload = Employee::factory()->raw([
         'head_id' => 1,
         'first_name_ar' => 'اسلام',
@@ -80,7 +79,7 @@ it('can update an employee', function (): void {
 
     $updated = resolve(UpdateEmployeeAction::class)->handle(
         UpdateEmployeeData::validateAndCreate($payload),
-        $employee
+        Employee::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(Employee::class);
@@ -107,18 +106,17 @@ it('fails to create employee if :dataset', function (array $overrides, array $fi
     ->with('create');
 
 it('fails to update employee if :dataset', function (array $overrides, array $fields): void {
-    $existing = Employee::factory()->create([
-        'first_name_ar' => 'اسلام',
-        'middle_name_ar' => 'بسيم',
-        'third_name_ar' => 'عبد الفتاح',
-        'last_name_ar' => 'عبدالله',
-    ]);
-    $employee = Employee::factory()->raw($overrides);
+    $payload = Employee::factory()->raw($overrides);
 
-    expectValidationError(function () use ($employee, $existing): void {
+    expectValidationError(function () use ($payload): void {
         resolve(UpdateEmployeeAction::class)->handle(
-            UpdateEmployeeData::from($employee),
-            $existing
+            UpdateEmployeeData::from($payload),
+            Employee::factory()->create([
+                'first_name_ar' => 'اسلام',
+                'middle_name_ar' => 'بسيم',
+                'third_name_ar' => 'عبد الفتاح',
+                'last_name_ar' => 'عبدالله',
+            ])
         );
     }, $fields);
 })

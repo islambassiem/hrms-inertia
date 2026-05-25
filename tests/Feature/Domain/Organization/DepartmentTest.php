@@ -27,10 +27,10 @@ it('creates a department', function (): void {
 
 it('updates a department', function (): void {
     $payload = Department::factory()->raw();
-    $department = Department::factory()->create();
+
     $updated = resolve(UpdateDepartmentAction::class)->handle(
         UpdateDepartmentData::validateAndCreate($payload),
-        $department
+        Department::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(Department::class);
@@ -55,11 +55,10 @@ it('fails to create if :dataset', function (array $overrides, array $fields): vo
 
 it('fails to update if :dataset', function (array $overrides, array $fields): void {
     $payload = Department::factory()->raw($overrides);
-    $department = Department::factory()->create();
 
     expectValidationError(fn () => resolve(UpdateDepartmentAction::class)->handle(
         UpdateDepartmentData::validateAndCreate($payload),
-        $department
+        Department::factory()->create()
     ), $fields);
 })
     ->with('invalid department');

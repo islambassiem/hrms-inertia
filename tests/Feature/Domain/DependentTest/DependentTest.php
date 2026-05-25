@@ -38,12 +38,11 @@ it('creates a dependent with valid data', function (): void {
 });
 
 it('updates a dependent with valid data', function (): void {
-    $dependent = Dependent::factory()->create();
     $payload = Dependent::factory()->raw();
 
     $updated = resolve(UpdateDependentAction::class)->handle(
         UpdateDependentData::validateAndCreate($payload),
-        $dependent
+        Dependent::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(Dependent::class);
@@ -70,12 +69,11 @@ it('fails to create if :dataset', function (array $overrides, array $fields): vo
     ->with('create');
 
 it('fails to update a dependent if :dataset', function (array $overrides, array $fields): void {
-    $dependent = Dependent::factory()->create();
     $payload = Dependent::factory()->raw($overrides);
 
     expectValidationError(fn () => resolve(UpdateDependentAction::class)->handle(
         UpdateDependentData::validateAndCreate($payload),
-        $dependent
+        Dependent::factory()->create()
     ), $fields);
 })
     ->with('update');

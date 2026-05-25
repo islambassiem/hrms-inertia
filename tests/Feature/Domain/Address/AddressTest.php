@@ -32,10 +32,10 @@ it('creates an address', function (): void {
 });
 
 it('updates an address', function (): void {
-    $address = Address::factory()->create();
     $payload = Address::factory()->raw();
     $updated = resolve(UpdateAddressAction::class)->handle(
-        UpdateAddressData::validateAndCreate($payload), $address
+        UpdateAddressData::validateAndCreate($payload),
+        Address::factory()->create()
     );
 
     expect($updated)->toBeInstanceOf(Address::class);
@@ -64,11 +64,10 @@ it('fails to create if :dataset', function (array $overrides, array $fields): vo
 
 it('fails to update if :dataset', function (array $overrides, array $fields): void {
     $address = Address::factory()->raw($overrides);
-    $existing = Address::factory()->create();
 
     expectValidationError(fn () => resolve(UpdateAddressAction::class)->handle(
         UpdateAddressData::validateAndCreate($address),
-        $existing
+        Address::factory()->create()
     ), $fields);
 })
     ->with('update');
