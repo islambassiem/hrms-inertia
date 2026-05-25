@@ -9,6 +9,8 @@ use App\Domain\Employee\Data\UpdateEmployeeData;
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Organization\Models\Department;
+use App\Domain\Shared\Models\Gender;
+use App\Models\User;
 use Illuminate\Http\UploadedFile;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -102,7 +104,7 @@ it('fails to create employee if :dataset', function (array $overrides, array $fi
             ->handle(CreateEmployeeData::from($employee));
     }, $fields);
 })
-    ->with('invalid employee data');
+    ->with('create');
 
 it('fails to update employee if :dataset', function (array $overrides, array $fields): void {
     $existing = Employee::factory()->create([
@@ -120,161 +122,28 @@ it('fails to update employee if :dataset', function (array $overrides, array $fi
         );
     }, $fields);
 })
-    ->with('invalid employee data for update');
+    ->with('update');
 
-dataset('non updatable fields', nonUpdatablefields());
-dataset('invalid employee data for update', invalidEmployeeDataForUpdate());
-dataset('invalid employee data', [
-    ...nonUpdatablefields(),
-    ...invalidEmployeeDataForUpdate(),
+dataset('create', [
+    ...invalid('user_id')->required()->foreignKey(User::class)->build(),
+    ...invalid('employee_code')->required()->regex('500322a')->build(),
+    ...invalid('first_name_ar')->required()->tooShort(2)->tooLong()->build(),
+    ...invalid('first_name_en')->required()->tooShort(2)->tooLong()->build(),
+    ...invalid('last_name_ar')->required()->tooShort(2)->tooLong()->build(),
+    ...invalid('last_name_en')->required()->tooShort(2)->tooLong()->build(),
+    ...invalid('gender_id')->required()->foreignKey(Gender::class)->build(),
+    ...invalid('department_id')->required()->foreignKey(Department::class)->build(),
+    ...invalid('category_id')->required()->foreignKey(Category::class)->build(),
+    ...invalid('nationality_id')->required()->foreignKey(Category::class)->build(),
 ]);
-function nonUpdatablefields(): array
-{
-    return [
-        'user_id is null' => [
-            ['user_id' => null],
-            ['user_id'],
-        ],
 
-        'employee_code is null' => [
-            ['employee_code' => null],
-            ['employee_code'],
-        ],
-
-        'first_name_ar is null' => [
-            ['first_name_ar' => null],
-            ['first_name_ar'],
-        ],
-
-        'first_name_en is null' => [
-            ['first_name_en' => null],
-            ['first_name_en'],
-        ],
-
-        'first_name_en is invalid' => [
-            ['first_name_en' => 'namÉ'],
-            ['first_name_en'],
-        ],
-
-        'last_name_ar is null' => [
-            ['last_name_ar' => null],
-            ['last_name_ar'],
-        ],
-
-        'last_name_en is invalid' => [
-            ['last_name_en' => 'namÉ'],
-            ['last_name_en'],
-        ],
-
-        'gender_id is null' => [
-            ['gender_id' => null],
-            ['gender_id'],
-        ],
-
-        'department_id is null' => [
-            ['department_id' => null],
-            ['department_id'],
-        ],
-
-        'last_name_en is null' => [
-            ['last_name_en' => null],
-            ['last_name_en'],
-        ],
-
-        'category_id is null' => [
-            ['category_id' => null],
-            ['category_id'],
-        ],
-
-        'nationality_id is null' => [
-            ['nationality_id' => null],
-            ['nationality_id'],
-        ],
-    ];
-}
-
-function invalidEmployeeDataForUpdate(): array
-{
-    return [
-
-        'first_name_ar is short' => [
-            ['first_name_ar' => 'a'],
-            ['first_name_ar'],
-        ],
-
-        'first_name_ar is long' => [
-            ['first_name_ar' => str_repeat('a', 31)],
-            ['first_name_ar'],
-        ],
-
-        'first_name_ar is invalid' => [
-            ['first_name_ar' => 'name not in arabic'],
-            ['first_name_ar'],
-        ],
-
-        'first_name_en is short' => [
-            ['first_name_en' => 'a'],
-            ['first_name_en'],
-        ],
-
-        'first_name_en is long' => [
-            ['first_name_en' => str_repeat('a', 31)],
-            ['first_name_en'],
-        ],
-
-        'last_name_ar is short' => [
-            ['last_name_ar' => 'a'],
-            ['last_name_ar'],
-        ],
-
-        'last_name_ar is long' => [
-            ['last_name_ar' => str_repeat('a', 31)],
-            ['last_name_ar'],
-        ],
-
-        'last_name_ar is invalid' => [
-            ['last_name_ar' => 'name not in arabic'],
-            ['last_name_ar'],
-        ],
-
-        'last_name_en is short' => [
-            ['last_name_en' => 'a'],
-            ['last_name_en'],
-        ],
-
-        'last_name_en is long' => [
-            ['last_name_en' => str_repeat('a', 31)],
-            ['last_name_en'],
-        ],
-
-        'gender_id is string' => [
-            ['gender_id' => 'm'],
-            ['gender_id'],
-        ],
-
-        'department_id is string' => [
-            ['department_id' => 'cls'],
-            ['department_id'],
-        ],
-
-        'department_id is invalid' => [
-            ['department_id' => 999999],
-            ['department_id'],
-        ],
-
-        'category_id is string' => [
-            ['category_id' => 'category'],
-            ['category_id'],
-        ],
-
-        'category_id is invalid' => [
-            ['category_id' => 9999999],
-            ['category_id'],
-        ],
-
-        'nationality_id is string' => [
-            ['nationality_id' => 'sau'],
-            ['nationality_id'],
-        ],
-    ];
-}
+dataset('update', [
+    ...invalid('first_name_ar')->tooShort(2)->tooLong()->build(),
+    ...invalid('first_name_en')->tooShort(2)->tooLong()->build(),
+    ...invalid('last_name_ar')->tooShort(2)->tooLong()->build(),
+    ...invalid('last_name_en')->tooShort(2)->tooLong()->build(),
+    ...invalid('gender_id')->foreignKey(Gender::class)->build(),
+    ...invalid('department_id')->foreignKey(Department::class)->build(),
+    ...invalid('category_id')->foreignKey(Category::class)->build(),
+    ...invalid('nationality_id')->foreignKey(Category::class)->build(),
+]);

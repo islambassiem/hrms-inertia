@@ -7,6 +7,7 @@ use App\Domain\Dependent\Actions\UpdateDependentAction;
 use App\Domain\Dependent\Data\CreateDependentData;
 use App\Domain\Dependent\Data\UpdateDependentData;
 use App\Domain\Dependent\Models\Dependent;
+use App\Domain\Employee\Models\Employee;
 use App\Domain\Shared\Models\Gender;
 use App\Domain\Shared\Models\Relationship;
 
@@ -60,7 +61,7 @@ it('updates a dependent with valid data', function (): void {
     expect($updated->date_of_birth->toDateString())->toBe($payload['date_of_birth']);
 });
 
-it('fails to create a dependent if :dataset', function (array $overrides, array $fields): void {
+it('fails to create if :dataset', function (array $overrides, array $fields): void {
     $payload = Dependent::factory()->raw($overrides);
     expectValidationError(fn () => resolve(CreateDependentAction::class)->handle(
         CreateDependentData::validateAndCreate($payload)
@@ -80,15 +81,26 @@ it('fails to update a dependent if :dataset', function (array $overrides, array 
     ->with('update');
 
 dataset('create', [
+    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
     ...name(),
-    ...identification(),
-    ...gender(),
-    ...ticket(),
+    ...invalid('name_ar')->tooLong(150)->build(),
+    ...invalid('name_en')->tooLong(150)->build(),
+    ...invalid('identification')->required()->digits(10)->build(),
+    ...invalid('gender_id')->required()->foreignKey(Gender::class)->build(),
+    ...invalid('date_of_birth')->required()->future()->build(),
+    ...invalid('relationship_id')->required()->foreignKey(Relationship::class)->build(),
+    ...invalid('ticket_ratio')->build(),
 ]);
 
 dataset('update', [
-    ...identification(),
-    ...ticket(),
+    ...name(),
+    ...invalid('name_ar')->tooLong(150)->build(),
+    ...invalid('name_en')->tooLong(150)->build(),
+    ...invalid('identification')->digits(10)->build(),
+    ...invalid('gender_id')->foreignKey(Gender::class)->build(),
+    ...invalid('date_of_birth')->future()->build(),
+    ...invalid('relationship_id')->foreignKey(Relationship::class)->build(),
+    ...invalid('ticket_ratio')->build(),
 ]);
 
 function name(): array
@@ -100,112 +112,7 @@ function name(): array
                 'name_en' => null,
 
             ],
-            ['name_ar'],
-        ],
-        'name_en is too long' => [
-            [
-                'name_ar' => null,
-                'name_en' => str_repeat('a', 151),
-
-            ],
-            ['name_en'],
-        ],
-        'name_ar is too long' => [
-            [
-                'name_en' => null,
-                'name_ar' => str_repeat('a', 151),
-
-            ],
-            ['name_ar'],
-        ],
-    ];
-}
-
-function identification(): array
-{
-    return [
-        'identification is null' => [
-            ['identification' => null],
-            ['identification'],
-        ],
-
-        'identification is invalid' => [
-            ['identification' => 'abc'],
-            ['identification'],
-        ],
-
-        'identification is short' => [
-            ['identification' => '123'],
-            ['identification'],
-        ],
-
-        'identification is long' => [
-            ['identification' => '12345678901'],
-            ['identification'],
-        ],
-    ];
-}
-
-function gender(): array
-{
-    return [
-        'gender_id is invalid' => [
-            function (): array {
-                Gender::factory()->create();
-
-                return [
-                    ['gender_id' => 5],
-                    ['gender_id'],
-                ];
-            },
-        ],
-        'gender_id is null' => [
-            ['gender_id' => null],
-            ['gender_id'],
-        ],
-    ];
-}
-
-function dateOfBirth(): array
-{
-    return [
-        'date_of_birth is null' => [
-            ['date_of_birth' => null],
-            ['date_of_birth'],
-        ],
-    ];
-}
-
-function relationship(): array
-{
-    return [
-        'relationship_id is null' => [
-            ['relationship_id' => null],
-            ['relationship_id'],
-        ],
-        'relationship_id is invalid' => [
-            function (): array {
-                Relationship::factory()->create();
-
-                return [
-                    ['relationship_id' => 2],
-                    ['relationship_id'],
-                ];
-            },
-        ],
-    ];
-}
-
-function ticket(): array
-{
-    return [
-        'ticket_ratio is negative' => [
-            ['ticket_ratio' => -10],
-            ['ticket_ratio'],
-        ],
-        'ticket_ratio is more than 100' => [
-            ['ticket_ratio' => 110],
-            ['ticket_ratio'],
+            ['name_ar', 'name_en'],
         ],
     ];
 }

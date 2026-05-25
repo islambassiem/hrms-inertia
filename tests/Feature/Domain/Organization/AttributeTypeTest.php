@@ -48,10 +48,7 @@ it('fails to create if :dataset', function (array $overrides, array $fields): vo
         CreateAttributeTypeData::validateAndCreate($payload)
     ), $fields);
 })
-    ->with([
-        ...invalidName(),
-        ...invalidCode(),
-    ]);
+    ->with('invalid type');
 
 it('fails to update if :dataset', function (array $overrides, array $fields): void {
     $payload = AttributeType::factory()->raw($overrides);
@@ -61,7 +58,9 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
         $type
     ), $fields);
 })
-    ->with([
-        ...invalidName(),
-        ...invalidCode(),
-    ]);
+    ->with('invalid type');
+
+dataset('invalid type', [
+    ...invalid()->invalidName()->build(),
+    ...invalid('code')->tooLong(30)->build(),
+]);

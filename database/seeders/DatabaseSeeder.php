@@ -33,6 +33,7 @@ final class DatabaseSeeder extends Seeder
             OrganizationAttributeSeeder::class,
             EmployeeAttributeSeeder::class,
             DependentSeeder::class,
+            ExperienceSeeder::class,
         ]);
     }
 }

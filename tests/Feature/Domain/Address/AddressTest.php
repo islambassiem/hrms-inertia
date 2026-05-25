@@ -7,6 +7,7 @@ use App\Domain\Address\Actions\UpdateAddressAction;
 use App\Domain\Address\Data\CreateAddressData;
 use App\Domain\Address\Data\UpdateAddressData;
 use App\Domain\Address\Models\Address;
+use App\Domain\Employee\Models\Employee;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -73,76 +74,22 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
     ->with('update');
 
 dataset('create', [
-    ...invalidEmployee(),
-    ...invalidShortAddress(),
+    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
+    ...invalid('short_address')->required()->regex('ABCD12345')->build(),
+    ...invalid('building_number')->digits(4)->build(),
+    ...invalid('street')->tooLong(50)->build(),
+    ...invalid('secondary_number')->digits(4)->build(),
+    ...invalid('district')->tooLong(50)->build(),
+    ...invalid('postal_code')->digits(4)->build(),
+    ...invalid('city')->tooLong(50)->build(),
 ]);
 
 dataset('update', [
-    ...invalidAddress(),
+    ...invalid('building_number')->digits(4)->build(),
+    ...invalid('short_address')->regex('ABCD12345')->build(),
+    ...invalid('street')->tooLong(50)->build(),
+    ...invalid('secondary_number')->digits(4)->build(),
+    ...invalid('district')->tooLong(50)->build(),
+    ...invalid('postal_code')->digits(4)->build(),
+    ...invalid('city')->tooLong(50)->build(),
 ]);
-
-function invalidEmployee(): array
-{
-    return [
-        'employee_id is null' => [
-            ['employee_id' => null],
-            ['employee_id'],
-        ],
-
-        'employee_id is invalid' => [
-            ['employee_id' => 99999],
-            ['employee_id'],
-        ],
-    ];
-}
-
-function invalidShortAddress(): array
-{
-    return [
-        'short_address is null' => [
-            ['short_address' => null],
-            ['short_address'],
-        ],
-
-        'short_address is invalid' => [
-            ['short_address' => 'invalid'],
-            ['short_address'],
-        ],
-    ];
-}
-
-function invalidAddress(): array
-{
-    return [
-
-        'building_number is invalid' => [
-            ['building_number' => 12345],
-            ['building_number'],
-        ],
-
-        'street is too long' => [
-            ['street' => str_repeat('a', 51)],
-            ['street'],
-        ],
-
-        'secondary_number is invalid' => [
-            ['secondary_number' => 'invalid'],
-            ['secondary_number'],
-        ],
-
-        'district is too long' => [
-            ['district' => str_repeat('a', 51)],
-            ['district'],
-        ],
-
-        'postal_code is invalid' => [
-            ['postal_code' => 12345],
-            ['postal_code'],
-        ],
-
-        'city is too long' => [
-            ['city' => str_repeat('a', 51)],
-            ['city'],
-        ],
-    ];
-}

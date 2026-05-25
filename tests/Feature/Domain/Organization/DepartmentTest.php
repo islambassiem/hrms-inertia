@@ -1,8 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
-use App\Domain\Employee\Models\Employee;
 use App\Domain\Organization\Actions\CreateDepartmentAction;
 use App\Domain\Organization\Actions\UpdateDepartmentAction;
 use App\Domain\Organization\Data\CreateDepartmentData;
@@ -67,10 +65,11 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
     ->with('invalid department');
 
 dataset('invalid department', [
-    ...invalidName(),
+    ...invalid()->invalidName()->build(),
+    ...invalid('type')->required()->build(),
     ...invalidType(),
-    ...invalidHead(),
-    ...invalidParent(),
+    ...invalid('head_id')->foreignKey('head')->build(),
+    ...invalid('parent_id')->foreignKey('parent')->build(),
 ]);
 
 function invalidType(): array
@@ -79,43 +78,6 @@ function invalidType(): array
         'type is string' => [
             ['type' => 'type'],
             ['type'],
-        ],
-        'type is null' => [
-            ['type' => null],
-            ['type'],
-        ],
-    ];
-}
-
-function invalidHead(): array
-{
-    return [
-        'invalid head' => [
-            function (): array {
-                Employee::factory()->create();
-
-                return [
-                    ['head_id' => 2],
-                    ['head_id'],
-                ];
-            },
-        ],
-    ];
-}
-
-function invalidParent(): array
-{
-    return [
-        'invalid parent' => [
-            function (): array {
-                Department::factory()->create();
-
-                return [
-                    ['parent_id' => 3],
-                    ['parent_id'],
-                ];
-            },
-
         ],
     ];
 }

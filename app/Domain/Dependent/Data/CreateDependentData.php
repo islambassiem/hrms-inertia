@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Dependent\Data;
 
 use Carbon\CarbonImmutable;
+use Spatie\LaravelData\Attributes\Validation\Before;
 use Spatie\LaravelData\Attributes\Validation\Digits;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\GreaterThanOrEqualTo;
@@ -33,6 +34,7 @@ final class CreateDependentData extends Data
         #[Exists('shared_genders', 'id')]
         public int $gender_id,
 
+        #[Before('today')]
         public CarbonImmutable $date_of_birth,
 
         #[Exists('shared_relationships', 'id')]

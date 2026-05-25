@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Domain\Employee\Models\Employee;
 use App\Domain\Identity\Actions\CreateIdentityAction;
 use App\Domain\Identity\Actions\UpdateIdentityAction;
 use App\Domain\Identity\Data\CreateIdentityData;
 use App\Domain\Identity\Data\UpdateIdentityData;
 use App\Domain\Identity\Models\Identity;
+use App\Domain\Identity\Models\IdentityType;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -57,7 +59,7 @@ it('creation fails because :dataset', function ($overrides, array $fields): void
             CreateIdentityData::from($payload)
         );
     }, $fields);
-})->with('invalid identity data');
+})->with('create');
 
 it('update fails because :dataset', function ($overrides, array $fields): void {
     $payload = Identity::factory()->raw($overrides);
@@ -67,53 +69,16 @@ it('update fails because :dataset', function ($overrides, array $fields): void {
             CreateIdentityData::from($payload)
         );
     }, $fields);
-})->with('invalid identity data');
+})->with('update');
 
-dataset('invalid identity data', [
-    ...invalid(),
+dataset('create', [
+    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
+    ...invalid('identity_type_id')->required()->foreignKey(IdentityType::class)->build(),
+    ...invalid('identity_number')->required()->tooShort(10)->tooLong(10)->build(),
 ]);
 
-function invalid(): array
-{
-    return [
-        'employee_id is null' => [
-            ['employee_id' => null],
-            ['employee_id'],
-        ],
-
-        'employee_id is string' => [
-            ['employee_id' => 'a'],
-            ['employee_id'],
-        ],
-
-        'identity_type_id is null' => [
-            ['identity_type_id' => null],
-            ['identity_type_id'],
-        ],
-
-        'identity_type_id is string' => [
-            ['identity_type_id' => 'a'],
-            ['identity_type_id'],
-        ],
-
-        'identity_type_id is does not exist' => [
-            ['identity_type_id' => 'does-not-exist'],
-            ['identity_type_id'],
-        ],
-
-        'identity_number is null' => [
-            ['identity_number' => null],
-            ['identity_number'],
-        ],
-
-        'identity_number is short' => [
-            ['identity_number' => '1'],
-            ['identity_number'],
-        ],
-
-        'identity_number is long' => [
-            ['identity_number' => str_repeat('a', 11)],
-            ['identity_number'],
-        ],
-    ];
-}
+dataset('update', [
+    ...invalid('employee_id')->foreignKey(Employee::class)->build(),
+    ...invalid('identity_type_id')->foreignKey(IdentityType::class)->build(),
+    ...invalid('identity_number')->tooShort(10)->tooLong(10)->build(),
+]);

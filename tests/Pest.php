@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
+use Tests\Support\InvalidDataset;
 use Tests\TestCase;
 
 /*
@@ -57,60 +58,65 @@ function expectValidationError(callable $callback, array $fields): void
     }
 }
 
-function invalidName(): array
-{
-    return [
-        'name ar is null' => [
-            ['name' => [
-                'ar' => null,
-                'en' => 'name in english',
-            ]],
-            ['name.ar'],
-        ],
-        'name ar is short' => [
-            ['name' => [
-                'ar' => 'a',
-                'en' => 'name in english',
-            ]],
-            ['name.ar'],
-        ],
-        'name ar is long' => [
-            ['name' => [
-                'ar' => str_repeat('a', 31),
-                'en' => 'name in english',
-            ]],
-            ['name.ar'],
-        ],
-        'name en is null' => [
-            ['name' => [
-                'en' => null,
-                'ar' => 'name in arabic',
-            ]],
-            ['name.en'],
-        ],
-        'name en is short' => [
-            ['name' => [
-                'en' => 'a',
-                'ar' => 'name in arabic',
-            ]],
-            ['name.en'],
-        ],
-        'name en is long' => [
-            ['name' => [
-                'en' => str_repeat('a', 31),
-                'ar' => 'name in arabic',
-            ]],
-            ['name.en'],
-        ],
-    ];
-}
+// function invalidName(): array
+// {
+//     return [
+//         'name ar is null' => [
+//             ['name' => [
+//                 'ar' => null,
+//                 'en' => 'name in english',
+//             ]],
+//             ['name.ar'],
+//         ],
+//         'name ar is short' => [
+//             ['name' => [
+//                 'ar' => 'a',
+//                 'en' => 'name in english',
+//             ]],
+//             ['name.ar'],
+//         ],
+//         'name ar is long' => [
+//             ['name' => [
+//                 'ar' => str_repeat('a', 31),
+//                 'en' => 'name in english',
+//             ]],
+//             ['name.ar'],
+//         ],
+//         'name en is null' => [
+//             ['name' => [
+//                 'en' => null,
+//                 'ar' => 'name in arabic',
+//             ]],
+//             ['name.en'],
+//         ],
+//         'name en is short' => [
+//             ['name' => [
+//                 'en' => 'a',
+//                 'ar' => 'name in arabic',
+//             ]],
+//             ['name.en'],
+//         ],
+//         'name en is long' => [
+//             ['name' => [
+//                 'en' => str_repeat('a', 31),
+//                 'ar' => 'name in arabic',
+//             ]],
+//             ['name.en'],
+//         ],
+//     ];
+// }
 
-function invalidCode(): array
+// function invalidCode(): array
+// {
+//     return [
+//         'code is long' => [
+//             ['code' => str_repeat('a', 31)],
+//             ['code'],
+//         ],
+//     ];
+// }
+
+function invalid(?string $field = null): InvalidDataset
 {
-    return [
-        'code is long' => [
-            ['code' => str_repeat('a', 31)],
-            ['code'],
-        ],
-    ];
+    return new InvalidDataset($field);
 }
