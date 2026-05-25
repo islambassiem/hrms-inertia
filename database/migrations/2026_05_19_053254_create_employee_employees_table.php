@@ -34,10 +34,18 @@ return new class extends Migration
             $table->string('third_name_ar', 30)->nullable();
             $table->string('last_name_ar', 30);
 
+            $table->string('full_name_ar')
+                ->storedAs("CONCAT_WS(' ', first_name_ar, middle_name_ar, third_name_ar, last_name_ar)")
+                ->index();
+
             $table->string('first_name_en', 30);
             $table->string('middle_name_en', 30)->nullable();
             $table->string('third_name_en', 30)->nullable();
             $table->string('last_name_en', 30);
+
+            $table->string('full_name_en')
+                ->storedAs("CONCAT_WS(' ', first_name_en, middle_name_en, third_name_en, last_name_en)")
+                ->index();
 
             $table->foreignIdFor(MaritalStatus::class)->nullable()->constrained();
             $table->foreignIdFor(Religion::class)->nullable()->constrained();
