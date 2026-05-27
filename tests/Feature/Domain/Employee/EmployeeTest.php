@@ -123,25 +123,95 @@ it('fails to update employee if :dataset', function (array $overrides, array $fi
     ->with('update');
 
 dataset('create', [
-    ...invalid('user_id')->required()->foreignKey(User::class)->build(),
-    ...invalid('employee_code')->required()->regex('500322a')->build(),
-    ...invalid('first_name_ar')->required()->tooShort(2)->tooLong()->build(),
-    ...invalid('first_name_en')->required()->tooShort(2)->tooLong()->build(),
-    ...invalid('last_name_ar')->required()->tooShort(2)->tooLong()->build(),
-    ...invalid('last_name_en')->required()->tooShort(2)->tooLong()->build(),
-    ...invalid('gender_id')->required()->foreignKey(Gender::class)->build(),
-    ...invalid('department_id')->required()->foreignKey(Department::class)->build(),
-    ...invalid('category_id')->required()->foreignKey(Category::class)->build(),
-    ...invalid('nationality_id')->required()->foreignKey(Category::class)->build(),
+    ...invalid('user_id')
+        ->required()
+        ->foreignKey(User::class)
+        ->build(),
+
+    ...invalid('employee_code')
+        ->required()
+        ->regex('500322a')
+        ->build(),
+
+    ...invalid('first_name_ar')
+        ->required()
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('first_name_en')
+        ->required()
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('last_name_ar')
+        ->required()
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('last_name_en')
+        ->required()
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('gender_id')
+        ->required()
+        ->foreignKey(Gender::class)
+        ->build(),
+
+    ...invalid('department_id')
+        ->required()
+        ->foreignKey(Department::class)
+        ->build(),
+
+    ...invalid('category_id')
+        ->required()
+        ->foreignKey(Category::class)
+        ->build(),
+
+    ...invalid('nationality_id')
+        ->required()
+        ->foreignKey(Category::class)
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('first_name_ar')->tooShort(2)->tooLong()->build(),
-    ...invalid('first_name_en')->tooShort(2)->tooLong()->build(),
-    ...invalid('last_name_ar')->tooShort(2)->tooLong()->build(),
-    ...invalid('last_name_en')->tooShort(2)->tooLong()->build(),
-    ...invalid('gender_id')->foreignKey(Gender::class)->build(),
-    ...invalid('department_id')->foreignKey(Department::class)->build(),
-    ...invalid('category_id')->foreignKey(Category::class)->build(),
-    ...invalid('nationality_id')->foreignKey(Category::class)->build(),
+    ...invalid('first_name_ar')
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('first_name_en')
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('last_name_ar')
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('last_name_en')
+        ->tooShort(2)
+        ->tooLong()
+        ->build(),
+
+    ...invalid('gender_id')
+        ->foreignKey(Gender::class)
+        ->build(),
+
+    ...invalid('department_id')
+        ->foreignKey(Department::class)
+        ->build(),
+
+    ...invalid('category_id')
+        ->foreignKey(Category::class)
+        ->build(),
+
+    ...invalid('nationality_id')
+        ->foreignKey(Category::class)
+        ->build(),
 ]);

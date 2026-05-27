@@ -79,26 +79,74 @@ it('fails to update a dependent if :dataset', function (array $overrides, array 
     ->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
+    ...invalid('employee_id')
+        ->required()
+        ->foreignKey(Employee::class)
+        ->build(),
+
     ...name(),
-    ...invalid('name_ar')->tooLong(150)->build(),
-    ...invalid('name_en')->tooLong(150)->build(),
-    ...invalid('identification')->required()->digits(10)->build(),
-    ...invalid('gender_id')->required()->foreignKey(Gender::class)->build(),
-    ...invalid('date_of_birth')->required()->future()->build(),
-    ...invalid('relationship_id')->required()->foreignKey(Relationship::class)->build(),
-    ...invalid('ticket_ratio')->build(),
+    ...invalid('name_ar')
+        ->tooLong(150)
+        ->build(),
+
+    ...invalid('name_en')
+        ->tooLong(150)
+        ->build(),
+
+    ...invalid('identification')
+        ->required()
+        ->digits(10)
+        ->build(),
+
+    ...invalid('gender_id')
+        ->required()
+        ->foreignKey(Gender::class)
+        ->build(),
+
+    ...invalid('date_of_birth')
+        ->required()
+        ->future()
+        ->build(),
+
+    ...invalid('relationship_id')
+        ->required()
+        ->foreignKey(Relationship::class)
+        ->build(),
+
+    ...invalid('ticket_ratio')
+        ->build(),
+
 ]);
 
 dataset('update', [
     ...name(),
-    ...invalid('name_ar')->tooLong(150)->build(),
-    ...invalid('name_en')->tooLong(150)->build(),
-    ...invalid('identification')->digits(10)->build(),
-    ...invalid('gender_id')->foreignKey(Gender::class)->build(),
-    ...invalid('date_of_birth')->future()->build(),
-    ...invalid('relationship_id')->foreignKey(Relationship::class)->build(),
-    ...invalid('ticket_ratio')->build(),
+
+    ...invalid('name_ar')
+        ->tooLong(150)
+        ->build(),
+
+    ...invalid('name_en')
+        ->tooLong(150)
+        ->build(),
+
+    ...invalid('identification')
+        ->digits(10)
+        ->build(),
+
+    ...invalid('gender_id')
+        ->foreignKey(Gender::class)
+        ->build(),
+
+    ...invalid('date_of_birth')
+        ->future()
+        ->build(),
+
+    ...invalid('relationship_id')
+        ->foreignKey(Relationship::class)
+        ->build(),
+
+    ...invalid('ticket_ratio')
+        ->build(),
 ]);
 
 function name(): array

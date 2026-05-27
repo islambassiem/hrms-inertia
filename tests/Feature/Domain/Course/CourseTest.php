@@ -75,22 +75,76 @@ it('fails to update a course if :dataset', function (array $overrides, array $fi
     ->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
-    ...invalid('course_name')->required()->tooShort()->tooLong()->build(),
-    ...invalid('course_type_id')->required()->foreignKey(CourseType::class)->build(),
-    ...invalid('issuer')->tooShort()->tooLong()->build(),
-    ...invalid('awarding_year')->digits(4)->build(),
-    ...invalid('course_period')->tooShort()->tooLong()->build(),
-    ...invalid('city')->tooShort()->tooLong()->build(),
-    ...invalid('country_id')->foreignKey(Country::class)->build(),
+    ...invalid('employee_id')
+        ->required()
+        ->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('course_name')
+        ->required()
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('course_type_id')
+        ->required()
+        ->foreignKey(CourseType::class)
+        ->build(),
+
+    ...invalid('issuer')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('awarding_year')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('course_period')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('city')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('country_id')
+        ->foreignKey(Country::class)
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('course_name')->tooShort()->tooLong()->build(),
-    ...invalid('course_type_id')->foreignKey(CourseType::class)->build(),
-    ...invalid('issuer')->tooShort()->tooLong()->build(),
-    ...invalid('awarding_year')->digits(4)->build(),
-    ...invalid('course_period')->tooShort()->tooLong()->build(),
-    ...invalid('city')->tooShort()->tooLong()->build(),
-    ...invalid('country_id')->foreignKey(Country::class)->build(),
+    ...invalid('course_name')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('course_type_id')
+        ->foreignKey(CourseType::class)
+        ->build(),
+
+    ...invalid('issuer')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('awarding_year')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('course_period')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('city')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('country_id')
+        ->foreignKey(Country::class)
+        ->build(),
 ]);

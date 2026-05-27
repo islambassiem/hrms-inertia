@@ -76,25 +76,90 @@ it('fails to update experience if :dataset', function (array $overrides, array $
     ->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
-    ...invalid('position')->required()->tooShort()->tooLong()->build(),
-    ...invalid('organization')->required()->tooShort()->tooLong()->build(),
-    ...invalid('city')->tooShort()->tooLong()->build(),
-    ...invalid('country_id')->foreignKey(Country::class)->build(),
-    ...invalid('department')->tooShort()->tooLong()->build(),
-    ...invalid('section')->tooShort()->tooLong()->build(),
-    ...invalid('start_date')->required()->future()->build(),
-    ...invalid('end_date')->required()->build(),
-    ...invalid()->invalidDateOrder('start_date', 'end_date')->build(),
+    ...invalid('employee_id')
+        ->required()->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('position')
+        ->required()
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('organization')
+        ->required()
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('city')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('country_id')
+        ->foreignKey(Country::class)
+        ->build(),
+
+    ...invalid('department')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('section')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('start_date')
+        ->required()
+        ->future()
+        ->build(),
+
+    ...invalid('end_date')
+        ->required()
+        ->build(),
+
+    ...invalid()
+        ->invalidDateOrder('start_date', 'end_date')
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('position')->tooShort()->tooLong()->build(),
-    ...invalid('organization')->tooShort()->tooLong()->build(),
-    ...invalid('city')->tooShort()->tooLong()->build(),
-    ...invalid('country_id')->foreignKey(Country::class)->build(),
-    ...invalid('department')->tooShort()->tooLong()->build(),
-    ...invalid('section')->tooShort()->tooLong()->build(),
-    ...invalid('start_date')->future()->build(),
-    ...invalid()->invalidDateOrder('start_date', 'end_date')->build(),
+    ...invalid('position')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('organization')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('city')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('country_id')
+        ->foreignKey(Country::class)
+        ->build(),
+
+    ...invalid('department')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('section')
+        ->tooShort()
+        ->tooLong()
+        ->build(),
+
+    ...invalid('start_date')
+        ->future()
+        ->build(),
+
+    ...invalid()
+        ->invalidDateOrder('start_date', 'end_date')
+        ->build(),
 ]);

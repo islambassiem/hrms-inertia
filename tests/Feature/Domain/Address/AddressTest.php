@@ -73,22 +73,67 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
     ->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
-    ...invalid('short_address')->required()->regex('ABCD12345')->build(),
-    ...invalid('building_number')->digits(4)->build(),
-    ...invalid('street')->tooLong(50)->build(),
-    ...invalid('secondary_number')->digits(4)->build(),
-    ...invalid('district')->tooLong(50)->build(),
-    ...invalid('postal_code')->digits(4)->build(),
-    ...invalid('city')->tooLong(50)->build(),
+    ...invalid('employee_id')
+        ->required()
+        ->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('short_address')
+        ->required()
+        ->regex('ABCD12345')
+        ->build(),
+
+    ...invalid('building_number')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('street')
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('secondary_number')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('district')
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('postal_code')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('city')
+        ->tooLong(50)
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('building_number')->digits(4)->build(),
-    ...invalid('short_address')->regex('ABCD12345')->build(),
-    ...invalid('street')->tooLong(50)->build(),
-    ...invalid('secondary_number')->digits(4)->build(),
-    ...invalid('district')->tooLong(50)->build(),
-    ...invalid('postal_code')->digits(4)->build(),
-    ...invalid('city')->tooLong(50)->build(),
+    ...invalid('building_number')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('short_address')
+        ->regex('ABCD12345')
+        ->build(),
+
+    ...invalid('street')
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('secondary_number')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('district')
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('postal_code')
+        ->digits(4)
+        ->build(),
+
+    ...invalid('city')
+        ->tooLong(50)
+        ->build(),
 ]);

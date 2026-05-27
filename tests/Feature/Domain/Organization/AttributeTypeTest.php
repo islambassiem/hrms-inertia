@@ -60,6 +60,11 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
     ->with('invalid type');
 
 dataset('invalid type', [
-    ...invalid()->invalidName()->build(),
-    ...invalid('code')->tooLong(30)->build(),
+    ...invalid()
+        ->invalidName()
+        ->build(),
+
+    ...invalid('code')
+        ->tooLong(30)
+        ->build(),
 ]);

@@ -1,0 +1,20 @@
+[
+    {
+        "name_en": "Spouse",
+        "name_ar": "زوج / زوجة",
+        "code": "1",
+        "sort_order": 1
+    },
+    {
+        "name_en": "Child",
+        "name_ar": "ابن / ابنة",
+        "code": "2",
+        "sort_order": 2
+    },
+    {
+        "name_en": "Parent",
+        "name_ar": "والد / والده",
+        "code": "3",
+        "sort_order": 2
+    }
+]

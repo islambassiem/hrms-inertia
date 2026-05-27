@@ -65,12 +65,30 @@ it('fails to update an achievement if :dataset', function (array $overrides, arr
     ->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
-    ...invalid('achievement_title')->required()->tooShort(5)->tooLong(255)->build(),
-    ...invalid('achievement_year')->required()->digits(4)->build(),
+    ...invalid('employee_id')
+        ->required()
+        ->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('achievement_title')
+        ->required()
+        ->tooShort(5)
+        ->tooLong(255)
+        ->build(),
+
+    ...invalid('achievement_year')
+        ->required()
+        ->digits(4)
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('achievement_title')->tooShort(5)->tooLong(255)->build(),
-    ...invalid('achievement_year')->digits(4)->build(),
+    ...invalid('achievement_title')
+        ->tooShort(5)
+        ->tooLong(255)
+        ->build(),
+
+    ...invalid('achievement_year')
+        ->digits(4)
+        ->build(),
 ]);

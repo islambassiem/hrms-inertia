@@ -64,11 +64,23 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
     ->with('invalid department');
 
 dataset('invalid department', [
-    ...invalid()->invalidName()->build(),
-    ...invalid('type')->required()->build(),
+    ...invalid()
+        ->invalidName()
+        ->build(),
+
+    ...invalid('type')
+        ->required()
+        ->build(),
+
     ...invalidType(),
-    ...invalid('head_id')->foreignKey('head')->build(),
-    ...invalid('parent_id')->foreignKey('parent')->build(),
+
+    ...invalid('head_id')
+        ->foreignKey('head')
+        ->build(),
+
+    ...invalid('parent_id')
+        ->foreignKey('parent')
+        ->build(),
 ]);
 
 function invalidType(): array

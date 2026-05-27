@@ -72,13 +72,34 @@ it('update fails because :dataset', function ($overrides, array $fields): void {
 })->with('update');
 
 dataset('create', [
-    ...invalid('employee_id')->required()->foreignKey(Employee::class)->build(),
-    ...invalid('identity_type_id')->required()->foreignKey(IdentityType::class)->build(),
-    ...invalid('identity_number')->required()->tooShort(10)->tooLong(10)->build(),
+    ...invalid('employee_id')
+        ->required()
+        ->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('identity_type_id')
+        ->required()
+        ->foreignKey(IdentityType::class)
+        ->build(),
+
+    ...invalid('identity_number')
+        ->required()
+        ->tooShort(10)
+        ->tooLong(10)
+        ->build(),
 ]);
 
 dataset('update', [
-    ...invalid('employee_id')->foreignKey(Employee::class)->build(),
-    ...invalid('identity_type_id')->foreignKey(IdentityType::class)->build(),
-    ...invalid('identity_number')->tooShort(10)->tooLong(10)->build(),
+    ...invalid('employee_id')
+        ->foreignKey(Employee::class)
+        ->build(),
+
+    ...invalid('identity_type_id')
+        ->foreignKey(IdentityType::class)
+        ->build(),
+
+    ...invalid('identity_number')
+        ->tooShort(10)
+        ->tooLong(10)
+        ->build(),
 ]);

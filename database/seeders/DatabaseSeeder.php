@@ -37,6 +37,8 @@ final class DatabaseSeeder extends Seeder
             CourseTypeSeeder::class,
             CourseSeeder::class,
             AchievementSeeder::class,
+            ReferenceTypeSeeder::class,
+            ReferenceValueSeeder::class,
         ]);
     }
 }

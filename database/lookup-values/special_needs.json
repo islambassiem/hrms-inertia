@@ -1,0 +1,44 @@
+[
+    {
+        "name_en": "Wheelchair",
+        "name_ar": "كرسي متحرك",
+        "code": "1",
+        "sort_order": 1
+    },
+    {
+        "name_en": "Visual Impairment",
+        "name_ar": "ضعف بصري",
+        "code": "2",
+        "sort_order": 2
+    },
+    {
+        "name_en": "Hearing Impairment",
+        "name_ar": "ضعف سمعي",
+        "code": "3",
+        "sort_order": 3
+    },
+    {
+        "name_en": "Speech Impairment",
+        "name_ar": "ضعف صوتي",
+        "code": "4",
+        "sort_order": 4
+    },
+    {
+        "name_en": "Cognitive Impairment",
+        "name_ar": "ضعف إدراكي",
+        "code": "5",
+        "sort_order": 5
+    },
+    {
+        "name_en": "Autism Spectrum Disorder",
+        "name_ar": "اضطراب طيف التوحد",
+        "code": "6",
+        "sort_order": 6
+    },
+    {
+        "name_en": "Other",
+        "name_ar": "أخرى",
+        "code": "7",
+        "sort_order": 7
+    }
+]
