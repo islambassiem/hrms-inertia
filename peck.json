@@ -1,0 +1,19 @@
+{
+    "preset": "laravel",
+    "ignore": {
+        "words": [
+            "php",
+            "activitylog",
+            "eslint",
+            "opencode",
+            "pnpm",
+            "nav",
+            "dropdown",
+            "sonner",
+            "tooltip",
+            "utils",
+            "tsconfig"
+        ],
+        "paths": []
+    }
+}
