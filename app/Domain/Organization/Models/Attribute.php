@@ -32,9 +32,9 @@ final class Attribute extends Model
     use UserStamp;
 
     /** @var array<string> */
-    public $translatable = ['name'];
+    public array $translatable = ['name'];
 
-    public function casts()
+    public function casts(): array
     {
         return [
             'name' => TranslatedNameData::class,

@@ -32,7 +32,7 @@ final class Category extends Model
     use UserStamp;
 
     /** @var array<string> */
-    public $translatable = ['name'];
+    public array $translatable = ['name'];
 
     /**
      * @return BelongsTo<Category, $this>

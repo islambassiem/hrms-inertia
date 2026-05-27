@@ -137,7 +137,7 @@ final class Employee extends Model
         return $this->belongsTo(Country::class, 'nationality_id');
     }
 
-    public function casts()
+    public function casts(): array
     {
         return [
             'date_of_birth' => 'immutable_date',
@@ -158,7 +158,7 @@ final class Employee extends Model
     protected function fullNameEn(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, array $attributes) => collect([
+            get: fn (mixed $value, array $attributes) => collect([
                 $attributes['first_name_en'] ?? null,
                 $attributes['middle_name_en'] ?? null,
                 $attributes['third_name_en'] ?? null,
@@ -173,7 +173,7 @@ final class Employee extends Model
     protected function fullNameAr(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, array $attributes) => collect([
+            get: fn (mixed $value, array $attributes) => collect([
                 $attributes['first_name_ar'] ?? null,
                 $attributes['middle_name_ar'] ?? null,
                 $attributes['third_name_ar'] ?? null,
@@ -188,7 +188,7 @@ final class Employee extends Model
     protected function fullName(): Attribute
     {
         return Attribute::make(
-            get: function ($value, array $attributes) {
+            get: function (mixed $value, array $attributes) {
                 $locale = app()->isLocale('ar');
 
                 return collect([

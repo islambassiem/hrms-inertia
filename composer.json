@@ -40,6 +40,7 @@
         "peckphp/peck": "^0.3.0",
         "pestphp/pest": "^4.7",
         "pestphp/pest-plugin-laravel": "^4.1",
+        "pestphp/pest-plugin-type-coverage": "^4.0",
         "rector/rector": "^2.4",
         "roave/security-advisories": "dev-latest"
     },

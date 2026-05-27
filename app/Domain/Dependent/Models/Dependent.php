@@ -33,7 +33,7 @@ final class Dependent extends Model
     /** @use UserStamp<Dependent> */
     use UserStamp;
 
-    public function casts()
+    public function casts(): array
     {
         return [
             'date_of_birth' => 'immutable_date',

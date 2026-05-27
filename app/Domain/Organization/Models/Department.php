@@ -36,7 +36,7 @@ final class Department extends Model
     use UserStamp;
 
     /** @var array<string> */
-    public $translatable = ['name'];
+    public array $translatable = ['name'];
 
     public function casts(): array
     {

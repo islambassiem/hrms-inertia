@@ -28,7 +28,7 @@ final class EmployeeAttribute extends Model
     /** @use UserStamp<EmployeeAttribute> */
     use UserStamp;
 
-    public function casts()
+    public function casts(): array
     {
         return [
             'start_date' => 'immutable_date',
