@@ -31,13 +31,13 @@ final class CreateDependentData extends Data
         #[Digits(10)]
         public string $identification,
 
-        #[Exists('shared_genders', 'id')]
+        #[Exists('shared_reference_values', 'id')]
         public int $gender_id,
 
         #[Before('today')]
         public CarbonImmutable $date_of_birth,
 
-        #[Exists('shared_relationships', 'id')]
+        #[Exists('shared_reference_values', 'id')]
         public int $relationship_id,
 
         public bool $has_insurance,

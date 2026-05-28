@@ -49,7 +49,7 @@ return new class extends Migration
 
             $table->foreignIdFor(MaritalStatus::class)->nullable()->constrained();
             $table->foreignIdFor(Religion::class)->nullable()->constrained();
-            $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained('shared_special_needs');
+            $table->foreignIdFor(SpecialNeeds::class)->nullable()->constrained();
 
             $table->foreignIdFor(Gender::class)->constrained();
             $table->foreignIdFor(Category::class)->constrained('employee_categories');

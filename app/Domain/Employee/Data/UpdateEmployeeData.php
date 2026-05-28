@@ -52,16 +52,16 @@ final class UpdateEmployeeData extends Data
         #[Max(30), Min(2), Regex('/^[\p{Latin}\s]+$/u')]
         public string|null|Optional $last_name_en,
 
-        #[Nullable, Exists('shared_marital_statuses', 'id')]
+        #[Nullable, Exists('shared_reference_values', 'id')]
         public int|null|Optional $marital_status_id,
 
-        #[Nullable, Exists('shared_religions', 'id')]
+        #[Nullable, Exists('shared_reference_values', 'id')]
         public int|null|Optional $religion_id,
 
-        #[Nullable, Exists('shared_special_needs', 'id')]
+        #[Nullable, Exists('shared_reference_values', 'id')]
         public int|null|Optional $special_need_id,
 
-        #[Exists('shared_genders', 'id')]
+        #[Exists('shared_reference_values', 'id')]
         public int|null|Optional $gender_id,
 
         #[Nullable, Exists('employee_categories', 'id')]

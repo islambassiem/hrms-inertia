@@ -93,8 +93,11 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
+            "@peck",
             "@lint",
-            "@php artisan test"
+            "@rector",
+            "@phpstan",
+            "@php artisan test --parallel"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

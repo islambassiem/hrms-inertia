@@ -17,12 +17,14 @@ final class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
-            GenderSeeder::class,
+            ReferenceTypeSeeder::class,
+            ReferenceValueSeeder::class,
+            // GenderSeeder::class,
+            // MaritalStatusSeeder::class,
             CountrySeeder::class,
-            MaritalStatusSeeder::class,
-            RelationshipSeeder::class,
-            ReligionSeeder::class,
-            SpecialNeedsSeeder::class,
+            // RelationshipSeeder::class,
+            // ReligionSeeder::class,
+            // SpecialNeedsSeeder::class,
             DepartmentSeeder::class,
             EmployeeCategorySeeder::class,
             EmployeeSeeder::class,
@@ -37,8 +39,6 @@ final class DatabaseSeeder extends Seeder
             CourseTypeSeeder::class,
             CourseSeeder::class,
             AchievementSeeder::class,
-            ReferenceTypeSeeder::class,
-            ReferenceValueSeeder::class,
         ]);
     }
 }

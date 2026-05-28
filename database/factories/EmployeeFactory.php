@@ -7,11 +7,9 @@ namespace Database\Factories;
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Organization\Models\Department;
+use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Shared\Models\Country;
-use App\Domain\Shared\Models\Gender;
-use App\Domain\Shared\Models\MaritalStatus;
-use App\Domain\Shared\Models\Religion;
-use App\Domain\Shared\Models\SpecialNeeds;
+use App\Domain\Shared\Models\ReferenceValue;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -45,11 +43,11 @@ final class EmployeeFactory extends Factory
             'third_name_en' => fake()->randomElement([null, fake()->firstName()]),
             'last_name_en' => fake()->lastName(),
 
-            'marital_status_id' => MaritalStatus::factory(),
-            'religion_id' => Religion::factory(),
-            'special_needs_id' => SpecialNeeds::factory(),
+            'marital_status_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::MARITAL_STATUS]),
+            'religion_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::RELIGION]),
+            'special_needs_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SPECIAL_NEEDS]),
 
-            'gender_id' => Gender::factory(),
+            'gender_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::GENDER]),
             'category_id' => Category::factory(),
             'department_id' => Department::factory(),
             'nationality_id' => Country::factory(),

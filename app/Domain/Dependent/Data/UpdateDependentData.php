@@ -29,13 +29,13 @@ final class UpdateDependentData extends Data
         #[Digits(10)]
         public string|Optional $identification,
 
-        #[Exists('shared_genders', 'id'), Nullable]
+        #[Exists('shared_reference_values', 'id'), Nullable]
         public int|Optional $gender_id,
 
         #[Before('today')]
         public CarbonImmutable|Optional $date_of_birth,
 
-        #[Exists('shared_relationships', 'id')]
+        #[Exists('shared_reference_values', 'id')]
         public int|null|Optional $relationship_id,
 
         public bool|Optional $has_insurance,

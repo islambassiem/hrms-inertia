@@ -34,7 +34,7 @@ final class ReferenceTypeSeeder extends Seeder
                     'ar' => 'صلة القرابه',
                     'en' => 'Relationship',
                 ],
-                'filename' => 'releationship',
+                'filename' => 'relationship',
             ],
             [
                 'name' => [

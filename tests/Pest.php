@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Database\Seeders\ReferenceTypeSeeder;
+use Database\Seeders\ReferenceValueSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\Support\InvalidDataset;
@@ -20,6 +22,12 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
+    ->beforeEach(function (): void {
+        $this->seed([
+            ReferenceTypeSeeder::class,
+            ReferenceValueSeeder::class,
+        ]);
+    })
     ->in('Feature');
 
 /*

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Domain\Shared\Models\MaritalStatus;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -14,3 +15,5 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
 });
 
 require __DIR__.'/settings.php';
+
+Route::get('test', fn () => MaritalStatus::all());
