@@ -16,7 +16,9 @@ final class ReferenceValueSeeder extends Seeder
      */
     public function run(): void
     {
-        $files = File::files(database_path('lookup-values'));
+        $files = collect(File::files(database_path('lookup-values')))
+            ->sortBy(fn ($file) => $file->getCTime())
+            ->values();
 
         foreach ($files as $file) {
             $filename = ReferenceType::query()

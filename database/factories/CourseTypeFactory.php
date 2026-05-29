@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Domain\Course\Models\CourseType;
+use App\Domain\Shared\Enums\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,10 +23,9 @@ final class CourseTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => [
-                'ar' => fake('ar')->lexify(),
-                'en' => fake()->lexify(),
-            ],
+            'name_ar' => fake('ar')->lexify(),
+            'name_en' => fake()->lexify(),
+            'reference_type_id' => ReferenceType::COURSE_TYPE,
             'code' => fake()->unique()->bothify('CT###'),
         ];
     }

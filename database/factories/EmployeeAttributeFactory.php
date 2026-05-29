@@ -24,8 +24,6 @@ final class EmployeeAttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'employee_id' => 1,
-            // 'attribute_id' => 1,
             'employee_id' => Employee::factory(),
             'attribute_id' => Attribute::factory(),
             'start_date' => $start_date = fake()->dateTime(),

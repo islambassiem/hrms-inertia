@@ -50,6 +50,13 @@ final class ReferenceTypeSeeder extends Seeder
                 ],
                 'filename' => 'special_needs',
             ],
+            [
+                'name' => [
+                    'ar' => 'نوع الدورة التدريبية',
+                    'en' => 'Course Type',
+                ],
+                'filename' => 'course_type',
+            ],
         ];
 
         foreach ($types as $type) {

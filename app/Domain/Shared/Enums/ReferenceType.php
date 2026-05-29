@@ -15,4 +15,6 @@ enum ReferenceType: int
     case RELIGION = 4;
 
     case SPECIAL_NEEDS = 5;
+
+    case COURSE_TYPE = 6;
 }

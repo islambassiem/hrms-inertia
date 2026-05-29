@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained('employee_employees');
             $table->string('course_name')->nullable();
-            $table->foreignIdFor(CourseType::class)->nullable()->constrained(table: 'course_course_types');
+            $table->foreignIdFor(CourseType::class)->nullable()->constrained();
             $table->string('issuer')->nullable();
             $table->year('awarding_year')->nullable();
             $table->string('course_period')->nullable();

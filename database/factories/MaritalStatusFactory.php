@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Shared\Models\MaritalStatus;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,10 +23,9 @@ final class MaritalStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => [
-                'ar' => fake('ar')->lexify(),
-                'en' => fake()->lexify(),
-            ],
+            'name_ar' => fake('ar')->lexify(),
+            'name_en' => fake()->lexify(),
+            'reference_type_id' => ReferenceType::MARITAL_STATUS,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

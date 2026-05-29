@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Shared\Models\Relationship;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,10 +23,9 @@ final class RelationshipFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => [
-                'ar' => fake('ar')->word(),
-                'en' => fake()->word(),
-            ],
+            'name_ar' => fake('ar')->word(),
+            'name_en' => fake()->word(),
+            'reference_type_id' => ReferenceType::RELATIONSHIP,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }
