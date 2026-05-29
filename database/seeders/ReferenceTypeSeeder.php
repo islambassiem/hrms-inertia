@@ -20,35 +20,35 @@ final class ReferenceTypeSeeder extends Seeder
                     'ar' => 'الجنس',
                     'en' => 'Gender',
                 ],
-                'filename' => 'gender',
+                'filename' => 'shared_gender',
             ],
             [
                 'name' => [
                     'ar' => 'الحالة الاجتماعية',
                     'en' => 'Marital Status',
                 ],
-                'filename' => 'marital_status',
+                'filename' => 'shared_marital_status',
             ],
             [
                 'name' => [
                     'ar' => 'صلة القرابه',
                     'en' => 'Relationship',
                 ],
-                'filename' => 'relationship',
+                'filename' => 'dependent_relationship',
             ],
             [
                 'name' => [
                     'ar' => 'الديانة',
                     'en' => 'Religion',
                 ],
-                'filename' => 'religion',
+                'filename' => 'shared_religion',
             ],
             [
                 'name' => [
                     'ar' => 'الاحتاجات الخاصة',
                     'en' => 'Special Needs',
                 ],
-                'filename' => 'special_needs',
+                'filename' => 'employee_special_needs',
             ],
             [
                 'name' => [
@@ -56,6 +56,48 @@ final class ReferenceTypeSeeder extends Seeder
                     'en' => 'Course Type',
                 ],
                 'filename' => 'course_type',
+            ],
+            [
+                'name' => [
+                    'ar' => 'تقدير الدرجة العلمية',
+                    'en' => 'Qualification Rating',
+                ],
+                'filename' => 'qualification_rating',
+            ],
+            [
+                'name' => [
+                    'ar' => 'المعدل التراكمي',
+                    'en' => 'GPA Type',
+                ],
+                'filename' => 'qualification_gpa_type',
+            ],
+            [
+                'name' => [
+                    'ar' => 'نوع الدراسة',
+                    'en' => 'Study Type',
+                ],
+                'filename' => 'qualification_study_type',
+            ],
+            [
+                'name' => [
+                    'ar' => 'نوع البحث',
+                    'en' => 'Research Types',
+                ],
+                'filename' => 'qualification_research_types',
+            ],
+            [
+                'name' => [
+                    'ar' => 'المستوى التعليمي الفرعي',
+                    'en' => 'Educational Sublevel',
+                ],
+                'filename' => 'qualification_educational_sub_level',
+            ],
+            [
+                'name' => [
+                    'ar' => 'الدرجة العلمية',
+                    'en' => 'Scientific Degrees',
+                ],
+                'filename' => 'qualification_scientific_degrees',
             ],
         ];
 

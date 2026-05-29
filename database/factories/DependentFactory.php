@@ -29,9 +29,9 @@ final class DependentFactory extends Factory
             'name_en' => fake()->name(),
             'name_ar' => fake('ar')->name(),
             'identification' => fake()->numerify('##########'),
-            'gender_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::GENDER]),
+            'gender_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SHARED_GENDER]),
             'date_of_birth' => fake()->date(),
-            'relationship_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::RELATIONSHIP]),
+            'relationship_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::DEPENDENT_RELATIONSHIP]),
             'has_insurance' => (bool) random_int(0, 1),
             'ticket_ratio' => fake()->numberBetween(0, 100),
         ];

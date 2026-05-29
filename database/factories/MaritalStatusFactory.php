@@ -25,7 +25,7 @@ final class MaritalStatusFactory extends Factory
         return [
             'name_ar' => fake('ar')->lexify(),
             'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::MARITAL_STATUS,
+            'reference_type_id' => ReferenceType::SHARED_MARITAL_STATUS,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

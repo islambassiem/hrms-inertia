@@ -20,6 +20,6 @@ final class GenderScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::GENDER);
+        $builder->where('reference_type_id', ReferenceType::SHARED_GENDER);
     }
 }

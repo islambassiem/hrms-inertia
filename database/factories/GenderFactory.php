@@ -25,7 +25,7 @@ final class GenderFactory extends Factory
         return [
             'name_ar' => fake('ar')->lexify(),
             'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::GENDER,
+            'reference_type_id' => ReferenceType::SHARED_GENDER,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

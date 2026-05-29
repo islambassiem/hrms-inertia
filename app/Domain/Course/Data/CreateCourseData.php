@@ -25,7 +25,7 @@ final class CreateCourseData extends Data
         public string $course_name,
 
         #[Exists('shared_reference_values', 'id')]
-        public int $course_type_id,
+        public int $type_id,
 
         #[Max(255), Min(5)]
         public ?string $issuer,

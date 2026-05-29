@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable([
     'employee_id',
     'course_name',
-    'course_type_id',
+    'type_id',
     'issuer',
     'awarding_year',
     'course_period',

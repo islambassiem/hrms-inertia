@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Domain\Course\Models\CourseType;
+use App\Domain\Course\Models\Type;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Shared\Models\Country;
 use App\Models\User;
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained('employee_employees');
             $table->string('course_name')->nullable();
-            $table->foreignIdFor(CourseType::class)->nullable()->constrained();
+            $table->foreignIdFor(Type::class)->nullable()->constrained();
             $table->string('issuer')->nullable();
             $table->year('awarding_year')->nullable();
             $table->string('course_period')->nullable();

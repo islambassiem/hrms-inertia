@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Course\Models;
+namespace App\Domain\Qualification\Models;
 
 use App\Concerns\UserStamp;
-use App\Domain\Shared\Models\Scopes\CourseTypeScope;
-use Database\Factories\CourseTypeFactory;
+use App\Domain\Qualification\Models\Scopes\ScientificDegreeScope;
+use Database\Factories\QualificationScientificDegreeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Attributes\Table;
@@ -21,22 +21,22 @@ use Spatie\Translatable\HasTranslations;
     'updated_by',
 ])]
 #[Table('shared_reference_values')]
-#[ScopedBy(CourseTypeScope::class)]
-final class CourseType extends Model
+#[ScopedBy(ScientificDegreeScope::class)]
+final class ScientificDegree extends Model
 {
-    /** @use HasFactory<CourseTypeFactory> */
+    /** @use HasFactory<QualificationScientificDegreeFactory> */
     use HasFactory;
 
     use HasTranslations;
 
-    /** @use UserStamp<CourseType> */
+    /** @use UserStamp<ScientificDegree> */
     use UserStamp;
 
     /** @var array<string> */
     public array $translatable = ['name'];
 
-    protected static function newFactory(): CourseTypeFactory
+    protected static function newFactory(): QualificationScientificDegreeFactory
     {
-        return CourseTypeFactory::new();
+        return QualificationScientificDegreeFactory::new();
     }
 }

@@ -33,6 +33,10 @@ final class DatabaseSeeder extends Seeder
             ExperienceSeeder::class,
             CourseSeeder::class,
             AchievementSeeder::class,
+            QualificationSpecialtyCategorySeeder::class,
+            QualificationSpecialtySeeder::class,
+            QualificationIncludedSpecialtySeeder::class,
+            QualificationQualificationsSeeder::class,
         ]);
     }
 }

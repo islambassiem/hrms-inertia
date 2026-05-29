@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Shared\Models;
+namespace App\Domain\Qualification\Models;
 
 use App\Concerns\UserStamp;
-use App\Domain\Shared\Models\Scopes\RelationshipScope;
-use Database\Factories\RelationshipFactory;
+use App\Domain\Qualification\Models\Scopes\RatingScope;
+use Database\Factories\QualificationRatingFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Attributes\Table;
@@ -21,22 +21,22 @@ use Spatie\Translatable\HasTranslations;
     'updated_by',
 ])]
 #[Table('shared_reference_values')]
-#[ScopedBy(RelationshipScope::class)]
-final class Relationship extends Model
+#[ScopedBy(RatingScope::class)]
+final class Rating extends Model
 {
-    /** @use HasFactory<RelationshipFactory> */
+    /** @use HasFactory<QualificationRatingFactory> */
     use HasFactory;
 
     use HasTranslations;
 
-    /** @use UserStamp<Relationship> */
+    /** @use UserStamp<Rating> */
     use UserStamp;
 
     /** @var array<string> */
     public array $translatable = ['name'];
 
-    protected static function newFactory(): RelationshipFactory
+    protected static function newFactory(): QualificationRatingFactory
     {
-        return RelationshipFactory::new();
+        return QualificationRatingFactory::new();
     }
 }

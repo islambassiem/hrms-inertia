@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\Qualification\Models;
+
+use App\Concerns\UserStamp;
+use App\Domain\Qualification\Models\Scopes\GpaTypeScope;
+use Database\Factories\QualificationGpaTypeFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
+#[Fillable([
+    'name',
+    'code',
+    'created_by',
+    'updated_by',
+])]
+#[Table('shared_reference_values')]
+#[ScopedBy(GpaTypeScope::class)]
+final class GpaType extends Model
+{
+    /** @use HasFactory<QualificationGpaTypeFactory> */
+    use HasFactory;
+
+    use HasTranslations;
+
+    /** @use UserStamp<GpaType> */
+    use UserStamp;
+
+    /** @var array<string> */
+    public array $translatable = ['name'];
+
+    protected static function newFactory(): QualificationGpaTypeFactory
+    {
+        return QualificationGpaTypeFactory::new();
+    }
+}

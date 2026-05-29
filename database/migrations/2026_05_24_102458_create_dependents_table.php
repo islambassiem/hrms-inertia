@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Domain\Dependent\Models\Relationship;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Shared\Models\Gender;
-use App\Domain\Shared\Models\Relationship;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

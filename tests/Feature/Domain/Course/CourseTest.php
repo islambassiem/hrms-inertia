@@ -7,7 +7,7 @@ use App\Domain\Course\Actions\UpdateCourseAction;
 use App\Domain\Course\Data\CreateCourseData;
 use App\Domain\Course\Data\UpdateCourseData;
 use App\Domain\Course\Models\Course;
-use App\Domain\Course\Models\CourseType;
+use App\Domain\Course\Models\Type;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Shared\Models\Country;
 
@@ -25,7 +25,7 @@ it('created a course', function (): void {
     assertDatabaseHas('course_courses', [
         'employee_id' => $payload['employee_id'],
         'course_name' => $payload['course_name'],
-        'course_type_id' => $payload['course_type_id'],
+        'type_id' => $payload['type_id'],
         'issuer' => $payload['issuer'],
         'awarding_year' => $payload['awarding_year'],
         'course_period' => $payload['course_period'],
@@ -46,7 +46,7 @@ it('updated a course', function (): void {
     expect($updated->exists)->toBeTrue();
     assertDatabaseHas('course_courses', [
         'course_name' => $payload['course_name'],
-        'course_type_id' => $payload['course_type_id'],
+        'type_id' => $payload['type_id'],
         'issuer' => $payload['issuer'],
         'awarding_year' => $payload['awarding_year'],
         'course_period' => $payload['course_period'],
@@ -86,9 +86,9 @@ dataset('create', [
         ->tooLong()
         ->build(),
 
-    ...invalid('course_type_id')
+    ...invalid('type_id')
         ->required()
-        ->foreignKey(CourseType::class)
+        ->foreignKey(Type::class)
         ->build(),
 
     ...invalid('issuer')
@@ -121,8 +121,8 @@ dataset('update', [
         ->tooLong()
         ->build(),
 
-    ...invalid('course_type_id')
-        ->foreignKey(CourseType::class)
+    ...invalid('type_id')
+        ->foreignKey(Type::class)
         ->build(),
 
     ...invalid('issuer')

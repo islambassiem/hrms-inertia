@@ -23,7 +23,7 @@ final class UpdateCourseData extends Data
         public string|Optional $course_name,
 
         #[Exists('shared_reference_values', 'id'), Nullable]
-        public int|Optional $course_type_id,
+        public int|Optional $type_id,
 
         #[Max(255), Min(5), Nullable]
         public string|null|Optional $issuer,

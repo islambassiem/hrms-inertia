@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Domain\Dependent\Models\Dependent;
+use App\Domain\Dependent\Models\Relationship;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Shared\Models\Gender;
-use App\Domain\Shared\Models\Relationship;
 use Illuminate\Database\Seeder;
 
 final class DependentSeeder extends Seeder

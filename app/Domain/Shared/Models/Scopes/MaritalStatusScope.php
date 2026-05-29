@@ -20,6 +20,6 @@ final class MaritalStatusScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::MARITAL_STATUS);
+        $builder->where('reference_type_id', ReferenceType::SHARED_MARITAL_STATUS);
     }
 }

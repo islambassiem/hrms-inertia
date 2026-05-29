@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Domain\Course\Models\CourseType;
+use App\Domain\Course\Models\Type;
 use App\Domain\Shared\Enums\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<CourseType>
+ * @extends Factory<Type>
  */
-#[UseModel(CourseType::class)]
+#[UseModel(Type::class)]
 final class CourseTypeFactory extends Factory
 {
     /**

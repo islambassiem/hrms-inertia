@@ -25,7 +25,7 @@ final class ReligionFactory extends Factory
         return [
             'name_ar' => fake('ar')->lexify(),
             'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RELIGION,
+            'reference_type_id' => ReferenceType::SHARED_RELIGION,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

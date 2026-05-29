@@ -43,11 +43,11 @@ final class EmployeeFactory extends Factory
             'third_name_en' => fake()->randomElement([null, fake()->firstName()]),
             'last_name_en' => fake()->lastName(),
 
-            'marital_status_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::MARITAL_STATUS]),
-            'religion_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::RELIGION]),
-            'special_needs_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SPECIAL_NEEDS]),
+            'marital_status_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SHARED_MARITAL_STATUS]),
+            'religion_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SHARED_RELIGION]),
+            'special_needs_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::EMPLOYEE_SPECIAL_NEEDS]),
 
-            'gender_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::GENDER]),
+            'gender_id' => ReferenceValue::factory()->state(['reference_type_id' => ReferenceType::SHARED_GENDER]),
             'category_id' => Category::factory(),
             'department_id' => Department::factory(),
             'nationality_id' => Country::factory(),

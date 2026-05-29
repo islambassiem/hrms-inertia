@@ -20,6 +20,6 @@ final class SpecialNeedsScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::SPECIAL_NEEDS);
+        $builder->where('reference_type_id', ReferenceType::EMPLOYEE_SPECIAL_NEEDS);
     }
 }
