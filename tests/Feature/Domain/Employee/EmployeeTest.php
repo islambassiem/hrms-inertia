@@ -27,7 +27,7 @@ it('can create an employee', function (): void {
 
     expect($created)->toBeInstanceOf(Employee::class);
     expect($created->exists)->toBeTrue();
-    assertDatabaseHas('employee_employees', [
+    assertDatabaseHas('employees', [
         'user_id' => $payload['user_id'],
         'head_id' => $payload['head_id'],
         'employee_code' => $payload['employee_code'],
@@ -82,7 +82,7 @@ it('can update an employee', function (): void {
 
     expect($updated)->toBeInstanceOf(Employee::class);
     expect($updated->exists)->toBeTrue();
-    assertDatabaseHas('employee_employees', [
+    assertDatabaseHas('employees', [
         'head_id' => $payload['head_id'],
         'category_id' => $payload['category_id'],
         'department_id' => $payload['department_id'],

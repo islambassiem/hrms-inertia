@@ -76,7 +76,7 @@ final class UpdateEmployeeData extends Data
         #[Nullable, Exists('shared_countries', 'id')]
         public int|null|Optional $place_of_birth,
 
-        #[Email, Unique('employee_employees', 'email')]
+        #[Email, Unique('employees', 'email')]
         public string|null|Optional $email,
 
         #[Regex('/^5\d{8}$/')]

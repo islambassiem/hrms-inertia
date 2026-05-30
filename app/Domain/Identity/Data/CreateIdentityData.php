@@ -17,7 +17,7 @@ final class CreateIdentityData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int $employee_id,
 
         #[Exists('identity_identity_types', 'id')]

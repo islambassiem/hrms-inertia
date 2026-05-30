@@ -27,7 +27,7 @@ final class CreateDepartmentData extends Data
         #[Exists('organization_departments', 'id'), Nullable]
         public ?int $parent_id = null,
 
-        #[Exists('employee_employees', 'id'), Nullable]
+        #[Exists('employees', 'id'), Nullable]
         public ?int $head_id = null,
     ) {
         //

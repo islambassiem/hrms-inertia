@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->boolean('is_active')->default(true);
             $table->foreignId('parent_id')->nullable()->constrained('organization_departments');
-            $table->foreignId('head_id')->nullable()->constrained('employee_employees');
+            $table->foreignId('head_id')->nullable()->constrained('employees');
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained();
             $table->timestamps();

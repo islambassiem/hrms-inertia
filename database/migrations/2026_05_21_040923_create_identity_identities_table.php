@@ -18,7 +18,7 @@ return new class extends Migration
     {
         Schema::create('identity_identities', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class)->constrained('employees');
             $table->foreignIdFor(IdentityType::class)->constrained('identity_identity_types');
             $table->string('identity_number')->index();
             $table->string('place_of_issue')->nullable();

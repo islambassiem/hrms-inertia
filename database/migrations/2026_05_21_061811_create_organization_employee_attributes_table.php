@@ -18,8 +18,8 @@ return new class extends Migration
     {
         Schema::create('organization_employee_attributes', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained('employee_employees');
-            $table->foreignIdFor(Attribute::class)->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class)->constrained('employees');
+            $table->foreignIdFor(Attribute::class)->constrained('employees');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained();

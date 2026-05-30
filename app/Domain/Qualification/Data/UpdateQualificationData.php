@@ -19,7 +19,7 @@ final class UpdateQualificationData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int|Optional $employee_id,
 
         #[Exists('qualification_specialties', 'id')]

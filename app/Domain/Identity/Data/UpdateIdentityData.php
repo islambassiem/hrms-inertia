@@ -18,7 +18,7 @@ final class UpdateIdentityData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int|null|Optional $employee_id,
 
         #[Exists('identity_identity_types', 'id')]

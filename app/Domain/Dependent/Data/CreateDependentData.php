@@ -19,7 +19,7 @@ final class CreateDependentData extends Data
 {
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int $employee_id,
 
         #[Max(150), Nullable, RequiredWithout('name_en')]

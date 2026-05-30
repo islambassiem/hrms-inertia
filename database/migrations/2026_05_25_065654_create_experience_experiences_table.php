@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('experience_experiences', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class)->constrained('employees');
             $table->string('position')->nullable();
             $table->string('organization')->nullable();
             $table->string('city')->nullable();

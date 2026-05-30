@@ -19,7 +19,7 @@ return new class extends Migration
     {
         Schema::create('course_courses', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class)->constrained('employees');
             $table->string('course_name')->nullable();
             $table->foreignIdFor(Type::class)->nullable()->constrained();
             $table->string('issuer')->nullable();

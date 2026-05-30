@@ -30,7 +30,7 @@ final class CreateEmployeeData extends Data
         #[Nullable, Exists('users', 'id')]
         public ?int $head_id,
 
-        #[Regex('/^50[01]\d{3}$/'), Unique('employee_employees', 'employee_code')]
+        #[Regex('/^50[01]\d{3}$/'), Unique('employees', 'employee_code')]
         public string $employee_code,
 
         #[Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
@@ -81,7 +81,7 @@ final class CreateEmployeeData extends Data
         #[Nullable, Exists('shared_countries', 'id')]
         public ?int $place_of_birth,
 
-        #[Email, Unique('employee_employees', 'email')]
+        #[Email, Unique('employees', 'email')]
         public string $email,
 
         #[Regex('/^5\d{8}$/')]

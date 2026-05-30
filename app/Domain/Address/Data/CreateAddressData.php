@@ -19,7 +19,7 @@ final class CreateAddressData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int $employee_id,
 
         #[Max(8), Regex('/^[A-Z]{4}\d{4}$/')]

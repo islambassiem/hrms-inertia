@@ -18,7 +18,7 @@ final class CreateQualificationData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int $employee_id,
 
         #[Exists('qualification_specialties', 'id')]

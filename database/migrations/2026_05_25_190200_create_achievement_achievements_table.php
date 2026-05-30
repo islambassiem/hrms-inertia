@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('achievement_achievements', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class)->constrained('employees');
             $table->string('achievement_title');
             $table->year('achievement_year');
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users');

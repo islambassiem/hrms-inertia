@@ -17,7 +17,7 @@ final class CreateAchievementData extends Data
      */
     public function __construct(
 
-        #[Exists('employee_employees', 'id')]
+        #[Exists('employees', 'id')]
         public int $employee_id,
 
         #[Min(5), Max(255)]

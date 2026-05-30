@@ -59,7 +59,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $full_name_en
  * @property string $full_name_ar
  */
-#[Table('employee_employees')]
+#[Table('employees')]
 final class Employee extends Model
 {
     /** @use HasFactory<EmployeeFactory> */

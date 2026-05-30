@@ -22,10 +22,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employee_employees', function (Blueprint $table): void {
+        Schema::create('employees', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained('employee_employees');
+            $table->foreignIdFor(Employee::class, 'head_id')->nullable()->constrained('employees');
 
             $table->string('employee_code', 10)->unique();
 
@@ -93,6 +93,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employee_employees');
+        Schema::dropIfExists('employees');
     }
 };
