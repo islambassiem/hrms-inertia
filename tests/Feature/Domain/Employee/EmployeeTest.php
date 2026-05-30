@@ -9,8 +9,6 @@ use App\Domain\Employee\Data\UpdateEmployeeData;
 use App\Domain\Employee\Models\Category;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Organization\Models\Department;
-use App\Domain\Shared\Models\Gender;
-use App\Models\User;
 use Illuminate\Http\UploadedFile;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -125,7 +123,7 @@ it('fails to update employee if :dataset', function (array $overrides, array $fi
 dataset('create', [
     ...invalid('user_id')
         ->required()
-        ->foreignKey(User::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('employee_code')
@@ -159,22 +157,22 @@ dataset('create', [
 
     ...invalid('gender_id')
         ->required()
-        ->foreignKey(Gender::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('department_id')
         ->required()
-        ->foreignKey(Department::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('category_id')
         ->required()
-        ->foreignKey(Category::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('nationality_id')
         ->required()
-        ->foreignKey(Category::class)
+        ->invalidForeignKey()
         ->build(),
 ]);
 
@@ -200,18 +198,18 @@ dataset('update', [
         ->build(),
 
     ...invalid('gender_id')
-        ->foreignKey(Gender::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('department_id')
-        ->foreignKey(Department::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('category_id')
-        ->foreignKey(Category::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('nationality_id')
-        ->foreignKey(Category::class)
+        ->invalidForeignKey()
         ->build(),
 ]);

@@ -6,11 +6,7 @@ use App\Domain\Qualification\Actions\CreateQualificationAction;
 use App\Domain\Qualification\Actions\UpdateQualificationAction;
 use App\Domain\Qualification\Data\CreateQualificationData;
 use App\Domain\Qualification\Data\UpdateQualificationData;
-use App\Domain\Qualification\Models\GpaType;
 use App\Domain\Qualification\Models\Qualification;
-use App\Domain\Qualification\Models\Rating;
-use App\Domain\Qualification\Models\ResearchType;
-use App\Domain\Qualification\Models\StudyType;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -88,77 +84,6 @@ it('fails to create a qualification if :dataset', function (array $overrides, ar
 })
     ->with('create');
 
-dataset('create', [
-
-    ...invalid('employee_id')
-        ->required()
-        ->foreignKey('employee')
-        ->build(),
-
-    ...invalid('major_id')
-        ->required()
-        ->foreignKey('major')
-        ->build(),
-
-    ...invalid('minor')
-        ->foreignKey('minor')
-        ->build(),
-
-    ...invalid('educational_sub_level_id')
-        ->required()
-        ->foreignKey('educational_sub_level')
-        ->build(),
-
-    ...invalid('included_specialty_id')
-        ->required()
-        ->foreignKey('included_specialty')
-        ->build(),
-
-    ...invalid('institution_name')
-        ->tooShort(4)
-        ->tooLong(50)
-        ->build(),
-
-    ...invalid('college_name')
-        ->tooShort(4)
-        ->tooLong(50)
-        ->build(),
-
-    ...invalid('scientific_degree_id')
-        ->required()
-        ->foreignKey('scientific_degree')
-        ->build(),
-
-    ...invalid('graduation_date')
-        ->required()
-        ->build(),
-
-    ...invalid('graduation_country_id')
-        ->foreignKey('graduation_country')
-        ->build(),
-
-    ...invalid('rating_id')
-        ->foreignKey(Rating::class)
-        ->build(),
-
-    ...invalid('gpa_type_id')
-        ->foreignKey(GpaType::class)
-        ->build(),
-
-    ...invalid('study_type_id')
-        ->foreignKey(StudyType::class)
-        ->build(),
-
-    ...invalid('city')
-        ->tooShort(4)
-        ->tooLong(50)
-        ->build(),
-
-    ...invalid('research_type_id')
-        ->foreignKey(ResearchType::class)
-        ->build(),
-]);
-
 it('fails to update a qualification if :dataset', function (array $overrides, array $fields): void {
     $payload = Qualification::factory()->raw($overrides);
 
@@ -169,26 +94,30 @@ it('fails to update a qualification if :dataset', function (array $overrides, ar
 })
     ->with('update');
 
-dataset('update', [
+dataset('create', [
 
     ...invalid('employee_id')
-        ->foreignKey('employee')
+        ->required()
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('major_id')
-        ->foreignKey('major')
+        ->required()
+        ->invalidForeignKey()
         ->build(),
 
-    ...invalid('minor')
-        ->foreignKey('minor')
+    ...invalid('minor_id')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('educational_sub_level_id')
-        ->foreignKey('educational_sub_level')
+        ->required()
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('included_specialty_id')
-        ->foreignKey('included_specialty')
+        ->required()
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('institution_name')
@@ -202,26 +131,28 @@ dataset('update', [
         ->build(),
 
     ...invalid('scientific_degree_id')
-        ->foreignKey('scientific_degree')
+        ->required()
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('graduation_date')
+        ->required()
         ->build(),
 
     ...invalid('graduation_country_id')
-        ->foreignKey('graduation_country')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('rating_id')
-        ->foreignKey(Rating::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('gpa_type_id')
-        ->foreignKey(GpaType::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('study_type_id')
-        ->foreignKey(StudyType::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('city')
@@ -230,6 +161,71 @@ dataset('update', [
         ->build(),
 
     ...invalid('research_type_id')
-        ->foreignKey(ResearchType::class)
+        ->invalidForeignKey()
+        ->build(),
+]);
+
+dataset('update', [
+
+    ...invalid('employee_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('major_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('minor_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('educational_sub_level_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('included_specialty_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('institution_name')
+        ->tooShort(4)
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('college_name')
+        ->tooShort(4)
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('scientific_degree_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('graduation_date')
+        ->build(),
+
+    ...invalid('graduation_country_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('rating_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('gpa_type_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('study_type_id')
+        ->invalidForeignKey()
+        ->build(),
+
+    ...invalid('city')
+        ->tooShort(4)
+        ->tooLong(50)
+        ->build(),
+
+    ...invalid('research_type_id')
+        ->invalidForeignKey()
         ->build(),
 ]);

@@ -78,7 +78,7 @@ dataset('create', [
         ->build(),
 
     ...invalid('parent_id')
-        ->foreignKey('parent')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('code')
@@ -100,7 +100,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('parent_id')
-        ->foreignKey('parent')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('code')

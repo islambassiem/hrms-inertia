@@ -7,7 +7,6 @@ use App\Domain\Achievement\Actions\UpdateAchievementAction;
 use App\Domain\Achievement\Data\CreateAchievementData;
 use App\Domain\Achievement\Data\UpdateAchievementData;
 use App\Domain\Achievement\Models\Achievement;
-use App\Domain\Employee\Models\Employee;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -67,7 +66,7 @@ it('fails to update an achievement if :dataset', function (array $overrides, arr
 dataset('create', [
     ...invalid('employee_id')
         ->required()
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('achievement_title')

@@ -92,24 +92,24 @@ dataset('create', [
 
     ...invalid('employee_id')
         ->required()
-        ->foreignKey('employee')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('status_id')
         ->required()
-        ->foreignKey('status')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('type_id')
-        ->foreignKey('type')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('nature_id')
-        ->foreignKey('nature')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('domain_id')
-        ->foreignKey('domain')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('title')
@@ -164,7 +164,7 @@ dataset('create', [
         ->build(),
 
     ...invalid('language_id')
-        ->foreignKey('language')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('publishing_url')
@@ -181,19 +181,19 @@ dataset('create', [
 dataset('update', [
 
     ...invalid('status_id')
-        ->foreignKey('status')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('type_id')
-        ->foreignKey('type')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('nature_id')
-        ->foreignKey('nature')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('domain_id')
-        ->foreignKey('domain')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('title')
@@ -240,7 +240,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('language_id')
-        ->foreignKey('language')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('publishing_url')

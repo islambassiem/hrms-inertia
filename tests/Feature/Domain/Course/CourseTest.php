@@ -7,9 +7,6 @@ use App\Domain\Course\Actions\UpdateCourseAction;
 use App\Domain\Course\Data\CreateCourseData;
 use App\Domain\Course\Data\UpdateCourseData;
 use App\Domain\Course\Models\Course;
-use App\Domain\Course\Models\Type;
-use App\Domain\Employee\Models\Employee;
-use App\Domain\Shared\Models\Country;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -77,7 +74,7 @@ it('fails to update a course if :dataset', function (array $overrides, array $fi
 dataset('create', [
     ...invalid('employee_id')
         ->required()
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('course_name')
@@ -88,7 +85,7 @@ dataset('create', [
 
     ...invalid('type_id')
         ->required()
-        ->foreignKey(Type::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('issuer')
@@ -111,7 +108,7 @@ dataset('create', [
         ->build(),
 
     ...invalid('country_id')
-        ->foreignKey(Country::class)
+        ->invalidForeignKey()
         ->build(),
 ]);
 
@@ -122,7 +119,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('type_id')
-        ->foreignKey(Type::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('issuer')
@@ -145,6 +142,6 @@ dataset('update', [
         ->build(),
 
     ...invalid('country_id')
-        ->foreignKey(Country::class)
+        ->invalidForeignKey()
         ->build(),
 ]);

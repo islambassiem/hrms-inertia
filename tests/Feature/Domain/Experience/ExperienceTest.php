@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Domain\Employee\Models\Employee;
 use App\Domain\Experience\Actions\CreateExperienceAction;
 use App\Domain\Experience\Actions\UpdateExperienceAction;
 use App\Domain\Experience\Data\CreateExperienceData;
 use App\Domain\Experience\Data\UpdateExperienceData;
 use App\Domain\Experience\Models\Experience;
-use App\Domain\Shared\Models\Country;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -77,7 +75,7 @@ it('fails to update experience if :dataset', function (array $overrides, array $
 
 dataset('create', [
     ...invalid('employee_id')
-        ->required()->foreignKey(Employee::class)
+        ->required()->invalidForeignKey()
         ->build(),
 
     ...invalid('position')
@@ -98,7 +96,7 @@ dataset('create', [
         ->build(),
 
     ...invalid('country_id')
-        ->foreignKey(Country::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('department')
@@ -142,7 +140,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('country_id')
-        ->foreignKey(Country::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('department')

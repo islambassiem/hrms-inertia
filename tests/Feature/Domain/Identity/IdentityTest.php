@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Domain\Employee\Models\Employee;
 use App\Domain\Identity\Actions\CreateIdentityAction;
 use App\Domain\Identity\Actions\UpdateIdentityAction;
 use App\Domain\Identity\Data\CreateIdentityData;
 use App\Domain\Identity\Data\UpdateIdentityData;
 use App\Domain\Identity\Models\Identity;
-use App\Domain\Identity\Models\IdentityType;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -74,12 +72,12 @@ it('update fails because :dataset', function ($overrides, array $fields): void {
 dataset('create', [
     ...invalid('employee_id')
         ->required()
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('identity_type_id')
         ->required()
-        ->foreignKey(IdentityType::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('identity_number')
@@ -91,11 +89,11 @@ dataset('create', [
 
 dataset('update', [
     ...invalid('employee_id')
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('identity_type_id')
-        ->foreignKey(IdentityType::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('identity_number')

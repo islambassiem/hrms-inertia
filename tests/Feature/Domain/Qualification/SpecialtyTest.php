@@ -77,7 +77,7 @@ dataset('create', [
         ->build(),
 
     ...invalid('category_id')
-        ->foreignKey('category')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('code')
@@ -99,7 +99,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('category_id')
-        ->foreignKey('category')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('code')

@@ -75,11 +75,11 @@ dataset('invalid department', [
     ...invalidType(),
 
     ...invalid('head_id')
-        ->foreignKey('head')
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('parent_id')
-        ->foreignKey('parent')
+        ->invalidForeignKey()
         ->build(),
 ]);
 

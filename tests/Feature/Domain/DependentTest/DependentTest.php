@@ -7,9 +7,6 @@ use App\Domain\Dependent\Actions\UpdateDependentAction;
 use App\Domain\Dependent\Data\CreateDependentData;
 use App\Domain\Dependent\Data\UpdateDependentData;
 use App\Domain\Dependent\Models\Dependent;
-use App\Domain\Employee\Models\Employee;
-use App\Domain\Shared\Models\Gender;
-use App\Domain\Shared\Models\Relationship;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -81,7 +78,7 @@ it('fails to update a dependent if :dataset', function (array $overrides, array 
 dataset('create', [
     ...invalid('employee_id')
         ->required()
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...name(),
@@ -100,7 +97,7 @@ dataset('create', [
 
     ...invalid('gender_id')
         ->required()
-        ->foreignKey(Gender::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('date_of_birth')
@@ -110,7 +107,7 @@ dataset('create', [
 
     ...invalid('relationship_id')
         ->required()
-        ->foreignKey(Relationship::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('ticket_ratio')
@@ -134,7 +131,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('gender_id')
-        ->foreignKey(Gender::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('date_of_birth')
@@ -142,7 +139,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('relationship_id')
-        ->foreignKey(Relationship::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('ticket_ratio')

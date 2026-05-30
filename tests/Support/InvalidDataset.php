@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
-use Illuminate\Support\Str;
-
 final class InvalidDataset
 {
     private array $rules = [];
 
-    public function __construct(private ?string $field = null) {}
+    public function __construct(private readonly ?string $field = null) {}
 
     public function build(): array
     {
@@ -107,19 +105,15 @@ final class InvalidDataset
         return $this;
     }
 
-    public function foreignKey(string $model): self
+    public function invalidForeignKey(): self
     {
-        $field = Str::snake(class_basename($model)).'_id';
-        $this->field = $field;
-
-        $this->rules[$field.' is not an integer'] = [
-                    [$field => 'not an integer'],
-            [$field],
+        $this->rules[$this->field.' is not an integer'] = [
+            [$this->field => 'not an integer'],
+            [$this->field],
         ];
-
-        $this->rules[$field.' is invalid'] = [
-            [$field => PHP_INT_MAX],
-            [$field],
+        $this->rules[$this->field.' does not exist'] = [
+            [$this->field => PHP_INT_MAX],
+            [$this->field],
         ];
 
         return $this;

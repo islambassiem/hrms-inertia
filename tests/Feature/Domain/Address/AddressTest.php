@@ -7,7 +7,6 @@ use App\Domain\Address\Actions\UpdateAddressAction;
 use App\Domain\Address\Data\CreateAddressData;
 use App\Domain\Address\Data\UpdateAddressData;
 use App\Domain\Address\Models\Address;
-use App\Domain\Employee\Models\Employee;
 
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -75,7 +74,7 @@ it('fails to update if :dataset', function (array $overrides, array $fields): vo
 dataset('create', [
     ...invalid('employee_id')
         ->required()
-        ->foreignKey(Employee::class)
+        ->invalidForeignKey()
         ->build(),
 
     ...invalid('short_address')

@@ -6,7 +6,6 @@ use App\Domain\Shared\Actions\CreateReferenceValueAction;
 use App\Domain\Shared\Actions\UpdateReferenceValueAction;
 use App\Domain\Shared\Data\CreateReferenceValueData;
 use App\Domain\Shared\Data\UpdateReferenceValueData;
-use App\Domain\Shared\Models\ReferenceType;
 use App\Domain\Shared\Models\ReferenceValue;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -87,7 +86,7 @@ dataset('create', [
 
     ...invalid('reference_type_id')
         ->required()
-        ->foreignKey(ReferenceType::class)
+        ->invalidForeignKey()
         ->build(),
 ]);
 
@@ -106,7 +105,6 @@ dataset('update', [
         ->tooLong(50)
         ->build(),
 
-    ...invalid('reference_type_id')
-        ->foreignKey(ReferenceType::class)
+    ...invalid('reference_type_id')->invalidForeignKey()
         ->build(),
 ]);
