@@ -27,7 +27,7 @@ final class UpdateEmployeeData extends Data
      */
     public function __construct(
 
-        #[Nullable, Exists('emloyees', 'id')]
+        #[Nullable, Exists('employees', 'id')]
         public int|null|Optional $head_id,
 
         #[Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]

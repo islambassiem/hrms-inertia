@@ -62,6 +62,7 @@ it('can create an employee', function (): void {
 });
 
 it('can update an employee', function (): void {
+    Employee::factory()->create();
     $payload = Employee::factory()->raw([
         'head_id' => 1,
         'first_name_ar' => 'اسلام',
