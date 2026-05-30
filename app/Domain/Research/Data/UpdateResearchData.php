@@ -29,22 +29,22 @@ final class UpdateResearchData extends Data
         public int|Optional $status_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_TYPE)
         ), Nullable]
         public int|Optional $type_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_NATURE)
         ), Nullable]
         public int|Optional $nature_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_DOMAIN)
         ), Nullable]
         public int|Optional $domain_id,
@@ -76,8 +76,8 @@ final class UpdateResearchData extends Data
         public string|Optional $summary,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_LANGUAGE)
         ), Nullable]
         public int|Optional $language_id,

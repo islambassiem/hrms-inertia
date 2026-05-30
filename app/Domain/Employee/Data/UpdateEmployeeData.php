@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Attributes\Validation\Email;
@@ -17,6 +18,7 @@ use Spatie\LaravelData\Attributes\Validation\Regex;
 use Spatie\LaravelData\Attributes\Validation\Unique;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class UpdateEmployeeData extends Data
 {
@@ -25,7 +27,7 @@ final class UpdateEmployeeData extends Data
      */
     public function __construct(
 
-        #[Nullable, Exists('users', 'id')]
+        #[Nullable, Exists('emloyees', 'id')]
         public int|null|Optional $head_id,
 
         #[Max(30), Min(2), Regex('/^[\p{Arabic}\s]+$/u')]
@@ -52,16 +54,32 @@ final class UpdateEmployeeData extends Data
         #[Max(30), Min(2), Regex('/^[\p{Latin}\s]+$/u')]
         public string|null|Optional $last_name_en,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_MARITAL_STATUS)
+        ), Nullable]
         public int|null|Optional $marital_status_id,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_RELIGION)
+        ), Nullable]
         public int|null|Optional $religion_id,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
-        public int|null|Optional $special_need_id,
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::EMPLOYEE_SPECIAL_NEEDS)
+        ), Nullable]
+        public int|null|Optional $special_needs_id,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_GENDER)
+        ), Nullable]
         public int|null|Optional $gender_id,
 
         #[Nullable, Exists('employee_categories', 'id')]
@@ -76,7 +94,7 @@ final class UpdateEmployeeData extends Data
         #[Nullable, Exists('shared_countries', 'id')]
         public int|null|Optional $place_of_birth,
 
-        #[Email, Unique('employees', 'email')]
+        #[Email, Unique('employees', 'email', ignore: 'id')]
         public string|null|Optional $email,
 
         #[Regex('/^5\d{8}$/')]

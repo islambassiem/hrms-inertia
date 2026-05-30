@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Domain\Employee\Models\Employee;
+use App\Domain\Employee\Models\EmployeeOrganizationAttribute;
 use App\Domain\Organization\Models\Attribute;
-use App\Domain\Organization\Models\EmployeeAttribute;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<EmployeeAttribute>
+ * @extends Factory<EmployeeOrganizationAttribute>
  */
-#[UseModel(EmployeeAttribute::class)]
-final class EmployeeAttributeFactory extends Factory
+#[UseModel(EmployeeOrganizationAttribute::class)]
+final class EmployeeOrganizationAttributeFactory extends Factory
 {
     /**
      * Define the model's default state.

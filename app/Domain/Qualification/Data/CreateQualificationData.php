@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Domain\Qualification\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class CreateQualificationData extends Data
 {
@@ -27,7 +29,11 @@ final class CreateQualificationData extends Data
         #[Exists('qualification_specialties', 'id'), Nullable]
         public ?int $minor_id,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_EDUCATIONAL_SUB_LEVEL)
+        )]
         public int $educational_sub_level_id,
 
         #[Exists('qualification_included_specialties', 'id')]
@@ -39,7 +45,11 @@ final class CreateQualificationData extends Data
         #[Max(50), Min(4), Nullable]
         public ?string $college_name,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_SCIENTIFIC_DEGREE)
+        )]
         public int $scientific_degree_id,
 
         public CarbonImmutable $graduation_date,
@@ -49,22 +59,38 @@ final class CreateQualificationData extends Data
 
         public ?bool $is_last_qualification,
 
-        #[Exists('shared_reference_values', 'id'), Nullable]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_RATING)
+        ), Nullable]
         public ?int $rating_id,
 
         #[Nullable()]
         public ?string $gpa,
 
-        #[Exists('shared_reference_values', 'id'), Nullable]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_GPA_TYPE)
+        ), Nullable]
         public int $gpa_type_id,
 
-        #[Exists('shared_reference_values', 'id'), Nullable]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_STUDY_TYPE)
+        ), Nullable]
         public ?int $study_type_id,
 
         #[Max(50), Min(4), Nullable]
         public ?string $city,
 
-        #[Exists('shared_reference_values', 'id'), Nullable]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::QUALIFICATION_RESEARCH_TYPE)
+        ), Nullable]
         public ?int $research_type_id,
 
         public ?bool $is_authenticated,

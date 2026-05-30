@@ -31,22 +31,22 @@ final class CreateResearchData extends Data
         public int $status_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_TYPE)
         ), Nullable]
         public ?int $type_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_NATURE)
         ), Nullable]
         public ?int $nature_id,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_DOMAIN)
         )]
         public int $domain_id,
@@ -78,8 +78,8 @@ final class CreateResearchData extends Data
         public ?string $summary,
 
         #[Exists(
-            table: 'shared_reference_values',
-            column: 'id',
+            'shared_reference_values',
+            'id',
             where: new WhereConstraint('reference_type_id', ReferenceType::RESEARCH_LANGUAGE)
         ), Nullable]
         public ?int $language_id,

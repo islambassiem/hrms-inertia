@@ -14,6 +14,7 @@ use App\Domain\Qualification\Models\ResearchType;
 use App\Domain\Qualification\Models\ScientificDegree;
 use App\Domain\Qualification\Models\Specialty;
 use App\Domain\Qualification\Models\StudyType;
+use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Shared\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -35,20 +36,20 @@ final class QualificationsFactory extends Factory
             'employee_id' => Employee::factory(),
             'major_id' => Specialty::factory(),
             'minor_id' => Specialty::factory(),
-            'educational_sub_level_id' => EducationalSubLevel::factory(),
+            'educational_sub_level_id' => EducationalSubLevel::factory()->state(['reference_type_id' => ReferenceType::QUALIFICATION_EDUCATIONAL_SUB_LEVEL]),
             'included_specialty_id' => IncludedSpecialty::factory(),
             'institution_name' => fake()->company(),
             'college_name' => fake()->lexify(),
-            'scientific_degree_id' => ScientificDegree::factory(),
+            'scientific_degree_id' => ScientificDegree::factory()->state(['reference_type_id' => ReferenceType::QUALIFICATION_SCIENTIFIC_DEGREE]),
             'graduation_date' => fake()->date(),
             'graduation_country_id' => Country::factory(),
             'is_last_qualification' => fake()->boolean(),
             'rating_id' => Rating::factory(),
             'gpa' => (string) fake()->randomFloat(2, 0, 5),
-            'gpa_type_id' => GpaType::factory(),
-            'study_type_id' => StudyType::factory(),
+            'gpa_type_id' => GpaType::factory()->state(['reference_type_id' => ReferenceType::QUALIFICATION_GPA_TYPE]),
+            'study_type_id' => StudyType::factory()->state(['reference_type_id' => ReferenceType::QUALIFICATION_STUDY_TYPE]),
             'city' => fake()->city(),
-            'research_type_id' => ResearchType::factory(),
+            'research_type_id' => ResearchType::factory()->state(['reference_type_id' => ReferenceType::QUALIFICATION_RESEARCH_TYPE]),
             'is_authenticated' => fake()->boolean(),
         ];
     }

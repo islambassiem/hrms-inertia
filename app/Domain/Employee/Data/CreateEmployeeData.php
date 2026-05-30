@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Attributes\Validation\Email;
@@ -16,6 +17,7 @@ use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Attributes\Validation\Regex;
 use Spatie\LaravelData\Attributes\Validation\Unique;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class CreateEmployeeData extends Data
 {
@@ -27,7 +29,7 @@ final class CreateEmployeeData extends Data
         #[Exists('users', 'id')]
         public int $user_id,
 
-        #[Nullable, Exists('users', 'id')]
+        #[Nullable, Exists('employees', 'id')]
         public ?int $head_id,
 
         #[Regex('/^50[01]\d{3}$/'), Unique('employees', 'employee_code')]
@@ -57,16 +59,32 @@ final class CreateEmployeeData extends Data
         #[Max(30), Min(2), Regex('/^[A_Za-z]+$/i')]
         public string $last_name_en,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_MARITAL_STATUS)
+        ), Nullable]
         public ?int $marital_status_id,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_RELIGION)
+        ), Nullable]
         public ?int $religion_id,
 
-        #[Nullable, Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::EMPLOYEE_SPECIAL_NEEDS)
+        ), Nullable]
         public ?int $special_needs_id,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_GENDER)
+        )]
         public int $gender_id,
 
         #[Nullable, Exists('employee_categories', 'id')]

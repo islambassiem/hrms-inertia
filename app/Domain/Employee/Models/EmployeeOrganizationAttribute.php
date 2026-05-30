@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Organization\Models;
+namespace App\Domain\Employee\Models;
 
 use App\Concerns\UserStamp;
-use Database\Factories\EmployeeAttributeFactory;
+use Database\Factories\EmployeeOrganizationAttributeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,12 +20,12 @@ use Illuminate\Database\Eloquent\Model;
     'updated_by',
 ])]
 #[Table('organization_employee_attributes')]
-final class EmployeeAttribute extends Model
+final class EmployeeOrganizationAttribute extends Model
 {
-    /** @use HasFactory<EmployeeAttributeFactory> */
+    /** @use HasFactory<EmployeeOrganizationAttributeFactory> */
     use HasFactory;
 
-    /** @use UserStamp<EmployeeAttribute> */
+    /** @use UserStamp<EmployeeOrganizationAttribute> */
     use UserStamp;
 
     public function casts(): array
@@ -36,8 +36,8 @@ final class EmployeeAttribute extends Model
         ];
     }
 
-    protected static function newFactory(): EmployeeAttributeFactory
+    protected static function newFactory(): EmployeeOrganizationAttributeFactory
     {
-        return EmployeeAttributeFactory::new();
+        return EmployeeOrganizationAttributeFactory::new();
     }
 }

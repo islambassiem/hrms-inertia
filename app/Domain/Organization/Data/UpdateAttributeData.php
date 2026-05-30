@@ -24,7 +24,7 @@ final class UpdateAttributeData extends Data
         public string|null|Optional $code,
 
         #[Exists('organization_attribute_types', 'id'), Nullable]
-        public ?Optional $type_id
+        public int|null|Optional $type_id
 
     ) {
         //

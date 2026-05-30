@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Domain\Organization\Models\AttributeType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 final class OrganizationAttributeTypeSeeder extends Seeder
 {
@@ -14,6 +15,54 @@ final class OrganizationAttributeTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        AttributeType::factory(4)->create();
+        $types = [
+            [
+                'name' => [
+                    'ar' => 'الكفالة',
+                    'en' => 'Sponsorship',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
+                    'ar' => 'المسمى الوظيفي',
+                    'en' => 'Job Title',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
+                    'ar' => 'المنصب',
+                    'en' => 'Position',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
+                    'ar' => 'الرتبة الادارية',
+                    'en' => 'Admin Rank',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
+                    'ar' => 'الوحدة',
+                    'en' => 'Unit',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
+                    'ar' => 'الفريق',
+                    'en' => 'Team',
+                ],
+                'code' => Str::random(),
+            ],
+        ];
+
+        foreach ($types as $type) {
+            AttributeType::query()->create($type);
+        }
+
     }
 }

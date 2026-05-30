@@ -16,11 +16,11 @@ use Spatie\Translatable\HasTranslations;
 #[Fillable([
     'name',
     'code',
-    'type',
+    'type_id',
     'created_by',
     'updated_by',
 ])]
-#[Table('organization_attributes')]
+#[Table('organization_attribute_values')]
 final class Attribute extends Model
 {
     /** @use HasFactory<OrganizationAttributeFactory> */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Dependent\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\Validation\Before;
 use Spatie\LaravelData\Attributes\Validation\Digits;
@@ -15,6 +16,7 @@ use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Attributes\Validation\RequiredWithoutAll;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class UpdateDependentData extends Data
 {
@@ -29,13 +31,21 @@ final class UpdateDependentData extends Data
         #[Digits(10)]
         public string|Optional $identification,
 
-        #[Exists('shared_reference_values', 'id'), Nullable]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_GENDER)
+        ), Nullable]
         public int|Optional $gender_id,
 
         #[Before('today')]
         public CarbonImmutable|Optional $date_of_birth,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::DEPENDENT_RELATIONSHIP)
+        ), Nullable]
         public int|null|Optional $relationship_id,
 
         public bool|Optional $has_insurance,

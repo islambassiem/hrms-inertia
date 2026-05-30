@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Dependent\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\Validation\Before;
 use Spatie\LaravelData\Attributes\Validation\Digits;
@@ -14,6 +15,7 @@ use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Attributes\Validation\RequiredWithout;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class CreateDependentData extends Data
 {
@@ -31,13 +33,21 @@ final class CreateDependentData extends Data
         #[Digits(10)]
         public string $identification,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::SHARED_GENDER)
+        )]
         public int $gender_id,
 
         #[Before('today')]
         public CarbonImmutable $date_of_birth,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            table: 'shared_reference_values',
+            column: 'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::DEPENDENT_RELATIONSHIP)
+        )]
         public int $relationship_id,
 
         public bool $has_insurance,

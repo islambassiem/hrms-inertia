@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Domain\Course\Data;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use Spatie\LaravelData\Attributes\Validation\Digits;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Attributes\Validation\Nullable;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\Constraints\WhereConstraint;
 
 final class CreateCourseData extends Data
 {
@@ -24,7 +26,11 @@ final class CreateCourseData extends Data
         #[Max(255), Min(5)]
         public string $course_name,
 
-        #[Exists('shared_reference_values', 'id')]
+        #[Exists(
+            'shared_reference_values',
+            'id',
+            where: new WhereConstraint('reference_type_id', ReferenceType::COURSE_TYPE)
+        )]
         public int $type_id,
 
         #[Max(255), Min(5)]
