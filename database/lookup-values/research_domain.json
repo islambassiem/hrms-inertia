@@ -1,0 +1,50 @@
+[
+    {
+        "code": "1",
+        "name_en": "Natural Sciences",
+        "name_ar": "العلوم الطبيعية",
+        "sort_order": 1
+    },
+    {
+        "code": "2",
+        "name_en": "Engineering and Technology",
+        "name_ar": "الهندسة والتقنية",
+        "sort_order": 2
+    },
+    {
+        "code": "3",
+        "name_en": "Medicine, Health Sciences and Healthcare",
+        "name_ar": "الطب والعلوم الصحية والرعاية الصحية",
+        "sort_order": 3
+    },
+    {
+        "code": "6",
+        "name_en": "Agricultural Sciences",
+        "name_ar": "العلوم الزراعية",
+        "sort_order": 4
+    },
+    {
+        "code": "7",
+        "name_en": "Social Sciences, Business and Law",
+        "name_ar": "العلوم الاجتماعية والأعمال والقانون",
+        "sort_order": 5
+    },
+    {
+        "code": "8",
+        "name_en": "Humanities and Arts",
+        "name_ar": "الإنسانيات والفنون",
+        "sort_order": 6
+    },
+    {
+        "code": "9",
+        "name_en": "Islamic Studies",
+        "name_ar": "الدراسات الإسلامية",
+        "sort_order": 7
+    },
+    {
+        "code": "10",
+        "name_en": "Multidisciplinary Services",
+        "name_ar": "الخدمات متعدد التخصصات",
+        "sort_order": 8
+    }
+]

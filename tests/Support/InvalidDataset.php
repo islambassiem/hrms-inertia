@@ -17,6 +17,46 @@ final class InvalidDataset
         return $this->rules;
     }
 
+    public function notString(): self
+    {
+        $this->rules[$this->field.' is not a string'] = [
+            [$this->field => ['not', 'a', 'string']],
+            [$this->field],
+        ];
+
+        return $this;
+    }
+
+    public function notInteger(): self
+    {
+        $this->rules[$this->field.' is not an integer'] = [
+            [$this->field => 'not-an-integer'],
+            [$this->field],
+        ];
+
+        return $this;
+    }
+
+    public function aboveMax(int $max): self
+    {
+        $this->rules[$this->field.' exceeds maximum value'] = [
+            [$this->field => $max + 1],
+            [$this->field],
+        ];
+
+        return $this;
+    }
+
+    public function belowMin(int $min): self
+    {
+        $this->rules[$this->field.' below minimum value'] = [
+            [$this->field => $min - 1],
+            [$this->field],
+        ];
+
+        return $this;
+    }
+
     public function tooShort(int $min = 5): self
     {
         $this->rules[$this->field.' is short'] = [
@@ -72,13 +112,13 @@ final class InvalidDataset
         $field = Str::snake(class_basename($model)).'_id';
         $this->field = $field;
 
-        $this->rules[$field.' is string'] = [
-            [$field => 'not an integer'],
+        $this->rules[$field.' is not an integer'] = [
+                    [$field => 'not an integer'],
             [$field],
         ];
 
         $this->rules[$field.' is invalid'] = [
-            [$field => 999999],
+            [$field => PHP_INT_MAX],
             [$field],
         ];
 

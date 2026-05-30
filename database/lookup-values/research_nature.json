@@ -1,0 +1,20 @@
+[
+    {
+        "code": "1",
+        "name_en": "Basic Research",
+        "name_ar": "أساسي",
+        "sort_order": 1
+    },
+    {
+        "code": "2",
+        "name_en": "Applied Research",
+        "name_ar": "تطبيقي",
+        "sort_order": 2
+    },
+    {
+        "code": "3",
+        "name_en": "Experimental Development Research",
+        "name_ar": "بحوث في التطوير التجريبي",
+        "sort_order": 3
+    }
+]

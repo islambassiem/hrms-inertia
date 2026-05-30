@@ -1,0 +1,14 @@
+[
+    {
+        "code": "1",
+        "name_en": "Individual",
+        "name_ar": "فردي",
+        "sort_order": 1
+    },
+    {
+        "code": "2",
+        "name_en": "Collaborative with Others",
+        "name_ar": "مشترك مع آخرون",
+        "sort_order": 2
+    }
+]

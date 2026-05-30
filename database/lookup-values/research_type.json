@@ -1,0 +1,20 @@
+[
+    {
+        "code": "1",
+        "name_en": "Research Only",
+        "name_ar": "بحثي فقط",
+        "sort_order": 1
+    },
+    {
+        "code": "2",
+        "name_en": "Courses Only",
+        "name_ar": "مواد فقط",
+        "sort_order": 2
+    },
+    {
+        "code": "3",
+        "name_en": "Combined Research and Specialized Courses",
+        "name_ar": "مشترك بحث ومواد تخصصية",
+        "sort_order": 3
+    }
+]

@@ -83,7 +83,7 @@ final class ReferenceTypeSeeder extends Seeder
                     'ar' => 'نوع البحث',
                     'en' => 'Research Types',
                 ],
-                'filename' => 'qualification_research_types',
+                'filename' => 'qualification_research_type',
             ],
             [
                 'name' => [
@@ -97,7 +97,56 @@ final class ReferenceTypeSeeder extends Seeder
                     'ar' => 'الدرجة العلمية',
                     'en' => 'Scientific Degrees',
                 ],
-                'filename' => 'qualification_scientific_degrees',
+                'filename' => 'qualification_scientific_degree',
+            ],
+            [
+                'name' => [
+                    'ar' => 'مجال البحث',
+                    'en' => 'Research Domain',
+                ],
+                'filename' => 'research_domain',
+            ],
+            [
+                'name' => [
+                    'ar' => 'لغة البحث',
+                    'en' => 'Research Language',
+                ],
+                'filename' => 'research_language',
+            ],
+            [
+                'name' => [
+                    'ar' => 'طبيعة البحث',
+                    'en' => 'Research Nature',
+                ],
+                'filename' => 'research_nature',
+            ],
+            [
+                'name' => [
+                    'ar' => 'مخرج البحث',
+                    'en' => 'Research Output',
+                ],
+                'filename' => 'research_output',
+            ],
+            [
+                'name' => [
+                    'ar' => 'انجاز البحث',
+                    'en' => 'Research Progress',
+                ],
+                'filename' => 'research_progress',
+            ],
+            [
+                'name' => [
+                    'ar' => 'حالة البحث',
+                    'en' => 'Research Status',
+                ],
+                'filename' => 'research_status',
+            ],
+            [
+                'name' => [
+                    'ar' => 'نوع البحث',
+                    'en' => 'Research Type',
+                ],
+                'filename' => 'research_type',
             ],
         ];
 
