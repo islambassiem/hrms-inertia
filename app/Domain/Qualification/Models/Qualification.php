@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Qualification\Models;
 
 use App\Concerns\UserStamp;
-use Database\Factories\QualificationQualificationsFactory;
+use Database\Factories\QualificationsFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,13 +33,13 @@ use Illuminate\Database\Eloquent\Model;
     'created_by',
     'updated_by',
 ])]
-#[Table('qualification_qualifications')]
+#[Table('qualifications')]
 /**
  * @property-read CarbonImmutable $graduation_date
  */
 final class Qualification extends Model
 {
-    /** @use HasFactory<QualificationQualificationsFactory> */
+    /** @use HasFactory<QualificationsFactory> */
     use HasFactory;
 
     /** @use UserStamp<Qualification> */
@@ -52,8 +52,8 @@ final class Qualification extends Model
         ];
     }
 
-    protected static function newFactory(): QualificationQualificationsFactory
+    protected static function newFactory(): QualificationsFactory
     {
-        return QualificationQualificationsFactory::new();
+        return QualificationsFactory::new();
     }
 }

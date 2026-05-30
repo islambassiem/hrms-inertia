@@ -36,7 +36,7 @@ final class DatabaseSeeder extends Seeder
             QualificationSpecialtyCategorySeeder::class,
             QualificationSpecialtySeeder::class,
             QualificationIncludedSpecialtySeeder::class,
-            QualificationQualificationsSeeder::class,
+            QualificationsSeeder::class,
             ResearchSeeder::class,
         ]);
     }

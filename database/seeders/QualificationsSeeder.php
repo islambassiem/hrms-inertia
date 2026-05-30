@@ -17,7 +17,7 @@ use App\Domain\Qualification\Models\StudyType;
 use App\Domain\Shared\Models\Country;
 use Illuminate\Database\Seeder;
 
-final class QualificationQualificationsSeeder extends Seeder
+final class QualificationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.

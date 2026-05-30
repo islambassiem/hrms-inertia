@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends Factory<Qualification>
  */
 #[UseModel(Qualification::class)]
-final class QualificationQualificationsFactory extends Factory
+final class QualificationsFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -20,7 +20,7 @@ it('creates a qualification', function (): void {
     expect($created)->toBeInstanceOf(Qualification::class);
     expect($created->exists)->toBeTrue();
 
-    assertDatabaseHas('qualification_qualifications', [
+    assertDatabaseHas('qualifications', [
         'employee_id' => $payload['employee_id'],
         'major_id' => $payload['major_id'],
         'minor_id' => $payload['minor_id'],
@@ -53,7 +53,7 @@ it('updates a qualification', function (): void {
     expect($updated)->toBeInstanceOf(Qualification::class);
     expect($updated->exists)->toBeTrue();
 
-    assertDatabaseHas('qualification_qualifications', [
+    assertDatabaseHas('qualifications', [
         'employee_id' => $payload['employee_id'],
         'major_id' => $payload['major_id'],
         'minor_id' => $payload['minor_id'],
