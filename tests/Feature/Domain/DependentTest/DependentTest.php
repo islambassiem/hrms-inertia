@@ -21,7 +21,7 @@ it('creates a dependent with valid data', function (): void {
     expect($created->exists)->toBeTrue();
     expect($created->id)->toBeInt();
 
-    assertDatabaseHas('dependent_dependents', [
+    assertDatabaseHas('dependents', [
         'employee_id' => $payload['employee_id'],
         'name_en' => $payload['name_en'],
         'name_ar' => $payload['name_ar'],
@@ -45,7 +45,7 @@ it('updates a dependent with valid data', function (): void {
     expect($updated)->toBeInstanceOf(Dependent::class);
     expect($updated->exists)->toBeTrue();
     expect($updated->id)->toBeInt();
-    assertDatabaseHas('dependent_dependents', [
+    assertDatabaseHas('dependents', [
         'name_en' => $payload['name_en'],
         'name_ar' => $payload['name_ar'],
         'identification' => $payload['identification'],

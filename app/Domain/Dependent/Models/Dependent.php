@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
     'created_by',
     'updated_by',
 ])]
-#[Table('dependent_dependents')]
+#[Table('dependents')]
 final class Dependent extends Model
 {
     /** @use HasFactory<DependentFactory> */

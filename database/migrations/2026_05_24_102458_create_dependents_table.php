@@ -17,7 +17,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dependent_dependents', function (Blueprint $table): void {
+        Schema::create('dependents', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Employee::class)->constrained();
             $table->string('name_en')->nullable();
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dependent_dependents');
+        Schema::dropIfExists('dependents');
     }
 };
