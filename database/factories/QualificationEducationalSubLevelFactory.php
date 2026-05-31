@@ -23,9 +23,11 @@ final class QualificationEducationalSubLevelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::QUALIFICATION_EDUCATIONAL_SUB_LEVEL,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::QUALIFICATION_EDUCATIONAL_SUB_LEVEL->value,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

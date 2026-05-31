@@ -25,9 +25,11 @@ final class ResearchLanguageFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_LANGUAGE,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_LANGUAGE->value,
             'code' => sprintf('RL-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

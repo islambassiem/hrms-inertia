@@ -17,11 +17,7 @@ final class UpdateReferenceValueData extends Data
      * Create a new class instance.
      */
     public function __construct(
-        #[Max(50), Min(2), Nullable]
-        public string|null|Optional $name_en,
-
-        #[Max(50), Min(2), Nullable]
-        public string|null|Optional $name_ar,
+        public TranslatedNameData|null|Optional $name,
 
         #[Max(50), Min(1), Nullable]
         public string|null|Optional $code,

@@ -25,9 +25,11 @@ final class ResearchStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_STATUS,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_STATUS->value,
             'code' => sprintf('RST-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Domain\Shared\Models\ReferenceType;
+use App\Domain\Shared\Enums\ReferenceType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 final class ReferenceValueSeeder extends Seeder
 {
@@ -16,32 +17,26 @@ final class ReferenceValueSeeder extends Seeder
      */
     public function run(): void
     {
-        $files = collect(File::files(database_path('lookup-values')))
-            ->sortBy(fn ($file) => $file->getCTime())
-            ->values();
+        $types = ReferenceType::cases();
 
-        foreach ($files as $file) {
-            $filename = ReferenceType::query()
-                ->where('filename', $file->getFilenameWithoutExtension())
-                ->firstOrFail(['id', 'filename'])
-                ->toArray();
+        foreach ($types as $type) {
+            $filename = Str::lower($type->name).'.json';
+            $fileContent = File::get(database_path('lookup-values/'.$filename));
 
             /** @var array<int, array{
              *     code: string,
-             *     name_ar: string,
-             *     name_en: string,
+             *     name: array{en: string, ar: string},
              *     sort_order: int,
              * }> $values
              */
-            $values = json_decode(File::get($file->getRealPath()), true);
+            $values = json_decode($fileContent, true);
 
             foreach ($values as $value) {
                 DB::table('shared_reference_values')->insert([
-                    'name_ar' => $value['name_ar'],
-                    'name_en' => $value['name_en'],
+                    'name' => json_encode($value['name'], JSON_UNESCAPED_UNICODE),
                     'code' => $value['code'],
                     'sort_order' => $value['sort_order'],
-                    'reference_type_id' => $filename['id'],
+                    'reference_type_id' => $type->value,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

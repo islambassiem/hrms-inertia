@@ -23,9 +23,11 @@ final class SpecialNeedsFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::EMPLOYEE_SPECIAL_NEEDS,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::EMPLOYEE_SPECIAL_NEEDS->value,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

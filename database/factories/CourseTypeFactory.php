@@ -23,8 +23,10 @@ final class CourseTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
             'reference_type_id' => ReferenceType::COURSE_TYPE,
             'code' => fake()->unique()->bothify('CT###'),
         ];

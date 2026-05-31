@@ -1,20 +1,26 @@
 [
     {
         "code": "1",
-        "name_en": "Research Only",
-        "name_ar": "بحثي فقط",
+        "name": {
+            "en": "Research Only",
+            "ar": "بحثي فقط"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "Coursework Only",
-        "name_ar": "مواد فقط",
+        "name": {
+            "en": "Coursework Only",
+            "ar": "مواد فقط"
+        },
         "sort_order": 2
     },
     {
         "code": "3",
-        "name_en": "Research and Coursework",
-        "name_ar": "مشترك بحث ومواد تخصصية",
+        "name": {
+            "en": "Research and Coursework",
+            "ar": "مشترك بحث ومواد تخصصية"
+        },
         "sort_order": 3
     }
 ]

@@ -17,8 +17,7 @@ return new class extends Migration
     {
         Schema::create('shared_reference_values', function (Blueprint $table): void {
             $table->id();
-            $table->string('name_ar')->index();
-            $table->string('name_en')->index();
+            $table->json('name');
             $table->string('code');
             $table->integer('sort_order')->default(0);
             $table->foreignIdFor(ReferenceType::class, 'reference_type_id')->constrained('shared_reference_types');

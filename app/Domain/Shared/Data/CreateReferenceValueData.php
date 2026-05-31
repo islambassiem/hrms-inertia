@@ -16,11 +16,7 @@ final class CreateReferenceValueData extends Data
      */
     public function __construct(
 
-        #[Max(50), Min(2)]
-        public string $name_en,
-
-        #[Max(50), Min(2)]
-        public string $name_ar,
+        public TranslatedNameData $name,
 
         #[Max(50), Min(1)]
         public string $code,

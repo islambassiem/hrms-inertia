@@ -23,9 +23,11 @@ final class QualificationRatingFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::QUALIFICATION_RATING,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::QUALIFICATION_RATING->value,
             'code' => (string) fake()->unique()->numberBetween(10, 100000000),
         ];
     }

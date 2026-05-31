@@ -25,9 +25,11 @@ final class ResearchTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_TYPE,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_TYPE->value,
             'code' => sprintf('RT-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

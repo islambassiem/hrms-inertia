@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 #[Fillable([
-    'name',
+    'name_en',
+    'name_ar',
     'code',
     'order',
     'lang',
@@ -27,13 +27,8 @@ final class Country extends Model
     /** @use HasFactory<CountryFactory> */
     use HasFactory;
 
-    use HasTranslations;
-
     /** @use UserStamp<Country> */
     use UserStamp;
-
-    /** @var array<string> */
-    public array $translatable = ['name'];
 
     protected static function newFactory(): CountryFactory
     {

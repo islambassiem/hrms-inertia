@@ -25,9 +25,11 @@ final class ResearchNatureFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_NATURE,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_NATURE->value,
             'code' => sprintf('RN-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

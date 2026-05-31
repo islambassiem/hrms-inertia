@@ -1,20 +1,26 @@
 [
     {
         "code": "1",
-        "name_en": "Book",
-        "name_ar": "كتاب",
+        "name": {
+            "en": "Book",
+            "ar": "كتاب"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "Scientific Research",
-        "name_ar": "بحث علمي",
+        "name": {
+            "en": "Scientific Research",
+            "ar": "بحث علمي"
+        },
         "sort_order": 2
     },
     {
         "code": "3",
-        "name_en": "Scientific Paper",
-        "name_ar": "ورقة علمية",
+        "name": {
+            "en": "Scientific Paper",
+            "ar": "ورقة علمية"
+        },
         "sort_order": 3
     }
 ]

@@ -25,9 +25,11 @@ final class ResearchOutputFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_OUTPUT,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_OUTPUT->value,
             'code' => sprintf('RO-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

@@ -25,9 +25,11 @@ final class ResearchProgressFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_PROGRESS,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_PROGRESS->value,
             'code' => sprintf('RP-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

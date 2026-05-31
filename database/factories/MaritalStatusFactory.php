@@ -23,9 +23,11 @@ final class MaritalStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::SHARED_MARITAL_STATUS,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::SHARED_MARITAL_STATUS->value,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

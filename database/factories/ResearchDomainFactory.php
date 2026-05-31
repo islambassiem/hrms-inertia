@@ -25,9 +25,11 @@ final class ResearchDomainFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
-            'reference_type_id' => ReferenceType::RESEARCH_DOMAIN,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::RESEARCH_DOMAIN->value,
             'code' => sprintf('RD-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

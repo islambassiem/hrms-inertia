@@ -23,9 +23,11 @@ final class RelationshipFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->word(),
-            'name_en' => fake()->word(),
-            'reference_type_id' => ReferenceType::DEPENDENT_RELATIONSHIP,
+            'name' => [
+                'ar' => fake('ar')->lexify(),
+                'en' => fake()->lexify(),
+            ],
+            'reference_type_id' => ReferenceType::DEPENDENT_RELATIONSHIP->value,
             'code' => fake()->unique()->numberBetween(1, 100000000),
         ];
     }

@@ -20,6 +20,6 @@ final class RatingScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_RATING);
+        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_RATING->value);
     }
 }

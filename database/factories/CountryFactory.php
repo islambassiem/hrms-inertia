@@ -22,10 +22,8 @@ final class CountryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => [
-                'en' => fake()->country(),
-                'ar' => fake('ar')->country(),
-            ],
+            'name_en' => fake()->country(),
+            'name_ar' => fake('ar')->country(),
             'code' => fake()->unique()->numberBetween(1, 100000000),
             'order' => fake()->numberBetween(1, 100),
             'lang' => 'en',

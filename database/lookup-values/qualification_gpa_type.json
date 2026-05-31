@@ -1,20 +1,26 @@
 [
     {
         "code": "1",
-        "name_en": "5-Point GPA System",
-        "name_ar": "نظام المعدل التراكمي المكون من خمس نقاط",
+        "name": {
+            "en": "5-Point GPA System",
+            "ar": "نظام المعدل التراكمي المكون من خمس نقاط"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "4-Point GPA System",
-        "name_ar": "نظام المعدل التراكمي المكون من أربع نقاط",
+        "name": {
+            "en": "4-Point GPA System",
+            "ar": "نظام المعدل التراكمي المكون من أربع نقاط"
+        },
         "sort_order": 2
     },
     {
         "code": "3",
-        "name_en": "Percentage GPA System",
-        "name_ar": "نظام المعدل التراكمي المئوي",
+        "name": {
+            "en": "Percentage GPA System",
+            "ar": "نظام المعدل التراكمي المئوي"
+        },
         "sort_order": 3
     }
 ]

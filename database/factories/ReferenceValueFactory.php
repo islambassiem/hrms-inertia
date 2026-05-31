@@ -23,8 +23,10 @@ final class ReferenceValueFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->word(),
-            'name_en' => fake()->word(),
+            'name' => [
+                'en' => fake()->word(),
+                'ar' => fake('ar')->word(),
+            ],
             'code' => (string) fake()->numberBetween(),
             'reference_type_id' => ReferenceType::factory(),
         ];

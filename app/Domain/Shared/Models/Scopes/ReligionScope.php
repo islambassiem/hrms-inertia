@@ -20,6 +20,6 @@ final class ReligionScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::SHARED_RELIGION);
+        $builder->where('reference_type_id', ReferenceType::SHARED_RELIGION->value);
     }
 }

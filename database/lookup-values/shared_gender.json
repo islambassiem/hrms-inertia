@@ -1,14 +1,18 @@
 [
     {
         "code": "1",
-        "name_en": "Male",
-        "name_ar": "ذكر",
+        "name": {
+            "en": "Male",
+            "ar": "ذكر"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "Female",
-        "name_ar": "أنثى",
+        "name": {
+            "en": "Female",
+            "ar": "أنثى"
+        },
         "sort_order": 2
     }
 ]

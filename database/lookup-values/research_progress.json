@@ -1,20 +1,26 @@
 [
     {
         "code": "1",
-        "name_en": "Completed",
-        "name_ar": "منجز",
+        "name": {
+            "en": "Completed",
+            "ar": "منجز"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "In Progress",
-        "name_ar": "جاري تنفيذه",
+        "name": {
+            "en": "In Progress",
+            "ar": "جاري تنفيذه"
+        },
         "sort_order": 2
     },
     {
         "code": "3",
-        "name_en": "Approved and Not Started",
-        "name_ar": "موافق عليه ولم يبدأ",
+        "name": {
+            "en": "Approved and Not Started",
+            "ar": "موافق عليه ولم يبدأ"
+        },
         "sort_order": 3
     }
 ]

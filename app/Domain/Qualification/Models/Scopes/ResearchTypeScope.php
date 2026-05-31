@@ -20,6 +20,6 @@ final class ResearchTypeScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::RESEARCH_TYPE);
+        $builder->where('reference_type_id', ReferenceType::RESEARCH_TYPE->value);
     }
 }

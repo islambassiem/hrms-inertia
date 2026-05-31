@@ -1,32 +1,42 @@
 [
     {
         "code": "1",
-        "name_en": "Training",
-        "name_ar": "تدريب",
+        "name": {
+            "en": "Training",
+            "ar": "تدريب"
+        },
         "sort_order": 1
     },
     {
         "code": "2",
-        "name_en": "Certificate",
-        "name_ar": "شهادة",
+        "name": {
+            "en": "Certificate",
+            "ar": "شهادة"
+        },
         "sort_order": 2
     },
     {
         "code": "3",
-        "name_en": "Workshop",
-        "name_ar": "ورشة عمل",
+        "name": {
+            "en": "Workshop",
+            "ar": "ورشة عمل"
+        },
         "sort_order": 3
     },
     {
         "code": "4",
-        "name_en": "Symposium",
-        "name_ar": "ندوة",
+        "name": {
+            "en": "Symposium",
+            "ar": "ندوة"
+        },
         "sort_order": 4
     },
     {
         "code": "5",
-        "name_en": "Other",
-        "name_ar": "اخرى",
+        "name": {
+            "en": "Other",
+            "ar": "اخرى"
+        },
         "sort_order": 5
     }
 ]

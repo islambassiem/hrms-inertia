@@ -20,6 +20,6 @@ final class GpaTypeScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_GPA_TYPE);
+        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_GPA_TYPE->value);
     }
 }

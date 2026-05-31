@@ -20,6 +20,6 @@ final class ScientificDegreeScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_SCIENTIFIC_DEGREE);
+        $builder->where('reference_type_id', ReferenceType::QUALIFICATION_SCIENTIFIC_DEGREE->value);
     }
 }

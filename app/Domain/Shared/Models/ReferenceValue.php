@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 #[Fillable([
-    'name_ar',
-    'name_en',
+    'name',
     'code',
     'sort_order',
     'reference_type_id',
@@ -24,6 +24,18 @@ final class ReferenceValue extends Model
 {
     /** @use HasFactory<ReferenceValueFactory> */
     use HasFactory;
+
+    use HasTranslations;
+
+    /** @var array<string> */
+    public array $translatable = ['name'];
+
+    public function casts(): array
+    {
+        return [
+            'name' => 'array',
+        ];
+    }
 
     protected static function newFactory(): ReferenceValueFactory
     {

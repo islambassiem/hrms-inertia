@@ -16,7 +16,8 @@ return new class extends Migration
     {
         Schema::create('shared_countries', function (Blueprint $table): void {
             $table->id();
-            $table->json('name');
+            $table->string('name_en')->index();
+            $table->string('name_ar')->index();
             $table->string('code')->unique();
             $table->integer('order')->nullable();
             $table->string('lang', 2)->default('en');

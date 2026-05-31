@@ -6,15 +6,20 @@ namespace App\Domain\Shared\Enums;
 
 enum ReferenceType: int
 {
+    /*
+        The lower case name of the enuma has to match the file name in
+        lookup-values directory. Also the order of the enums names is the
+        order it is goin to be inserted in the databse.
+    */
     case SHARED_GENDER = 1;
 
     case SHARED_MARITAL_STATUS = 2;
 
-    case DEPENDENT_RELATIONSHIP = 3;
+    case SHARED_RELIGION = 3;
 
-    case SHARED_RELIGION = 4;
+    case EMPLOYEE_SPECIAL_NEEDS = 4;
 
-    case EMPLOYEE_SPECIAL_NEEDS = 5;
+    case DEPENDENT_RELATIONSHIP = 5;
 
     case COURSE_TYPE = 6;
 

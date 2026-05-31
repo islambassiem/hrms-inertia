@@ -21,8 +21,8 @@ it('creates a reference value', function (): void {
     expect($created->exists)->toBeTrue();
 
     assertDatabaseHas('shared_reference_values', [
-        'name_en' => $payload['name_en'],
-        'name_ar' => $payload['name_ar'],
+        'name->en' => $payload['name']['en'],
+        'name->ar' => $payload['name']['ar'],
         'code' => $payload['code'],
         'reference_type_id' => $payload['reference_type_id'],
     ]);
@@ -40,8 +40,8 @@ it('updates a reference value', function (): void {
     expect($updated->exists)->toBeTrue();
 
     assertDatabaseHas('shared_reference_values', [
-        'name_en' => $payload['name_en'],
-        'name_ar' => $payload['name_ar'],
+        'name->en' => $payload['name']['en'],
+        'name->ar' => $payload['name']['ar'],
         'code' => $payload['code'],
         'reference_type_id' => $payload['reference_type_id'],
     ]);
@@ -67,15 +67,9 @@ it('fails to update reference value if :dataset', function (array $overrides, ar
     ->with('update');
 
 dataset('create', [
-    ...invalid('name_en')
+    ...invalid('name')
         ->required()
-        ->tooLong(50)
-        ->tooShort(2)
-        ->build(),
-
-    ...invalid('name_ar')
-        ->required()->tooLong(50)
-        ->tooShort(2)
+        ->invalidName()
         ->build(),
 
     ...invalid('code')
@@ -91,14 +85,8 @@ dataset('create', [
 ]);
 
 dataset('update', [
-    ...invalid('name_en')
-        ->tooLong(50)
-        ->tooShort(2)
-        ->build(),
-
-    ...invalid('name_ar')
-        ->tooLong(50)
-        ->tooShort(2)
+    ...invalid('name')
+        ->invalidName()
         ->build(),
 
     ...invalid('code')

@@ -1,116 +1,154 @@
 [
     {
         "code": "010",
-        "name_en": "Early Childhood Development (Nursery)",
-        "name_ar": "تنمية الطفولة المبكرة (حضانة)",
+        "name": {
+            "en": "Early Childhood Development (Nursery)",
+            "ar": "تنمية الطفولة المبكرة (حضانة)"
+        },
         "sort_order": 1
     },
     {
         "code": "020",
-        "name_en": "Pre-Primary Education (Kindergarten)",
-        "name_ar": "تعليم ما قبل الابتدائي (رياض الأطفال)",
+        "name": {
+            "en": "Pre-Primary Education (Kindergarten)",
+            "ar": "تعليم ما قبل الابتدائي (رياض الأطفال)"
+        },
         "sort_order": 2
     },
     {
         "code": "030",
-        "name_en": "Incomplete Primary Education (Lower Grades)",
-        "name_ar": "الابتدائية دون إتمام المستوى (الصفوف الأولية)",
+        "name": {
+            "en": "Incomplete Primary Education (Lower Grades)",
+            "ar": "الابتدائية دون إتمام المستوى (الصفوف الأولية)"
+        },
         "sort_order": 3
     },
     {
         "code": "100",
-        "name_en": "Primary Education",
-        "name_ar": "تعليم ابتدائي",
+        "name": {
+            "en": "Primary Education",
+            "ar": "تعليم ابتدائي"
+        },
         "sort_order": 4
     },
     {
         "code": "244",
-        "name_en": "Intermediate Education (General)",
-        "name_ar": "تعليم متوسط (عام)",
+        "name": {
+            "en": "Intermediate Education (General)",
+            "ar": "تعليم متوسط (عام)"
+        },
         "sort_order": 5
     },
     {
         "code": "254",
-        "name_en": "Intermediate Education (Vocational)",
-        "name_ar": "تعليم متوسط (مهني)",
+        "name": {
+            "en": "Intermediate Education (Vocational)",
+            "ar": "تعليم متوسط (مهني)"
+        },
         "sort_order": 6
     },
     {
         "code": "344",
-        "name_en": "Secondary Education (General)",
-        "name_ar": "تعليم ثانوي (عام)",
+        "name": {
+            "en": "Secondary Education (General)",
+            "ar": "تعليم ثانوي (عام)"
+        },
         "sort_order": 7
     },
     {
         "code": "354",
-        "name_en": "Secondary Education (Vocational)",
-        "name_ar": "تعليم ثانوي (مهني)",
+        "name": {
+            "en": "Secondary Education (Vocational)",
+            "ar": "تعليم ثانوي (مهني)"
+        },
         "sort_order": 8
     },
     {
         "code": "444",
-        "name_en": "Associate Diploma (General)",
-        "name_ar": "دبلوم مشارك (عام)",
+        "name": {
+            "en": "Associate Diploma (General)",
+            "ar": "دبلوم مشارك (عام)"
+        },
         "sort_order": 9
     },
     {
         "code": "454",
-        "name_en": "Associate Diploma (Vocational)",
-        "name_ar": "دبلوم مشارك (مهني)",
+        "name": {
+            "en": "Associate Diploma (Vocational)",
+            "ar": "دبلوم مشارك (مهني)"
+        },
         "sort_order": 10
     },
     {
         "code": "544",
-        "name_en": "Intermediate Diploma (General)",
-        "name_ar": "دبلوم متوسط (عام)",
+        "name": {
+            "en": "Intermediate Diploma (General)",
+            "ar": "دبلوم متوسط (عام)"
+        },
         "sort_order": 11
     },
     {
         "code": "554",
-        "name_en": "Intermediate Diploma (Vocational)",
-        "name_ar": "دبلوم متوسط (مهني)",
+        "name": {
+            "en": "Intermediate Diploma (Vocational)",
+            "ar": "دبلوم متوسط (مهني)"
+        },
         "sort_order": 12
     },
     {
         "code": "645",
-        "name_en": "Academic Bachelor's Degree (3–4 Years)",
-        "name_ar": "بكالوريوس أكاديمي 3-4 سنوات",
+        "name": {
+            "en": "Academic Bachelor's Degree (3–4 Years)",
+            "ar": "بكالوريوس أكاديمي 3-4 سنوات"
+        },
         "sort_order": 13
     },
     {
         "code": "646",
-        "name_en": "Academic Bachelor's Degree (5 Years)",
-        "name_ar": "بكالوريوس أكاديمي 5 سنوات",
+        "name": {
+            "en": "Academic Bachelor's Degree (5 Years)",
+            "ar": "بكالوريوس أكاديمي 5 سنوات"
+        },
         "sort_order": 14
     },
     {
         "code": "656",
-        "name_en": "Technical Bachelor's Degree (5 Years)",
-        "name_ar": "بكالوريوس فني 5 سنوات",
+        "name": {
+            "en": "Technical Bachelor's Degree (5 Years)",
+            "ar": "بكالوريوس فني 5 سنوات"
+        },
         "sort_order": 15
     },
     {
         "code": "667",
-        "name_en": "Higher Diploma",
-        "name_ar": "دبلوم عالي",
+        "name": {
+            "en": "Higher Diploma",
+            "ar": "دبلوم عالي"
+        },
         "sort_order": 16
     },
     {
         "code": "746",
-        "name_en": "6-Year Bachelor's Programs",
-        "name_ar": "برامج البكالوريوس 6 سنوات",
+        "name": {
+            "en": "6-Year Bachelor's Programs",
+            "ar": "برامج البكالوريوس 6 سنوات"
+        },
         "sort_order": 17
     },
     {
         "code": "747",
-        "name_en": "Master's Degree",
-        "name_ar": "ماجستير",
+        "name": {
+            "en": "Master's Degree",
+            "ar": "ماجستير"
+        },
         "sort_order": 18
     },
     {
         "code": "844",
-        "name_en": "Doctorate",
-        "name_ar": "دكتوراه",
+        "name": {
+            "en": "Doctorate",
+            "ar": "دكتوراه"
+        },
         "sort_order": 19
     }
 ]

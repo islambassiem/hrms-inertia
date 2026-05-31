@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
 ])]
 #[Table('qualifications')]
 /**
- * @property-read CarbonImmutable $graduation_date
+ * @property-read \Carbon\CarbonImmutable $graduation_date
  */
 final class Qualification extends Model
 {
