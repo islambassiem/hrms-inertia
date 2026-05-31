@@ -48,4 +48,6 @@ enum ReferenceType: int
     case RESEARCH_STATUS = 18;
 
     case RESEARCH_TYPE = 19;
+
+    case LEAVE_TYPE = 20;
 }
