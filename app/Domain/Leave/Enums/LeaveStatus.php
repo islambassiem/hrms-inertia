@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Leave\Enums;
 
 enum LeaveStatus: int
@@ -10,5 +12,5 @@ enum LeaveStatus: int
 
     case REJECTED = 3;
 
-    case CANCELLED = 4 ;
+    case CANCELLED = 4;
 }

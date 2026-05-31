@@ -1,18 +1,21 @@
 <?php
 
-namespace Database\Factories;
+declare(strict_types=1);
 
+namespace Database\Factories;
 
 use App\Domain\Leave\Models\LeaveType;
 use App\Domain\Shared\Enums\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use function sprintf;
+
 /**
  * @extends Factory<LeaveType>
  */
 #[UseModel(LeaveType::class)]
-class LeaveTypeFactory extends Factory
+final class LeaveTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,10 +25,12 @@ class LeaveTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake('ar')->lexify(),
-            'name_en' => fake()->lexify(),
+            'name' => [
+                'en' => fake()->lexify(),
+                'ar' => fake('ar')->lexify(),
+            ],
             'reference_type_id' => ReferenceType::LEAVE_TYPE,
-            'code' => \sprintf('LT-%s', (string) fake()->unique()->bothify('###############')),
+            'code' => sprintf('LT-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }
 }

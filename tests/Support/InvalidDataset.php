@@ -176,7 +176,7 @@ final class InvalidDataset
         return $this;
     }
 
-    public function regex(string $invalidValue = 'invalid-format'): self
+    public function invalidFormat(string $invalidValue = 'invalid-format'): self
     {
         $this->rules[$this->field.' has invalid format'] = [
             [$this->field => $invalidValue],

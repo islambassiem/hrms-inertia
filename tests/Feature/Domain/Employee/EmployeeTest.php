@@ -129,7 +129,7 @@ dataset('create', [
 
     ...invalid('employee_code')
         ->required()
-        ->regex('500322a')
+        ->invalidFormat('500322a')
         ->build(),
 
     ...invalid('first_name_ar')
