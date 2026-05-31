@@ -39,6 +39,7 @@ final class DatabaseSeeder extends Seeder
             QualificationsSeeder::class,
             ResearchSeeder::class,
             LeaveRequestSeeder::class,
+            LeaveTransactionSeeder::class,
         ]);
     }
 }

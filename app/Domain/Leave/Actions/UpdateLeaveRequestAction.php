@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Leave\Actions;
 
-use Carbon\CarbonImmutable;
 use App\Domain\Leave\Data\UpdateLeaveRequestData;
 use App\Domain\Leave\Models\LeaveRequest;
+use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Optional;
 
 final class UpdateLeaveRequestAction
