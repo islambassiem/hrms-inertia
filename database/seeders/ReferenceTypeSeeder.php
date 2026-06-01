@@ -148,6 +148,13 @@ final class ReferenceTypeSeeder extends Seeder
                 ],
                 'filename' => 'research_type',
             ],
+            [
+                'name' => [
+                    'ar' => 'سير العمل',
+                    'en' => 'Workflow',
+                ],
+                'filename' => 'workflow',
+            ],
         ];
 
         foreach ($types as $type) {
