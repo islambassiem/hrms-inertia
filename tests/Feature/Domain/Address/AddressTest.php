@@ -79,7 +79,7 @@ dataset('create', [
 
     ...invalid('short_address')
         ->required()
-        ->regex('ABCD12345')
+        ->invalidFormat('ABCD12345')
         ->build(),
 
     ...invalid('building_number')
@@ -113,7 +113,7 @@ dataset('update', [
         ->build(),
 
     ...invalid('short_address')
-        ->regex('ABCD12345')
+        ->invalidFormat('ABCD12345')
         ->build(),
 
     ...invalid('street')
