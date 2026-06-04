@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Workflow\Models\Workflow;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -28,7 +29,7 @@ final class WorkflowFactory extends Factory
                 'en' => fake()->lexify(),
                 'ar' => fake()->lexify(),
             ],
-            'description' => fake()->paragraph(),
+            'reference_type_id' => ReferenceType::WORKFLOW->value,
             'code' => sprintf('W-%s', (string) fake()->unique()->bothify('###############')),
         ];
     }

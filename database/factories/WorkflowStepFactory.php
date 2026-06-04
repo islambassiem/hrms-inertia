@@ -28,8 +28,8 @@ final class WorkflowStepFactory extends Factory
         return [
             'workflow_id' => Workflow::factory(),
             'name' => [
-                'en' => fake()->sentence(),
-                'ar' => fake()->sentence(),
+                'en' => fake()->lexify('?????'),
+                'ar' => fake()->lexify('?????'),
             ],
             'description' => [
                 'en' => fake()->sentence(),

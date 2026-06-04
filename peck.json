@@ -12,7 +12,9 @@
             "sonner",
             "tooltip",
             "utils",
-            "tsconfig"
+            "tsconfig",
+            "approveable",
+            "approver"
         ],
         "paths": []
     }
