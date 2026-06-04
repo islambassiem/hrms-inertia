@@ -40,6 +40,9 @@ final class DatabaseSeeder extends Seeder
             ResearchSeeder::class,
             LeaveRequestSeeder::class,
             LeaveTransactionSeeder::class,
+            LeaveCompensationEntrySeeder::class,
+            LeaveBalanceSeeder::class,
+            LeavePolicySeeder::class,
         ]);
     }
 }
