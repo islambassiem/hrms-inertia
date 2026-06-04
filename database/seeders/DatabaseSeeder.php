@@ -38,16 +38,13 @@ final class DatabaseSeeder extends Seeder
             QualificationIncludedSpecialtySeeder::class,
             QualificationsSeeder::class,
             ResearchSeeder::class,
-<<<<<<< HEAD
             WorkflowStepSeeder::class,
             WorkflowApprovalSeeder::class,
-=======
             LeaveRequestSeeder::class,
             LeaveTransactionSeeder::class,
             LeaveCompensationEntrySeeder::class,
             LeaveBalanceSeeder::class,
             LeavePolicySeeder::class,
->>>>>>> refs/remotes/origin/leave
         ]);
     }
 }

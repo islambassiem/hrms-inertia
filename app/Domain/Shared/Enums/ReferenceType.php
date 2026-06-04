@@ -50,4 +50,6 @@ enum ReferenceType: int
     case RESEARCH_TYPE = 19;
 
     case WORKFLOW = 20;
+
+    case LEAVE_TYPE = 21;
 }

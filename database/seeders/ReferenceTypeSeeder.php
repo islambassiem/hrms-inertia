@@ -150,17 +150,17 @@ final class ReferenceTypeSeeder extends Seeder
             ],
             [
                 'name' => [
-<<<<<<< HEAD
                     'ar' => 'سير العمل',
-                    'en' => 'Workflow',
+                    'en' => 'ًWorkflow',
                 ],
                 'filename' => 'workflow',
-=======
+            ],
+            [
+                'name' => [
                     'ar' => 'نوع الاجازة',
                     'en' => 'Leave Type',
                 ],
                 'filename' => 'leave_type',
->>>>>>> refs/remotes/origin/leave
             ],
         ];
 
