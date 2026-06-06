@@ -15,8 +15,11 @@ final class LeavePolicySeeder extends Seeder
      */
     public function run(): void
     {
-        Policy::factory(5)->create([
-            'leave_type_id' => fn () => LeaveType::query()->inRandomOrder()->value('id'),
-        ]);
+        $types = LeaveType::all();
+        foreach ($types as $type) {
+            Policy::factory()->create([
+                'leave_type_id' => $type->id,
+            ]);
+        }
     }
 }
