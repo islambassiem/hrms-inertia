@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Domain\Employee\Models\Employee;
+use App\Domain\Leave\Models\LeaveRequest;
 use App\Domain\Workflow\Actions\RecordWorkflowApprovalAction;
 use App\Domain\Workflow\Actions\UpdateWorkflowApprovalAction;
 use App\Domain\Workflow\Data\UpdateWorkflowApprovalData;
@@ -19,14 +20,14 @@ it('creates a workflow approval', function (): void {
     $role = Role::create(['name' => 'head']);
 
     resolve(RecordWorkflowApprovalAction::class)->handle(
-        approveable_type: 'App\Domain\Leave\Models\LeaveRequest',
+        approveable_type: LeaveRequest::class,
         approveable_id: 1,
         approver_id: $employee->id,
         role_id: $role->id,
     );
 
     assertDatabaseHas('workflow_approvals', [
-        'approveable_type' => 'App\Domain\Leave\Models\LeaveRequest',
+        'approveable_type' => LeaveRequest::class,
         'approveable_id' => 1,
         'approver_id' => $employee->id,
         'role_id' => $role->id,
