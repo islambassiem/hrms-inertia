@@ -38,7 +38,7 @@ export default function Login({
                                 <Label htmlFor="email">Email address</Label>
                                 <Input
                                     id="email"
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     required
                                     autoFocus
