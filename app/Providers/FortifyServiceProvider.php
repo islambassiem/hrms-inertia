@@ -100,7 +100,7 @@ final class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::query()
-                ->join('employees', 'employees.user_id', '=', 'users.id')
+                ->leftJoin('employees', 'employees.user_id', '=', 'users.id')
                 ->where('users.email', $request->input('email'))
                 ->orWhere('employees.employee_code', $request->input('email'))
                 ->select(['users.id', 'users.password'])
