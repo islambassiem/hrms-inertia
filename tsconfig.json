@@ -110,7 +110,8 @@
         "baseUrl": ".",
         "ignoreDeprecations": "6.0",
         "paths": {
-            "@/*": ["./resources/js/*"]
+            "@/*": ["./resources/js/*"],
+            "@lang/*": ["lang/*"]
         },
         "jsx": "react-jsx"
     },
@@ -118,5 +119,5 @@
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
         "resources/js/**/*.tsx"
-    ]
+, "resources/js/i18n.ts", "resources/js/components/LangSwitcher.tsx"    ]
 }

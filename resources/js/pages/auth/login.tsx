@@ -1,5 +1,7 @@
 import { Form, Head } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import InputError from '@/components/input-error';
+import LanguageSwitcher from '@/components/LangSwitcher';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -22,10 +24,12 @@ export default function Login({
     canResetPassword,
     canRegister,
 }: Props) {
+    const { t } = useTranslation();
+
     return (
         <>
             <Head title="Log in" />
-
+            <LanguageSwitcher />
             <Form
                 {...store.form()}
                 resetOnSuccess={['password']}
@@ -35,12 +39,11 @@ export default function Login({
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="email">{t('Email address')}</Label>
                                 <Input
                                     id="email"
                                     type="text"
                                     name="email"
-                                    required
                                     autoFocus
                                     tabIndex={1}
                                     autoComplete="email"
@@ -51,21 +54,20 @@ export default function Login({
 
                             <div className="grid gap-2">
                                 <div className="flex items-center">
-                                    <Label htmlFor="password">Password</Label>
+                                    <Label htmlFor="password">{t('Password')}</Label>
                                     {canResetPassword && (
                                         <TextLink
                                             href={request()}
-                                            className="ml-auto text-sm"
+                                            className="ms-auto text-sm"
                                             tabIndex={5}
                                         >
-                                            Forgot password?
+                                            {t('Forgot password?')}
                                         </TextLink>
                                     )}
                                 </div>
                                 <PasswordInput
                                     id="password"
                                     name="password"
-                                    required
                                     tabIndex={2}
                                     autoComplete="current-password"
                                     placeholder="Password"
@@ -79,7 +81,7 @@ export default function Login({
                                     name="remember"
                                     tabIndex={3}
                                 />
-                                <Label htmlFor="remember">Remember me</Label>
+                                <Label htmlFor="remember">{t('Remember me')}</Label>
                             </div>
 
                             <Button
@@ -90,15 +92,15 @@ export default function Login({
                                 data-test="login-button"
                             >
                                 {processing && <Spinner />}
-                                Log in
+                                {t('Log in')}
                             </Button>
                         </div>
 
                         {canRegister && (
                             <div className="text-center text-sm text-muted-foreground">
-                                Don't have an account?{' '}
+                                {t('Don\'t have an account?')}{' '}
                                 <TextLink href={register()} tabIndex={5}>
-                                    Sign up
+                                    {t('Sign up')}
                                 </TextLink>
                             </div>
                         )}
