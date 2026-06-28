@@ -1,7 +1,6 @@
 import { Form, Head } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import InputError from '@/components/input-error';
-import LanguageSwitcher from '@/components/LangSwitcher';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -28,8 +27,7 @@ export default function Login({
 
     return (
         <>
-            <Head title="Log in" />
-            <LanguageSwitcher />
+            <Head title={t('Log in')} />
             <Form
                 {...store.form()}
                 resetOnSuccess={['password']}
@@ -70,7 +68,7 @@ export default function Login({
                                     name="password"
                                     tabIndex={2}
                                     autoComplete="current-password"
-                                    placeholder="Password"
+                                    placeholder={t('Password')}
                                 />
                                 <InputError message={errors.password} />
                             </div>

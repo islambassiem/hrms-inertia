@@ -1,5 +1,6 @@
 import { Link, router } from '@inertiajs/react';
 import { LogOut, Settings } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -24,6 +25,8 @@ export function UserMenuContent({ user }: Props) {
         router.flushAll();
     };
 
+    const {t} = useTranslation();
+
     return (
         <>
             <DropdownMenuLabel className="p-0 font-normal">
@@ -40,8 +43,8 @@ export function UserMenuContent({ user }: Props) {
                         prefetch
                         onClick={cleanup}
                     >
-                        <Settings className="mr-2" />
-                        Settings
+                        <Settings className="me-2" />
+                        {t('Settings')}
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -54,8 +57,8 @@ export function UserMenuContent({ user }: Props) {
                     onClick={handleLogout}
                     data-test="logout-button"
                 >
-                    <LogOut className="mr-2" />
-                    Log out
+                    <LogOut className="me-2" />
+                    {t('Log out')}
                 </Link>
             </DropdownMenuItem>
         </>

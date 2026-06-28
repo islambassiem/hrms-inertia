@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { t } from 'i18next';
 import type { PropsWithChildren } from 'react';
 import AppLogoIcon from '@/components/app-logo-icon';
 import {
@@ -34,8 +35,8 @@ export default function AuthCardLayout({
                 <div className="flex flex-col gap-6">
                     <Card className="rounded-xl">
                         <CardHeader className="px-10 pt-8 pb-0 text-center">
-                            <CardTitle className="text-xl">{title}</CardTitle>
-                            <CardDescription>{description}</CardDescription>
+                            <CardTitle className="text-xl">{t(title ?? '')}</CardTitle>
+                            <CardDescription>{t(description ?? '')}</CardDescription>
                         </CardHeader>
                         <CardContent className="px-10 py-8">
                             {children}

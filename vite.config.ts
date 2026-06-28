@@ -30,7 +30,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@lang': '/lang'
+            '@lang': '/lang',
+            '@assets': '/public',
         }
     }
 });
