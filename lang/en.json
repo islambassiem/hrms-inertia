@@ -64,5 +64,19 @@
     "Verify email": "Verify email",
     "Please verify your email address by clicking on the link we just emailed to you.": "Please verify your email address by clicking on the link we just emailed to you.",
     "Settings": "Settings",
-    "Manage your profile and account settings": "Manage your profile and account settings"
+    "Manage your profile and account settings": "Manage your profile and account settings",
+    "Language": "Language",
+    "Theme": "Theme",
+    "Welcome back!": "Welcome back!",
+    "Access your employee information, manage HR services, and use the tools available to you based on your role and permissions": "Access your employee information, manage HR services, and use the tools available to you based on your role and permissions",
+    "Personal Account": "Personal Account",
+    "Access your personal account": "Access your personal account",
+    "Company Employees": "Company Employees",
+    "The contacts of the company employees": "The contacts of the company employees",
+    "Admin Dashboard": "Admin Dashboard",
+    "Access the admin dashboard": "Access the admin dashboard",
+    "HR Dashboard": "HR Dashboard",
+    "Access the HR dashboard": "Access the HR dashboard",
+    "Access": "Access",
+    "Dashboard": "Dashboard"
 }

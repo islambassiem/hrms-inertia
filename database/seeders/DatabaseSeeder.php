@@ -17,6 +17,7 @@ final class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
+            PermissionSeeder::class,
             ReferenceTypeSeeder::class,
             ReferenceValueSeeder::class,
             CountrySeeder::class,

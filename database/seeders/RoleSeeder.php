@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -16,11 +17,7 @@ final class RoleSeeder extends Seeder
     public function run(): void
     {
 
-        $roles = [
-            'admin',
-            'hr',
-            'head',
-        ];
+        $roles = RoleEnum::cases();
 
         foreach ($roles as $role) {
             Role::create([
@@ -28,8 +25,8 @@ final class RoleSeeder extends Seeder
             ]);
         }
 
-        User::query()->where('name', 'admin')->firstOrFail()->assignRole('admin');
-        User::query()->where('name', 'hr')->firstOrFail()->assignRole('hr');
-        User::query()->where('name', 'head')->firstOrFail()->assignRole('head');
+        User::query()->where('name', 'admin')->firstOrFail()->assignRole(RoleEnum::ADMIN->value);
+        User::query()->where('name', 'hr')->firstOrFail()->assignRole( RoleEnum::HR->value);
+        User::query()->where('name', 'head')->firstOrFail()->assignRole(RoleEnum::HEAD->value);
     }
 }

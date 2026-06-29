@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import { Check, Monitor, Moon, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import { cn } from "@/lib/utils";
 export default function ThemeSwitcher() {
     const { appearance, updateAppearance } = useAppearance();
     const { t } = useTranslation();
+    const { locale } = usePage<{ locale: string }>().props;
 
     const themes = [
         {
@@ -49,7 +51,7 @@ export default function ThemeSwitcher() {
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align={locale === "en" ? "end" : "start"} className="w-48">
                 <DropdownMenuLabel>{t('Theme')}</DropdownMenuLabel>
 
                 <DropdownMenuSeparator />

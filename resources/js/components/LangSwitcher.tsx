@@ -67,7 +67,7 @@ export default function LanguageSwitcher() {
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align={locale === "en" ? "end" : "start"} className="w-48">
                 <DropdownMenuLabel>
                     {t("Language")}
                 </DropdownMenuLabel>

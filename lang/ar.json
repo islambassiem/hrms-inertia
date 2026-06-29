@@ -64,5 +64,19 @@
   "Verify email": "تأكيد البريد الإلكتروني",
   "Please verify your email address by clicking on the link we just emailed to you.": "يرجى تأكيد عنوان بريدك الإلكتروني بالنقر على الرابط الذي أرسلناه إليك للتو.",
   "Settings": "الاعدادات",
-  "Manage your profile and account settings": "إدارة الصفحة الشخصية واعدادات الحساب"
+  "Manage your profile and account settings": "إدارة الصفحة الشخصية واعدادات الحساب",
+  "Language": "اللغة",
+  "Theme": "السمة",
+  "Welcome back!": "مرحبا بعودتك!",
+  "Access your employee information, manage HR services, and use the tools available to you based on your role and permissions": "الوصول لمعلومات الموظفين، وادارة خدمات العاملين، واستخدام الادوات المتاحة لك بناء على دورك والصلاحيات",
+  "Personal Account": "الحساب الشخصي",
+  "Access your personal account": "الوصول لحسابك الشخصي",
+  "Company Employees": "موظفي الشركة",
+  "The contacts of the company employees": "الاتصالات لموظفي الشركة",
+  "Admin Dashboard": "لوحة التحكم",
+  "Access the admin dashboard": "الوصول للوحة التحكم",
+  "HR Dashboard": "لوحة التحكم للموارد البشرية",
+  "Access the HR dashboard": "الوصول للوحة التحكم للموارد البشرية",
+  "Access" : "الوصول",
+  "Dashboard" : "لوحة التحكم"
 }
