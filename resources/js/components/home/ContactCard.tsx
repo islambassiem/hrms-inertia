@@ -5,17 +5,18 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "../ui/badge";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
-interface EmployeeProps {
+interface Employee {
     id: number,
     employee_code: string,
     name: string,
-    email: string,
-    phone: string,
     image: string,
+    phone: string,
+    email: string,
     extentions: string[],
 }
 
-function ContactCard({ employee }: { employee: EmployeeProps }) {
+
+function ContactCard({ employee }: { employee: Employee }) {
     const { t } = useTranslation();
     const initials = employee.name
         ? employee.name

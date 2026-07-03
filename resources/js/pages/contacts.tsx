@@ -6,15 +6,25 @@ import ContactCard from "@/components/home/ContactCard";
 import { Input } from "@/components/ui/input";
 import Pagination from "@/components/ui/Pagination";
 import { index } from "@/routes/contacts";
-import type { JSONAPIResponse } from "@/types";
+import type { Resource } from "@/types";
+
+interface Employee {
+    id: number,
+    employee_code: string,
+    name: string,
+    image: string,
+    phone: string,
+    email: string,
+    extentions: string[],
+}
 
 interface PageProps {
-    employees: JSONAPIResponse;
+    employees: Resource<Employee>,
     filters: {
-        search?: string;
-        page?: number;
-    };
+        search: string,
+    }
 }
+
 
 const Contacts = ({ employees, filters }: PageProps) => {
     const { t } = useTranslation();
@@ -46,8 +56,6 @@ const Contacts = ({ employees, filters }: PageProps) => {
             }
         );
     };
-
-    console.log(employees.meta)
 
     return (
         <>

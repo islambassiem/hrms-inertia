@@ -1,5 +1,5 @@
-import { Link } from "@inertiajs/react";
-import { Plus, SearchX } from "lucide-react";
+import { Link, router } from "@inertiajs/react";
+import { Plus, Search, SearchX, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import EmployeeCard from "@/components/Employees/EmployeeCard";
@@ -13,64 +13,122 @@ import {
     EmptyMedia,
     EmptyTitle,
 } from "@/components/ui/empty";
+import { Input } from "@/components/ui/input";
+import { index } from "@/routes/hr/employees";
+import type { Resource } from "@/types";
+import type { EmployeeList } from "@/types/hr";
 
-const Index = ({ employees }: { employees: any[] }) => {
+interface PageProps {
+    employees: Resource<EmployeeList>;
+    filters: {
+        search?: string;
+        page?: number;
+    };
+}
+
+const Index = ({ employees, filters }: PageProps) => {
     const { t } = useTranslation();
-    console.log(employees);
 
+    const search = filters.search ?? "";
+
+    const handleSearchChange = (value: string) => {
+        router.get(
+            index.url(),
+            {
+                search: value || undefined,
+            },
+            {
+                preserveState: true,
+                replace: true,
+                preserveScroll: true,
+            }
+        );
+    };
+
+    const handleReset = () => {
+        router.get(
+            index.url(),
+            {},
+            {
+                preserveState: true,
+                replace: true,
+                preserveScroll: true,
+            }
+        );
+    };
 
     return (
-        <div className="space-y-6 p-6">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl font-bold">
-                        {t('Employees')}
-                    </h1>
-                    <p className="text-muted-foreground">
-                        248 {t('Employees')}
-                    </p>
-                </div>
-                <div className="flex gap-2">
-                    <FilterDrawer />
-                    <Button asChild>
-                        <Link href="/employees/add">
-                            <Plus className="mr-2 h-4 w-4" />
-                            {t('Add Employee')}
-                        </Link>
-                    </Button>
-                </div>
+        <div>
+            <div className="relative max-w-2xs mt-10 mx-3">
+                <Search className="absolute left-3 rtl:right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+
+                <Input
+                    placeholder={t("Search") + "..."}
+                    className="ps-10"
+                    value={search}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                />
+
+                {(search?.length ?? 0) > 0 && (
+                    <button
+                        onClick={handleReset}
+                        className="absolute right-3 rtl:right-auto rtl:left-3 top-1/2 -translate-y-1/2 px-2"
+                    >
+                        <X className="text-destructive cursor-pointer size-3" />
+                    </button>
+                )}
             </div>
-            {employees.length === 0 ? (
-                <Empty className="border border-dashed">
-                    <EmptyHeader>
-                        <EmptyMedia variant="icon">
-                            <SearchX />
-                        </EmptyMedia>
-                        <EmptyTitle>{t('No Employees Found')}</EmptyTitle>
-                        <EmptyDescription>
-                            {t('Update your filters or create a new employee')}.
-                        </EmptyDescription>
-                    </EmptyHeader>
-                    <EmptyContent>
+            <div className="space-y-6 p-6">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h1 className="text-3xl font-bold">
+                            {t('Employees')}
+                        </h1>
+                        <p className="text-muted-foreground">
+                            248 {t('Employees')}
+                        </p>
+                    </div>
+                    <div className="flex gap-2">
+                        <FilterDrawer />
                         <Button asChild>
                             <Link href="/employees/add">
                                 <Plus className="mr-2 h-4 w-4" />
                                 {t('Add Employee')}
                             </Link>
                         </Button>
-                    </EmptyContent>
-                </Empty>
-            ) : (
-                <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {employees.map(employee => (
-                        <EmployeeCard
-                            key={employee.id}
-                            employee={employee}
-                        />
-                    ))}
+                    </div>
                 </div>
-
-            )}
+                {employees.data.length === 0 ? (
+                    <Empty className="border border-dashed">
+                        <EmptyHeader>
+                            <EmptyMedia variant="icon">
+                                <SearchX />
+                            </EmptyMedia>
+                            <EmptyTitle>{t('No Employees Found')}</EmptyTitle>
+                            <EmptyDescription>
+                                {t('Update your filters or create a new employee')}.
+                            </EmptyDescription>
+                        </EmptyHeader>
+                        <EmptyContent>
+                            <Button asChild>
+                                <Link href="/employees/add">
+                                    <Plus className="mr-2 h-4 w-4" />
+                                    {t('Add Employee')}
+                                </Link>
+                            </Button>
+                        </EmptyContent>
+                    </Empty>
+                ) : (
+                    <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {employees.data.map(employee => (
+                            <EmployeeCard
+                                key={employee.id}
+                                employee={employee.attributes}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

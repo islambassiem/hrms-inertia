@@ -1,25 +1,14 @@
-export interface JSONAPIResponse {
-    data: Data[];
+export interface Resource<T> {
+    data: ResourceObject<T>[];
     links: Links;
     meta: Meta;
 }
 
-export interface Data {
-    id: string
-    type: string
-    attributes: Attributes
+interface ResourceObject<T> {
+    id: string,
+    type: string,
+    attributes: T
 }
-
-export interface Attributes {
-    id: number
-    employee_code: string
-    name: string
-    phone: string
-    image: string
-    email: string
-    extentions: string[]
-}
-
 export interface Links {
     first: string
     last: string

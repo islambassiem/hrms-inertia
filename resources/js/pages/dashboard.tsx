@@ -2,9 +2,10 @@ import { Head, usePage } from '@inertiajs/react';
 import { CircleUser, UsersRound, ShieldCheck, FileUser } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import NavigationCard from "@/components/NavigationCard";
+import { index } from '@/routes/contacts';
 
 export default function Dashboard() {
-    const { auth } = usePage<DashboardPageProps & Record<string, any>>().props;
+    const { auth } = usePage().props;
     const { t } = useTranslation();
 
     return (

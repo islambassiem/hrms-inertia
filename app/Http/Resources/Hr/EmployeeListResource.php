@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Resources\Hr;
+
+use App\Domain\Employee\Models\Employee;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\JsonApi\JsonApiResource;
+
+/**
+ * @mixin Employee
+ */
+final class EmployeeListResource extends JsonApiResource
+{
+    /**
+     * Get the resource's attributes.
+     *
+     * @return array<string, mixed>
+     */
+    public function toAttributes(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'name_en' => $this->full_name_en,
+            'name_ar' => $this->full_name_ar,
+            'email' => $this->user?->email,
+            'extentions' => $this->loadMissing('extentions')->extentions->pluck('extention'),
+            'employee_code' => $this->employee_code,
+            'phone' => $this->phone,
+            'joining_date' => Carbon::parse($this->joining_date)->format('Y-m-d'),
+            'leaving_date' => $this->leaving_date ? Carbon::parse($this->leaving_date)->format('Y-m-d') : null,
+            'image' => $this->image ? asset($this->image) : null,
+            'is_active' => $this->is_active,
+
+            'department' => $this->loadMissing('department')->department?->getAttribute('name'),
+            'national_id' => $this->loadMissing('nationalId')->nationalId?->getAttribute('identity_number'),
+        ];
+    }
+}

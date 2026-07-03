@@ -65,8 +65,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $full_name
  * @property string $full_name_en
  * @property string $full_name_ar
- * @property string $national_id
- * @property string $passport
+ * @property Identity|null $nationalId
+ * @property string[] $extentions
+ * @property Identity|null $passport
  */
 #[Table('employees')]
 final class Employee extends Model
@@ -153,15 +154,6 @@ final class Employee extends Model
     {
         return $this->hasOne(Identity::class)
             ->where('identity_type_id', IdentityEnum::NATIONAL_IDENTITY->value);
-    }
-
-    /**
-     * @param  Builder<Employee>  $query
-     */
-    #[Scope]
-    public function passport(Builder $query): void
-    {
-        $query->where('identity_type_id', IdentityEnum::PASSPORT->value);
     }
 
     public function casts(): array
