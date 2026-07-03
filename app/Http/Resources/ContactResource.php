@@ -23,7 +23,8 @@ final class ContactResource extends JsonApiResource
         return [
             'id' => $this->id,
             'employee_code' => $this->employee_code,
-            'name' => $this->full_name,
+            'name_en' => $this->full_name_en,
+            'name_ar' => $this->full_name_ar,
             'phone' => $this->phone,
             'image' => asset($this->image ?? ''),
             'email' => $this->user?->email,

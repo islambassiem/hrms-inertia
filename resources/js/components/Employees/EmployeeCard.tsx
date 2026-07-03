@@ -39,7 +39,6 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
             />
 
             <CardContent className="flex-1 p-6 flex flex-col">
-                {employee.id}
                 {/* Avatar */}
                 <div className="flex justify-center">
                     <Avatar

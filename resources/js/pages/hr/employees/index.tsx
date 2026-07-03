@@ -1,7 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 import { Plus, Search, SearchX, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
 import EmployeeCard from "@/components/Employees/EmployeeCard";
 import FilterDrawer from "@/components/Employees/FilterDrawer";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ import {
     EmptyTitle,
 } from "@/components/ui/empty";
 import { Input } from "@/components/ui/input";
+import Pagination from "@/components/ui/Pagination";
+import { useDebounce } from "@/hooks/useDebounce";
 import { index } from "@/routes/hr/employees";
 import type { Resource } from "@/types";
 import type { EmployeeList } from "@/types/hr";
@@ -30,12 +32,28 @@ const Index = ({ employees, filters }: PageProps) => {
     const { t } = useTranslation();
 
     const search = filters.search ?? "";
+    const [searchValue, setSearchValue] = useState(search);
+    const debouncedValue = useDebounce(searchValue);
 
     const handleSearchChange = (value: string) => {
+        setSearchValue(value);
+    };
+    const isFirstRender = useRef(true);
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+
+            return;
+        }
+
+        const params = new URLSearchParams(window.location.search);
         router.get(
             index.url(),
             {
-                search: value || undefined,
+                page:1,
+                ...Object.fromEntries(params.entries()),
+                search: debouncedValue || undefined,
             },
             {
                 preserveState: true,
@@ -43,9 +61,10 @@ const Index = ({ employees, filters }: PageProps) => {
                 preserveScroll: true,
             }
         );
-    };
+    }, [debouncedValue]);
 
     const handleReset = () => {
+        setSearchValue('');
         router.get(
             index.url(),
             {},
@@ -65,7 +84,7 @@ const Index = ({ employees, filters }: PageProps) => {
                 <Input
                     placeholder={t("Search") + "..."}
                     className="ps-10"
-                    value={search}
+                    value={searchValue}
                     onChange={(e) => handleSearchChange(e.target.value)}
                 />
 
@@ -127,6 +146,9 @@ const Index = ({ employees, filters }: PageProps) => {
                             />
                         ))}
                     </div>
+                )}
+                {employees.meta.per_page < employees.meta.total && (
+                    <Pagination meta={employees.meta} links={employees.links} />
                 )}
             </div>
         </div>

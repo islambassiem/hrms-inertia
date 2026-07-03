@@ -7,6 +7,8 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
+use function array_merge;
+
 final class HandleInertiaRequests extends Middleware
 {
     /**
@@ -42,8 +44,9 @@ final class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'locale' => app()->getLocale(),
             'auth' => [
-                'user' => $request->user(),
+                $request->user(),
                 'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : [],
+                'roles' => $request->user() ? $request->user()->getRoleNames() : [],
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
