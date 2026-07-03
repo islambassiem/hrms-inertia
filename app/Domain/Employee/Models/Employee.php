@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Models;
 
+use App\Domain\Employee\Models\EmployeeExtention;
+use App\Domain\Identity\Enums\IdentityEnum;
+use App\Domain\Identity\Models\Identity;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
 use App\Domain\Shared\Models\Gender;
@@ -13,12 +16,15 @@ use App\Domain\Shared\Models\SpecialNeeds;
 use App\Models\User;
 use Database\Factories\EmployeeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
     'user_id',
@@ -59,6 +65,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $full_name
  * @property string $full_name_en
  * @property string $full_name_ar
+ * @property string $national_id
+ * @property string $passport
  */
 #[Table('employees')]
 final class Employee extends Model
@@ -136,6 +144,24 @@ final class Employee extends Model
     public function nationality(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'nationality_id');
+    }
+
+    /**
+     * @return HasOne<Identity, $this>
+     */
+    public function nationalId(): HasOne
+    {
+        return $this->hasOne(Identity::class)
+            ->where('identity_type_id', IdentityEnum::NATIONAL_IDENTITY->value);
+    }
+
+    /**
+     * @param  Builder<Employee>  $query
+     */
+    #[Scope]
+    public function passport(Builder $query): void
+    {
+        $query->where('identity_type_id', IdentityEnum::PASSPORT->value);
     }
 
     public function casts(): array
