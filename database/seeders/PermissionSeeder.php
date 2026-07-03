@@ -25,15 +25,15 @@ final class PermissionSeeder extends Seeder
             ]);
         }
 
-        Role::createOrFirst([
+        Role::query()->createOrFirst([
             'name' => RoleEnum::ADMIN->value,
         ])->givePermissionTo(PermissionEnum::DASHBOARD_ADMIN->value);
 
-        Role::createOrFirst([
+        Role::query()->createOrFirst([
             'name' => RoleEnum::HR->value,
         ])->givePermissionTo(PermissionEnum::DASHBOARD_HR->value);
 
-        Role::createOrFirst([
+        Role::query()->createOrFirst([
             'name' => RoleEnum::HEAD->value,
         ])->givePermissionTo(PermissionEnum::DASHBOARD_HEAD->value);
     }

@@ -26,7 +26,7 @@ final class RoleSeeder extends Seeder
         }
 
         User::query()->where('name', 'admin')->firstOrFail()->assignRole(RoleEnum::ADMIN->value);
-        User::query()->where('name', 'hr')->firstOrFail()->assignRole( RoleEnum::HR->value);
+        User::query()->where('name', 'hr')->firstOrFail()->assignRole(RoleEnum::HR->value);
         User::query()->where('name', 'head')->firstOrFail()->assignRole(RoleEnum::HEAD->value);
     }
 }

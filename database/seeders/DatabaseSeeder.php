@@ -49,6 +49,7 @@ final class DatabaseSeeder extends Seeder
             EmployeeLeavePolicyAssignmentSeeder::class,
             LeaveSickLeaveRuleSeeder::class,
             LeaveSickLeaveCycleSeeder::class,
+            EmployeeExtentionSeeder::class,
         ]);
     }
 }

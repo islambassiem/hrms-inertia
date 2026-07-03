@@ -9,6 +9,7 @@ import {
     CardFooter,
     CardTitle,
 } from "@/components/ui/card";
+import { index } from '@/routes/contacts';
 
 interface PermissionProps {
     title: string,
@@ -16,8 +17,18 @@ interface PermissionProps {
     description?: string,
     children?: React.ReactNode
 }
+
+interface DashboardPageProps {
+    auth: {
+        user?: {
+            name: string;
+        };
+        permissions: string[];
+    };
+}
+
 export default function Dashboard() {
-    const { auth } = usePage().props;
+    const { auth } = usePage<DashboardPageProps & Record<string, any>>().props;
     const { t } = useTranslation();
 
     return (
@@ -25,7 +36,7 @@ export default function Dashboard() {
             <Head title="Dashboard" />
             <div className="font-bold mt-10 mx-4">
                 <h1 className="text-sm md:text-3xl font-bold">
-                    {t('Welcome back!')}, {auth.user.name}
+                    {t('Welcome back!')}, {auth.user?.name}
                 </h1>
                 <p className="mt-2 max-w-3xl text-muted-foreground text-xs md:text-lg">
                     {t('Access your employee information, manage HR services, and use the tools available to you based on your role and permissions')}.
@@ -43,7 +54,7 @@ export default function Dashboard() {
                 <Permission
                     title={t("Company Employees")}
                     description={t("The contacts of the company employees")}
-                    link="/profile"
+                    link={index.url()}
                 >
                     <UsersRound className='size-15' />
                 </Permission>

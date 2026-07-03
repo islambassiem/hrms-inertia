@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ Route::post('/language/{locale}', function (string $locale): RedirectResponse {
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
 });
 
 require __DIR__.'/settings.php';

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
     'user_id',
@@ -145,6 +146,14 @@ final class Employee extends Model
             'leaving_date' => 'immutable_date',
             'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * @return HasMany<EmployeeExtention, $this>
+     */
+    public function extentions(): HasMany
+    {
+        return $this->hasMany(EmployeeExtention::class);
     }
 
     protected static function newFactory(): EmployeeFactory
