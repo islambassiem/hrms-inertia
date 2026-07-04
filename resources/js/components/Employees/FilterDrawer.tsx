@@ -1,94 +1,104 @@
-import { SlidersHorizontal } from "lucide-react";
+import { usePage } from "@inertiajs/react";
+import { Building2, GraduationCap, Pyramid, SlidersHorizontal } from "lucide-react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectItem
-} from "@/components/ui/select";
-
 import {
     Sheet,
-    // SheetClose,
     SheetContent,
     SheetDescription,
-    // SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import type { DepartmentList } from "@/types/hr";
+import { DatePickerSimple } from "../ui/DatePicker";
+import { MultiSelect } from "../ui/MultiSelect";
 
-const FilterDrawer = () => {
+interface FilterDrawerProps {
+    departments: DepartmentList;
+    colleges: DepartmentList;
+    entities: DepartmentList;
+}
+
+const FilterDrawer = ({
+    departments,
+    colleges,
+    entities
+}: FilterDrawerProps) => {
+    const [selectedDepartments, setSelectedDepartments] = useState<number[]>([]);
+    const [selectedColleges, setSelectedColleges] = useState<number[]>([]);
+    const [selectedEntities, setSelectedEntities] = useState<number[]>([]);
+    const { t } = useTranslation();
+    const { locale } = usePage().props;
+
+    const departmentDropDown = departments.data.map((department) => department.attributes);
+    const collegeDropDown = colleges.data.map((college) => college.attributes);
+    const entityDropDown = entities.data.map((entity) => entity.attributes);
+
     return (<>
         <Sheet>
-
             <SheetTrigger asChild>
-
                 <Button variant="outline">
                     <SlidersHorizontal className="mr-2 h-4 w-4" />
-                    Filters
+                    {t('Filters')}
                 </Button>
-
             </SheetTrigger>
 
-            <SheetContent className="w-105 overflow-y-auto">
-
+            <SheetContent
+                className="w-105 overflow-y-auto [&>button]:last:rtl:left-4 [&>button]:last:rtl:right-auto"
+                side={locale === 'en' ? 'right' : 'left'}
+            >
                 <SheetHeader>
-
                     <SheetTitle>
-                        Employee Filters
+                        {t('Employee Filters')}
                     </SheetTitle>
-
                     <SheetDescription>
-                        Search employees using different parameters.
+                        {t('Search employees using different parameters')}.
                     </SheetDescription>
-
                 </SheetHeader>
 
-                <div className="mt-6 space-y-5">
+                <div className="mt-6 space-y-5 mx-4 flex-1">
 
-                    <Input placeholder="Employee Name" />
+                    <MultiSelect
+                        showSelectAll
+                        options={entityDropDown}
+                        value={selectedEntities}
+                        onValueChange={setSelectedEntities}
+                    >
+                        <Building2 />
+                        {t('Entity')}
+                    </MultiSelect>
 
-                    <Input placeholder="Employee ID" />
+                    <MultiSelect
+                        showSelectAll
+                        options={collegeDropDown}
+                        value={selectedColleges}
+                        onValueChange={setSelectedColleges}
+                    >
+                        <GraduationCap />
+                        {t('College')}
+                    </MultiSelect>
 
-                    <Select>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Department" />
-                        </SelectTrigger>
+                    <MultiSelect
+                        showSelectAll
+                        options={departmentDropDown}
+                        value={selectedDepartments}
+                        onValueChange={setSelectedDepartments}
+                    >
+                        <Pyramid />
+                        {t('Department')}
+                    </MultiSelect>
 
-                        <SelectContent>
-                            <SelectItem value="hr">HR</SelectItem>
-                            <SelectItem value="it">IT</SelectItem>
-                        </SelectContent>
-                    </Select>
-
-                    <Select>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Designation" />
-                        </SelectTrigger>
-                    </Select>
-
-                    <Select>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Status" />
-                        </SelectTrigger>
-                    </Select>
-
-                    <Select>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Employment Type" />
-                        </SelectTrigger>
-                    </Select>
+                    <DatePickerSimple />
 
                 </div>
-                <div className="flex gap-2 pt-4">
+                <div className="flex gap-2 py-4 mx-5">
                     <Button variant="outline" className="flex-1">
-                        Clear
+                        {t('Clear')}
                     </Button>
                     <Button className="flex-1">
-                        Apply Filters
+                        {t('Apply Filters')}
                     </Button>
                 </div>
             </SheetContent>

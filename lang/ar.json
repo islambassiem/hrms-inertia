@@ -80,5 +80,8 @@
   "Access" : "الوصول",
   "Dashboard" : "لوحة التحكم",
   "Search": "بحث",
-  "Extension": "التحويله"
+  "Extension": "التحويله",
+  "No results found": "لا يوجد نتائج",
+  "Select All": "اختر الكل",
+  "Department": "القسم"
 }

@@ -10,7 +10,18 @@ export interface EmployeeList {
     is_active: boolean,
     joining_date: string,
     leaving_date: string,
-
     depatment: string,
     national_id: string,
+}
+
+
+export interface DepartmentList {
+    data: {
+        id: string;
+        type: string;
+        attributes: {
+            id: number;
+            name: string;
+        }
+    }[]
 }

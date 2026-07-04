@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Hr;
 
+use App\Domain\Organization\Enums\DepartmentType;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hr\DepartmentListResource;
 use App\Http\Resources\Hr\EmployeeListResource;
+use App\Queries\Hr\DepartmentListQuery;
 use App\Queries\Hr\EmployeeListQuery;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,9 +22,15 @@ final class EmployeeController extends Controller
     public function index(Request $request): Response
     {
         $employees = (new EmployeeListQuery())($request->string('search')->value());
+        $departments = (new DepartmentListQuery())(DepartmentType::DEPARTMENT);
+        $colleges = (new DepartmentListQuery())(DepartmentType::COLLEGE);
+        $entities = (new DepartmentListQuery())(DepartmentType::ENTITY);
 
         return Inertia::render('hr/employees/index', [
             'employees' => EmployeeListResource::collection($employees),
+            'departments' => DepartmentListResource::collection($departments),
+            'colleges' => DepartmentListResource::collection($colleges),
+            'entities' => DepartmentListResource::collection($entities),
             'filters' => $request->only(['search']),
         ]);
     }
