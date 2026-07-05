@@ -83,5 +83,27 @@
     "Extension": "Extension",
     "No results found": "No results found",
     "Select All": "Select All",
-    "Department": "Department"
+
+    "Department": "Department",
+    "Entity": "Entity",
+    "College": "College",
+    "Category": "Category",
+    "Employees": "Employees",
+    "Employee": "Employee",
+    "Add Employee": "Add Employee",
+    "Filters": "Filters",
+    "Joining Date": "Joining Date",
+    "Resignation Date": "Resignation Date",
+    "Active": "Active",
+    "Inactive": "Inactive",
+    "Employee Filters": "Employee Filters",
+    "Search employees using different parameters": "Search employees using different parameters",
+    "From": "From",
+    "To": "To",
+    "Designation": "Designation",
+    "Apply Filters": "Apply Filters",
+    "Clear": "Clear",
+    "The staff who joined between these dates": "The staff who joined between these dates",
+    "The staff who resigned between these dates": "The staff who resigned between these dates",
+    "Cancel": "Cancel"
 }

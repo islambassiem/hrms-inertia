@@ -34,7 +34,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
 
             {/* Ribbon */}
             <Ribbon
-                label={isActive ? "ACTIVE" : "INACTIVE"}
+                label={isActive ? t("Active") : t("Inactive")}
                 variant={isActive ? "active" : "inactive"}
             />
 
@@ -114,7 +114,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                     {isActive ? (
                         t('Joining Date')
                     ) : (
-                        t('Leavgin Date')
+                        t('Resignation Date')
                     )}
                 </div>
                 <div>

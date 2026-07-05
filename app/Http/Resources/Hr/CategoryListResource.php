@@ -4,7 +4,7 @@ namespace App\Http\Resources\Hr;
 
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
 
-class DepartmentListResource extends JsonApiResource
+class CategoryListResource extends JsonApiResource
 {
     /**
      * @var array<int, string> $attributes

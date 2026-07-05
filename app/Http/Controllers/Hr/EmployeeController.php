@@ -6,8 +6,10 @@ namespace App\Http\Controllers\Hr;
 
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hr\CategoryListResource;
 use App\Http\Resources\Hr\DepartmentListResource;
 use App\Http\Resources\Hr\EmployeeListResource;
+use App\Queries\Hr\CategoryListQuery;
 use App\Queries\Hr\DepartmentListQuery;
 use App\Queries\Hr\EmployeeListQuery;
 use Illuminate\Http\Request;
@@ -21,16 +23,23 @@ final class EmployeeController extends Controller
      */
     public function index(Request $request): Response
     {
-        $employees = (new EmployeeListQuery())($request->string('search')->value());
-        $departments = (new DepartmentListQuery())(DepartmentType::DEPARTMENT);
-        $colleges = (new DepartmentListQuery())(DepartmentType::COLLEGE);
-        $entities = (new DepartmentListQuery())(DepartmentType::ENTITY);
+        $employees = app(EmployeeListQuery::class)->build($request->string('search')->value())
+            ->paginate()
+            ->withQueryString()
+            ->onEachSide(1);
+        $employeesCount = app(EmployeeListQuery::class)->build($request->string('search')->value())->count();
+        $departments = app(DepartmentListQuery::class)->build(DepartmentType::DEPARTMENT)->get();
+        $colleges = app(DepartmentListQuery::class)->build(DepartmentType::COLLEGE)->get();
+        $entities = app(DepartmentListQuery::class)->build(DepartmentType::ENTITY)->get();
+        $categories = app(CategoryListQuery::class)->build()->get();
 
         return Inertia::render('hr/employees/index', [
             'employees' => EmployeeListResource::collection($employees),
+            'employeesCount' => $employeesCount,
             'departments' => DepartmentListResource::collection($departments),
             'colleges' => DepartmentListResource::collection($colleges),
             'entities' => DepartmentListResource::collection($entities),
+            'categories' => CategoryListResource::collection($categories),
             'filters' => $request->only(['search']),
         ]);
     }

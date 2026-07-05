@@ -1,8 +1,10 @@
 import { usePage } from "@inertiajs/react";
-import { Building2, GraduationCap, Pyramid, SlidersHorizontal } from "lucide-react";
+import { Briefcase, CalendarCheck2, CalendarX2, GitBranch, GraduationCap, SlidersHorizontal, Tag } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+
+
 import {
     Sheet,
     SheetContent,
@@ -11,34 +13,93 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import type { DepartmentList } from "@/types/hr";
-import { DatePicker } from "../ui/DatePicker";
+
+import type { ResourceList } from "@/types/hr";
+import DateRange from "../ui/DateRange";
 import { MultiSelect } from "../ui/MultiSelect";
 
 interface FilterDrawerProps {
-    departments: DepartmentList;
-    colleges: DepartmentList;
-    entities: DepartmentList;
+    departments: ResourceList;
+    colleges: ResourceList;
+    entities: ResourceList;
+    categories: ResourceList;
 }
+
+type EmployeeFilters = {
+    entities: number[];
+    colleges: number[];
+    departments: number[];
+    categories: number[];
+
+    joining: {
+        from?: Date;
+        to?: Date;
+    };
+
+    resignation: {
+        from?: Date;
+        to?: Date;
+    };
+};
 
 const FilterDrawer = ({
     departments,
     colleges,
-    entities
+    entities,
+    categories,
 }: FilterDrawerProps) => {
-    const [selectedDepartments, setSelectedDepartments] = useState<number[]>([]);
-    const [selectedColleges, setSelectedColleges] = useState<number[]>([]);
-    const [selectedEntities, setSelectedEntities] = useState<number[]>([]);
-    const [selectedJoiningStartDate, setSelectedJoiningStartDate] = useState<Date | undefined>();
-    const [selectedJoiningEndDate, setSelectedJoiningEndDate] = useState<Date | undefined>();
-    const [selectedResignationStartDate, setSelectedResignationStartDate] = useState<Date | undefined>();
-    const [selectedResignationEndDate, setSelectedResignationEndDate] = useState<Date | undefined>();
+
+    const [filters, setFilters] = useState<EmployeeFilters>({
+        entities: [],
+        colleges: [],
+        departments: [],
+        categories: [],
+        joining: {},
+        resignation: {},
+    });
     const { t } = useTranslation();
     const { locale } = usePage().props;
 
     const departmentDropDown = departments.data.map((department) => department.attributes);
     const collegeDropDown = colleges.data.map((college) => college.attributes);
     const entityDropDown = entities.data.map((entity) => entity.attributes);
+    const categoryDropDown = categories.data.map((category) => category.attributes);
+
+
+    const updateFilter = <K extends keyof EmployeeFilters>(
+        key: K,
+        value: EmployeeFilters[K]
+    ) => {
+        setFilters((f) => ({
+            ...f,
+            [key]: value,
+        }));
+    };
+
+    const updateJoining = (
+        value: Partial<EmployeeFilters["joining"]>
+    ) => {
+        setFilters((f) => ({
+            ...f,
+            joining: {
+                ...f.joining,
+                ...value,
+            },
+        }));
+    };
+
+    const updateResignation = (
+        value: Partial<EmployeeFilters["resignation"]>
+    ) => {
+        setFilters((f) => ({
+            ...f,
+            resignation: {
+                ...f.resignation,
+                ...value,
+            },
+        }));
+    };
+    console.log(filters);
 
     return (<>
         <Sheet>
@@ -67,18 +128,18 @@ const FilterDrawer = ({
                     <MultiSelect
                         showSelectAll
                         options={entityDropDown}
-                        value={selectedEntities}
-                        onValueChange={setSelectedEntities}
+                        value={filters.entities}
+                        onValueChange={(v) => updateFilter("entities", v)}
                     >
-                        <Building2 />
+                        <Briefcase />
                         {t('Entity')}
                     </MultiSelect>
 
                     <MultiSelect
                         showSelectAll
                         options={collegeDropDown}
-                        value={selectedColleges}
-                        onValueChange={setSelectedColleges}
+                        value={filters.colleges}
+                        onValueChange={(v) => updateFilter("colleges", v)}
                     >
                         <GraduationCap />
                         {t('College')}
@@ -87,24 +148,42 @@ const FilterDrawer = ({
                     <MultiSelect
                         showSelectAll
                         options={departmentDropDown}
-                        value={selectedDepartments}
-                        onValueChange={setSelectedDepartments}
+                        value={filters.departments}
+                        onValueChange={(v) => updateFilter("departments", v)}
                     >
-                        <Pyramid />
+                        <GitBranch />
                         {t('Department')}
                     </MultiSelect>
 
-                    <p className="mb-1">{t('Joining Date')}</p>
-                    <div className="flex gap-2">
-                        <DatePicker label={t('From')} title={t('From')} value={selectedJoiningStartDate} onChange={setSelectedJoiningStartDate} />
-                        <DatePicker label={t('To')} title={t('To')} value={selectedJoiningEndDate} onChange={setSelectedJoiningEndDate}/>
-                    </div>
+                    <MultiSelect
+                        showSelectAll
+                        options={categoryDropDown}
+                        value={filters.categories}
+                        onValueChange={(v) => updateFilter("categories", v)}
+                    >
+                        <Tag />
+                        {t('Category')}
+                    </MultiSelect>
 
-                    <p className="mb-1">{t('Resignation Date')}</p>
-                    <div className="flex gap-2">
-                        <DatePicker label={t('From')} title={t('From')} value={selectedResignationStartDate} onChange={setSelectedResignationStartDate}/>
-                        <DatePicker label={t('To')} title={t('To')} value={selectedResignationEndDate} onChange={setSelectedResignationEndDate}/>
-                    </div>
+                    <DateRange
+                        title={t('Joining Date')}
+                        description={t('The staff who joined between these dates')}
+                        icon={CalendarCheck2}
+                        startDate={filters.joining.from}
+                        endDate={filters.joining.to}
+                        setStartDate={(from) => updateJoining({ from })}
+                        setEndDate={(to) => updateJoining({ to })}
+                    />
+
+                    <DateRange
+                        title={t('Resignation Date')}
+                        description={t('The staff who resigned between these dates')}
+                        icon={CalendarX2}
+                        startDate={filters.resignation.from}
+                        endDate={filters.resignation.to}
+                        setStartDate={(from) => updateResignation({ from })}
+                        setEndDate={(to) => updateResignation({ to })}
+                    />
 
                 </div>
                 <div className="flex gap-2 py-4 mx-5">

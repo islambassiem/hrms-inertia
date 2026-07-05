@@ -15,7 +15,7 @@ export interface EmployeeList {
 }
 
 
-export interface DepartmentList {
+export interface ResourceList {
     data: {
         id: string;
         type: string;

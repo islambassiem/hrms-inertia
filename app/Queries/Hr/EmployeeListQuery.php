@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Queries\Hr;
 
 use App\Domain\Employee\Models\Employee;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 final class EmployeeListQuery
 {
     /**
-     * @return LengthAwarePaginator<int, Employee>
+     * @return Builder<Employee>
      */
-    public function __invoke(string $search = ''): LengthAwarePaginator
+    public function build(string $search = ''): Builder
     {
         return Employee::query()
             ->with([
@@ -61,9 +61,8 @@ final class EmployeeListQuery
                         ->orWhereHas('user', fn ($q) => $q->where('email', 'like', "%{$search}%"))
                         ->orWhereHas('nationalId', fn ($q) => $q->where('identity_number', 'like', "%{$search}%"));
                 });
-            })
-            ->paginate()
-            ->withQueryString()
-            ->onEachSide(1);
+            }, function ($builder) {
+                $builder->where('is_active', true);
+            });
     }
 }

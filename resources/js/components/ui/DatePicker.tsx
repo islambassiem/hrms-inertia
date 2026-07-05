@@ -16,11 +16,15 @@ interface DatePickerProps {
     label?: string,
     title: string,
     value?: Date;
+    minDate?: Date;
+    maxDate?: Date;
     onChange: (date: Date | undefined) => void;
 }
 export function DatePicker({
     label,
     title,
+    minDate,
+    maxDate,
     value,
     onChange
 }: DatePickerProps) {
@@ -48,6 +52,11 @@ export function DatePicker({
                         defaultMonth={new Date()}
                         startMonth={new Date(2000, 0)}
                         locale={locale === "ar" ? ar : enGB}
+                        disabled={(date) => {
+                            if (minDate && date < minDate) return true;
+                            if (maxDate && date > maxDate) return true;
+                            return false;
+                        }}
                     />
                 </PopoverContent>
             </Popover>

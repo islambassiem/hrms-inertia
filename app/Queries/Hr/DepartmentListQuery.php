@@ -6,18 +6,19 @@ namespace App\Queries\Hr;
 
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Domain\Organization\Models\Department;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 final class DepartmentListQuery
 {
     /**
-     * @return Collection<int, Department>
+     * @return Builder<Department>
      */
-    public function __invoke(?DepartmentType $type = null): Collection
+    public function build(?DepartmentType $type = null): Builder
     {
         return Department::query()
             ->select('id', 'name')
-            ->when($type, fn ($query, $type) => $query->where('type', $type->value))
-            ->get();
+            ->when($type, function ($query, $type) {
+                $query->where('type', $type->value);
+            });
     }
 }

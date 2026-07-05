@@ -18,25 +18,29 @@ import Pagination from "@/components/ui/Pagination";
 import { useDebounce } from "@/hooks/useDebounce";
 import { index } from "@/routes/hr/employees";
 import type { Resource } from "@/types";
-import type { DepartmentList, EmployeeList } from "@/types/hr";
+import type { ResourceList, EmployeeList } from "@/types/hr";
 
 interface PageProps {
     employees: Resource<EmployeeList>;
+    employeesCount: number;
     filters: {
         search?: string;
         page?: number;
     };
-    departments: DepartmentList;
-    colleges: DepartmentList;
-    entities: DepartmentList;
+    departments: ResourceList;
+    colleges: ResourceList;
+    entities: ResourceList;
+    categories: ResourceList;
 }
 
 const Index = ({
     employees,
+    employeesCount,
     filters,
     departments,
     colleges,
-    entities
+    entities,
+    categories,
 }: PageProps) => {
     const { t } = useTranslation();
 
@@ -113,7 +117,7 @@ const Index = ({
                             {t('Employees')}
                         </h1>
                         <p className="text-muted-foreground">
-                            248 {t('Employees')}
+                            {employeesCount} {t('Employee')}
                         </p>
                     </div>
                     <div className="flex gap-2">
@@ -121,6 +125,7 @@ const Index = ({
                             departments={departments}
                             colleges={colleges}
                             entities={entities}
+                            categories={categories}
                         />
                         <Button asChild>
                             <Link href="/employees/add">

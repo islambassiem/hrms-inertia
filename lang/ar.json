@@ -83,5 +83,27 @@
   "Extension": "التحويله",
   "No results found": "لا يوجد نتائج",
   "Select All": "اختر الكل",
-  "Department": "القسم"
+
+  "Department": "القسم",
+  "Entity": "الكيان",
+  "College": "الكلية",
+  "Category": "التصنيف",
+  "Employees": "الموظفين",
+  "Employee": "موظف",
+  "Add Employee": "اضافة موظف",
+  "Filters": "الفلاتر",
+  "Joining Date": "تاريخ المباشرة",
+  "Resignation Date": "تاريخ المغادرة",
+  "Active": "نشط",
+  "Inactive": "غير نشط",
+  "Employee Filters": "فلاتر الموظفين",
+  "Search employees using different parameters": "ابحث عن الموظفين باستخدام معينات مختلفة",
+  "From": "من",
+  "To": "الى",
+  "Designation": "المسمى الوظيفي",
+  "Apply Filters": "تطبيق الفلاتر",
+  "Clear": "مسح",
+  "The staff who joined between these dates": "الموظفون الذين قاموا بالانضمام بين هذه الفترات",
+  "The staff who resigned between these dates": "الموظفون الذين قاموا بالاستقاله بين هذه الفترات",
+  "Cancel": "الغاء"
 }
