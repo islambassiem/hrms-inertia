@@ -12,7 +12,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import type { DepartmentList } from "@/types/hr";
-import { DatePickerSimple } from "../ui/DatePicker";
+import { DatePicker } from "../ui/DatePicker";
 import { MultiSelect } from "../ui/MultiSelect";
 
 interface FilterDrawerProps {
@@ -29,6 +29,10 @@ const FilterDrawer = ({
     const [selectedDepartments, setSelectedDepartments] = useState<number[]>([]);
     const [selectedColleges, setSelectedColleges] = useState<number[]>([]);
     const [selectedEntities, setSelectedEntities] = useState<number[]>([]);
+    const [selectedJoiningStartDate, setSelectedJoiningStartDate] = useState<Date | undefined>();
+    const [selectedJoiningEndDate, setSelectedJoiningEndDate] = useState<Date | undefined>();
+    const [selectedResignationStartDate, setSelectedResignationStartDate] = useState<Date | undefined>();
+    const [selectedResignationEndDate, setSelectedResignationEndDate] = useState<Date | undefined>();
     const { t } = useTranslation();
     const { locale } = usePage().props;
 
@@ -90,7 +94,17 @@ const FilterDrawer = ({
                         {t('Department')}
                     </MultiSelect>
 
-                    <DatePickerSimple />
+                    <p className="mb-1">{t('Joining Date')}</p>
+                    <div className="flex gap-2">
+                        <DatePicker label={t('From')} title={t('From')} value={selectedJoiningStartDate} onChange={setSelectedJoiningStartDate} />
+                        <DatePicker label={t('To')} title={t('To')} value={selectedJoiningEndDate} onChange={setSelectedJoiningEndDate}/>
+                    </div>
+
+                    <p className="mb-1">{t('Resignation Date')}</p>
+                    <div className="flex gap-2">
+                        <DatePicker label={t('From')} title={t('From')} value={selectedResignationStartDate} onChange={setSelectedResignationStartDate}/>
+                        <DatePicker label={t('To')} title={t('To')} value={selectedResignationEndDate} onChange={setSelectedResignationEndDate}/>
+                    </div>
 
                 </div>
                 <div className="flex gap-2 py-4 mx-5">

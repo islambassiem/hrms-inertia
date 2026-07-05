@@ -1,43 +1,53 @@
-"use client"
-
-import * as React from "react"
 import { format } from "date-fns"
-// import 'react-day-picker/dist/style.css';
+import { ar } from "date-fns/locale";
+import { enGB } from "date-fns/locale";
 
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Field, FieldLabel } from "@/components/ui/field"
-import { DayPicker } from 'react-day-picker';
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
+import { usePage } from "@inertiajs/react";
 
-export function DatePickerSimple() {
-    const [date, setDate] = React.useState<Date | undefined>(new Date())
+interface DatePickerProps {
+    label?: string,
+    title: string,
+    value?: Date;
+    onChange: (date: Date | undefined) => void;
+}
+export function DatePicker({
+    label,
+    title,
+    value,
+    onChange
+}: DatePickerProps) {
+    const { locale } = usePage<{ locale: string }>().props;
 
     return (
         <Field className="w-44">
-            <FieldLabel htmlFor="date-picker-simple">Date</FieldLabel>
+            <FieldLabel htmlFor="date-picker-simple">{label}</FieldLabel>
             <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger className="text-left rtl:text-right">
                     <Button
                         variant="outline"
                         id="date-picker-simple"
-                        className="font-normal"
-                    >{date ? format(date, "PPP") : <span>Pick a date</span>}
+                        className="font-normal w-40"
+                    >{value ? format(value, "PPP") : <span>{title}</span>}
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
                         mode="single"
-                        selected={date}
-                        onSelect={setDate}
+                        selected={value}
+                        onSelect={onChange}
                         className="rounded-lg border"
-                        captionLayout="dropdown-months"
+                        captionLayout="dropdown"
                         defaultMonth={new Date()}
-                        showWeekNumber
+                        startMonth={new Date(2000, 0)}
+                        locale={locale === "ar" ? ar : enGB}
                     />
                 </PopoverContent>
             </Popover>
