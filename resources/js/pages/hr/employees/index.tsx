@@ -31,6 +31,10 @@ interface PageProps {
     colleges: ResourceList;
     entities: ResourceList;
     categories: ResourceList;
+    academicRanks: ResourceList;
+    sponsorships: ResourceList;
+    positions: ResourceList;
+    nationalities: ResourceList;
 }
 
 const Index = ({
@@ -41,6 +45,10 @@ const Index = ({
     colleges,
     entities,
     categories,
+    academicRanks,
+    sponsorships,
+    positions,
+    nationalities,
 }: PageProps) => {
     const { t } = useTranslation();
 
@@ -126,6 +134,10 @@ const Index = ({
                             colleges={colleges}
                             entities={entities}
                             categories={categories}
+                            academicRanks={academicRanks}
+                            sponsorships={sponsorships}
+                            positions={positions}
+                            nationalities={nationalities}
                         />
                         <Button asChild>
                             <Link href="/employees/add">

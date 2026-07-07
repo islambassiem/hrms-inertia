@@ -64,7 +64,10 @@ export function MultiSelect({
     return (
         <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-                <Button onClick={() => setOpen(true)} variant="outline" className="w-36">
+                <Button
+                    onClick={() => setOpen(true)} variant="outline"
+                    className="w-36 flex items-center gap-3 justify-normal"
+                >
                     {children}
                 </Button>
                 <div className="flex gap-1">

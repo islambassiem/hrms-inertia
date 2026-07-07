@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('hr')
     ->middleware(['auth', 'verified', 'hr'])
     ->name('hr.')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('dashboard', [HomeController::class, 'index'])
             ->name('dashboard');
 

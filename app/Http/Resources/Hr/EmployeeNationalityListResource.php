@@ -6,7 +6,7 @@ namespace App\Http\Resources\Hr;
 
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
 
-final class DepartmentListResource extends JsonApiResource
+final class EmployeeNationalityListResource extends JsonApiResource
 {
     /**
      * @var array<int, string>

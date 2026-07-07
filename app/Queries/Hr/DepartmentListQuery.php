@@ -17,7 +17,7 @@ final class DepartmentListQuery
     {
         return Department::query()
             ->select('id', 'name')
-            ->when($type, function ($query, $type) {
+            ->when($type, function ($query, $type): void {
                 $query->where('type', $type->value);
             });
     }

@@ -41,7 +41,7 @@ const DateRange = ({
         <section>
             <Dialog>
                 <DialogTrigger className="flex items-center gap-2">
-                    <Button variant="outline" type="button" className="w-36">
+                    <Button variant="outline" type="button" className="w-36 flex items-center justify-normal gap-3">
                         <Icon  />
                         {title}
                     </Button>

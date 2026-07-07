@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Models;
 
-use App\Domain\Employee\Models\EmployeeExtention;
 use App\Domain\Identity\Enums\IdentityEnum;
 use App\Domain\Identity\Models\Identity;
 use App\Domain\Organization\Models\Department;
@@ -16,9 +15,7 @@ use App\Domain\Shared\Models\SpecialNeeds;
 use App\Models\User;
 use Database\Factories\EmployeeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

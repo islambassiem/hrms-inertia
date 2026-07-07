@@ -16,7 +16,7 @@ final class OrganizationAttributeSeeder extends Seeder
     public function run(): void
     {
         Attribute::factory(50)->create([
-            'type_id' => AttributeType::query()->inRandomOrder()->value('id'),
+            'type_id' => fn () => AttributeType::query()->inRandomOrder()->value('id'),
         ]);
     }
 }

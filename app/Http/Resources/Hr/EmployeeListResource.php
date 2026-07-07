@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Resources\Hr;
 
 use App\Domain\Employee\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
+use Illuminate\Support\Facades\Date;
 
 /**
  * @mixin Employee
@@ -29,8 +29,8 @@ final class EmployeeListResource extends JsonApiResource
             'extentions' => $this->loadMissing('extentions')->extentions->pluck('extention'),
             'employee_code' => $this->employee_code,
             'phone' => $this->phone,
-            'joining_date' => Carbon::parse($this->joining_date)->format('Y-m-d'),
-            'leaving_date' => $this->leaving_date ? Carbon::parse($this->leaving_date)->format('Y-m-d') : null,
+            'joining_date' => Date::parse($this->joining_date)->format('Y-m-d'),
+            'leaving_date' => $this->leaving_date ? Date::parse($this->leaving_date)->format('Y-m-d') : null,
             'image' => $this->image ? asset($this->image) : null,
             'is_active' => $this->is_active,
 

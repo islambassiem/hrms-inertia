@@ -17,7 +17,7 @@ final class CategoryListQuery
     {
         return Category::query()
             ->select('id', 'name')
-            ->when($category, function ($query, $category) {
+            ->when($category, function ($query, $category): void {
                 $query->where('category_id', $category->value);
             });
     }

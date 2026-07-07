@@ -93,7 +93,7 @@
     "Add Employee": "Add Employee",
     "Filters": "Filters",
     "Joining Date": "Joining Date",
-    "Resignation Date": "Resignation Date",
+    "Leaving Date": "Leaving Date",
     "Active": "Active",
     "Inactive": "Inactive",
     "Employee Filters": "Employee Filters",
@@ -105,5 +105,10 @@
     "Clear": "Clear",
     "The staff who joined between these dates": "The staff who joined between these dates",
     "The staff who resigned between these dates": "The staff who resigned between these dates",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "Rank": "Rank",
+    "Sponsorship": "Sponsorship",
+    "Position": "Position",
+    "Nationality": "Nationality",
+    "": ""
 }

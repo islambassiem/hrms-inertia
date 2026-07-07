@@ -93,7 +93,7 @@
   "Add Employee": "اضافة موظف",
   "Filters": "الفلاتر",
   "Joining Date": "تاريخ المباشرة",
-  "Resignation Date": "تاريخ المغادرة",
+  "Leaving Date": "تاريخ المغادرة",
   "Active": "نشط",
   "Inactive": "غير نشط",
   "Employee Filters": "فلاتر الموظفين",
@@ -105,5 +105,10 @@
   "Clear": "مسح",
   "The staff who joined between these dates": "الموظفون الذين قاموا بالانضمام بين هذه الفترات",
   "The staff who resigned between these dates": "الموظفون الذين قاموا بالاستقاله بين هذه الفترات",
-  "Cancel": "الغاء"
+  "Cancel": "الغاء",
+  "Rank": "الرتبة الاكاديمية",
+  "Sponsorship": "الكفالة",
+  "Position": "المنصب",
+  "Nationality": "الجنسية",
+  "": ""
 }

@@ -66,7 +66,7 @@ final class EmployeeCategorySeeder extends Seeder
             ],
         ];
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::query()->create($category);
         }
 
         $categories = Category::all();

@@ -7,8 +7,6 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
-use function array_merge;
-
 final class HandleInertiaRequests extends Middleware
 {
     /**

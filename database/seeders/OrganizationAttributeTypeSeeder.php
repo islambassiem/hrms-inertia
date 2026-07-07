@@ -39,6 +39,13 @@ final class OrganizationAttributeTypeSeeder extends Seeder
             ],
             [
                 'name' => [
+                    'ar' => 'الرتبة الاكاديمية',
+                    'en' => 'Academic Rank',
+                ],
+                'code' => Str::random(),
+            ],
+            [
+                'name' => [
                     'ar' => 'الرتبة الادارية',
                     'en' => 'Admin Rank',
                 ],
