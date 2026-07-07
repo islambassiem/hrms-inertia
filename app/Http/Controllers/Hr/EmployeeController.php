@@ -11,11 +11,13 @@ use App\Http\Resources\Hr\CategoryListResource;
 use App\Http\Resources\Hr\DepartmentListResource;
 use App\Http\Resources\Hr\EmployeeListResource;
 use App\Http\Resources\Hr\EmployeeNationalityListResource;
+use App\Http\Resources\Hr\GenderListResource;
 use App\Http\Resources\Hr\OrganizationAttributeListResource;
 use App\Queries\Hr\CategoryListQuery;
 use App\Queries\Hr\DepartmentListQuery;
 use App\Queries\Hr\EmployeeListQuery;
 use App\Queries\Hr\EmployeeNationalityListQuery;
+use App\Queries\Hr\GenderListQuery;
 use App\Queries\Hr\OrganizationAttributeListQuery;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -41,6 +43,7 @@ final class EmployeeController extends Controller
         $sponsorships = resolve(OrganizationAttributeListQuery::class)->build(AttributeType::SPONSORSHIP)->get();
         $positions = resolve(OrganizationAttributeListQuery::class)->build(AttributeType::POSITION)->get();
         $nationalities = resolve(EmployeeNationalityListQuery::class)->build()->get();
+        $genders = resolve(GenderListQuery::class)->build()->get();
 
         return Inertia::render('hr/employees/index', [
             'employees' => EmployeeListResource::collection($employees),
@@ -53,6 +56,7 @@ final class EmployeeController extends Controller
             'sponsorships' => OrganizationAttributeListResource::collection($sponsorships),
             'positions' => OrganizationAttributeListResource::collection($positions),
             'nationalities' => EmployeeNationalityListResource::collection($nationalities),
+            'genders' => GenderListResource::collection($genders),
             'filters' => $request->only(['search']),
         ]);
     }

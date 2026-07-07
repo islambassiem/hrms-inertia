@@ -1,5 +1,5 @@
 import {  useForm, usePage } from "@inertiajs/react";
-import { BookOpen, Briefcase, CalendarCheck2, CalendarX2, Crown, Flag, GitBranch, GraduationCap, ShieldCheck, SlidersHorizontal, Tag } from "lucide-react";
+import { BookOpen, Briefcase, CalendarCheck2, CalendarX2, Crown, Flag, GitBranch, GraduationCap, ShieldCheck, SlidersHorizontal, Tag, VenusAndMars } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +24,7 @@ interface FilterDrawerProps {
     sponsorships: ResourceList;
     positions: ResourceList;
     nationalities: ResourceList;
+    genders: ResourceList;
 }
 
 type EmployeeFilters = {
@@ -35,6 +36,7 @@ type EmployeeFilters = {
     sponsorships: number[];
     positions: number[];
     nationalities: number[];
+    genders: number[];
 
     joining: {
         from?: Date;
@@ -56,6 +58,7 @@ const FilterDrawer = ({
     sponsorships,
     positions,
     nationalities,
+    genders,
 }: FilterDrawerProps) => {
 
     const { t } = useTranslation();
@@ -69,6 +72,7 @@ const FilterDrawer = ({
         sponsorships: [],
         positions: [],
         nationalities: [],
+        genders: [],
         joining: {},
         resignation: {},
     });
@@ -81,6 +85,7 @@ const FilterDrawer = ({
     const sponsorshipDropDown = sponsorships.data.map((sponsorship) => sponsorship.attributes);
     const positionDropDown = positions.data.map((position) => position.attributes);
     const nationalityDropDown = nationalities.data.map((nationality) => nationality.attributes);
+    const gendersDropDown = genders.data.map((gender) => gender.attributes);
 
     const handleFilters = () => {
         get(index.url(), {
@@ -201,6 +206,16 @@ const FilterDrawer = ({
                     >
                         <Flag />
                         {t('Nationality')}
+                    </MultiSelect>
+
+                    <MultiSelect
+                        showSelectAll
+                        options={gendersDropDown}
+                        value={data.genders}
+                        onValueChange={(v) => setData("genders", v)}
+                    >
+                        <VenusAndMars />
+                        {t('Gender')}
                     </MultiSelect>
 
                     <DateRange
