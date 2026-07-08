@@ -1,28 +1,27 @@
-import { Head, router } from "@inertiajs/react";
-import { Search, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Head, router } from '@inertiajs/react';
+import { Search, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import ContactCard from "@/components/home/ContactCard";
-import { Input } from "@/components/ui/input";
-import Pagination from "@/components/ui/Pagination";
-import { useDebounce } from "@/hooks/useDebounce";
-import { index } from "@/routes/contacts";
-import type { Resource } from "@/types";
-import type { Employee } from "@/types/types";
+import ContactCard from '@/components/home/ContactCard';
+import { Input } from '@/components/ui/input';
+import Pagination from '@/components/ui/Pagination';
+import { useDebounce } from '@/hooks/useDebounce';
+import { index } from '@/routes/contacts';
+import type { Resource } from '@/types';
+import type { Employee } from '@/types/types';
 
 interface PageProps {
-    employees: Resource<Employee>,
+    employees: Resource<Employee>;
     filters: {
-        search: string,
-    }
+        search: string;
+    };
 }
-
 
 const Contacts = ({ employees, filters }: PageProps) => {
     const { t } = useTranslation();
 
-    const search = filters.search ?? "";
+    const search = filters.search ?? '';
     const [searchValue, setSearchValue] = useState(search);
     const debouncedValue = useDebounce(searchValue);
 
@@ -50,7 +49,7 @@ const Contacts = ({ employees, filters }: PageProps) => {
                 preserveState: true,
                 replace: true,
                 preserveScroll: true,
-            }
+            },
         );
     }, [debouncedValue]);
 
@@ -63,7 +62,7 @@ const Contacts = ({ employees, filters }: PageProps) => {
                 preserveState: true,
                 replace: true,
                 preserveScroll: true,
-            }
+            },
         );
     };
 
@@ -73,11 +72,11 @@ const Contacts = ({ employees, filters }: PageProps) => {
         <>
             <Head title="Contacts" />
 
-            <div className="relative max-w-2xs mt-10 mx-3">
-                <Search className="absolute left-3 rtl:right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <div className="relative mx-3 mt-10 max-w-2xs">
+                <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground rtl:right-3" />
 
                 <Input
-                    placeholder={t("Search") + "..."}
+                    placeholder={t('Search') + '...'}
                     className="ps-10"
                     value={searchValue}
                     onChange={(e) => handleSearchChange(e.target.value)}
@@ -86,14 +85,14 @@ const Contacts = ({ employees, filters }: PageProps) => {
                 {(search?.length ?? 0) > 0 && (
                     <button
                         onClick={handleReset}
-                        className="absolute right-3 rtl:right-auto rtl:left-3 top-1/2 -translate-y-1/2 px-2"
+                        className="absolute top-1/2 right-3 -translate-y-1/2 px-2 rtl:right-auto rtl:left-3"
                     >
-                        <X className="text-destructive cursor-pointer size-3" />
+                        <X className="size-3 cursor-pointer text-destructive" />
                     </button>
                 )}
             </div>
 
-            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-3">
+            <section className="mx-3 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {employees.data.map((employee) => (
                     <ContactCard
                         key={employee.id}
@@ -105,7 +104,6 @@ const Contacts = ({ employees, filters }: PageProps) => {
             {employees.meta.per_page < employees.meta.total && (
                 <Pagination meta={employees.meta} links={employees.links} />
             )}
-
         </>
     );
 };

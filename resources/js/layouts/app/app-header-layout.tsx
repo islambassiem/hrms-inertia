@@ -3,12 +3,10 @@ import { AppHeader } from '@/components/app-header';
 import { AppShell } from '@/components/app-shell';
 import type { AppLayoutProps } from '@/types';
 
-export default function AppHeaderLayout({
-    children,
-}: AppLayoutProps) {
+export default function AppHeaderLayout({ children }: AppLayoutProps) {
     return (
         <AppShell variant="header">
-            <AppHeader  />
+            <AppHeader />
             <AppContent variant="header">{children}</AppContent>
         </AppShell>
     );

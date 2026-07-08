@@ -11,6 +11,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { usePage } from "@inertiajs/react";
+import { useState } from "react";
 
 interface DatePickerProps {
     label?: string,
@@ -29,11 +30,17 @@ export function DatePicker({
     onChange
 }: DatePickerProps) {
     const { locale } = usePage<{ locale: string }>().props;
+    const [open, setOpen] = useState(false);
+
+    const handleSelect = (date: Date | undefined) => {
+        onChange(date);
+        setOpen(false);
+    };
 
     return (
         <Field className="w-44">
             <FieldLabel htmlFor="date-picker-simple">{label}</FieldLabel>
-            <Popover>
+            <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger className="text-left rtl:text-right">
                     <Button
                         variant="outline"
@@ -46,7 +53,7 @@ export function DatePicker({
                     <Calendar
                         mode="single"
                         selected={value}
-                        onSelect={onChange}
+                        onSelect={handleSelect}
                         className="rounded-lg border"
                         captionLayout="dropdown"
                         defaultMonth={new Date()}

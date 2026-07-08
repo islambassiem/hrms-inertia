@@ -1,7 +1,7 @@
-import { usePage } from "@inertiajs/react";
-import { Check, Monitor, Moon, Sun } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
+import { usePage } from '@inertiajs/react';
+import { Check, Monitor, Moon, Sun } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,10 +9,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useAppearance } from "@/hooks/use-appearance";
-import { cn } from "@/lib/utils";
-
+} from '@/components/ui/dropdown-menu';
+import { useAppearance } from '@/hooks/use-appearance';
+import { cn } from '@/lib/utils';
 
 export default function ThemeSwitcher() {
     const { appearance, updateAppearance } = useAppearance();
@@ -21,18 +20,18 @@ export default function ThemeSwitcher() {
 
     const themes = [
         {
-            value: "light",
-            label: t("Light"),
+            value: 'light',
+            label: t('Light'),
             icon: Sun,
         },
         {
-            value: "dark",
-            label: t("Dark"),
+            value: 'dark',
+            label: t('Dark'),
             icon: Moon,
         },
         {
-            value: "system",
-            label: t("System"),
+            value: 'system',
+            label: t('System'),
             icon: Monitor,
         },
     ] as const;
@@ -51,7 +50,10 @@ export default function ThemeSwitcher() {
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align={locale === "en" ? "end" : "start"} className="w-48">
+            <DropdownMenuContent
+                align={locale === 'en' ? 'end' : 'start'}
+                className="w-48"
+            >
                 <DropdownMenuLabel>{t('Theme')}</DropdownMenuLabel>
 
                 <DropdownMenuSeparator />
@@ -67,10 +69,10 @@ export default function ThemeSwitcher() {
                         >
                             <Check
                                 className={cn(
-                                    "size-4",
+                                    'size-4',
                                     appearance === item.value
-                                        ? "opacity-100"
-                                        : "opacity-0"
+                                        ? 'opacity-100'
+                                        : 'opacity-0',
                                 )}
                             />
 

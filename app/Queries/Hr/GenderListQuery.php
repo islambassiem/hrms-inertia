@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Queries\Hr;
 
 use App\Domain\Shared\Enums\ReferenceType;
 use App\Domain\Shared\Models\Gender;
 use Illuminate\Database\Eloquent\Builder;
 
-class GenderListQuery
+final class GenderListQuery
 {
     /**
      * @return Builder<Gender>

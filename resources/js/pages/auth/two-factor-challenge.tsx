@@ -50,7 +50,7 @@ export default function TwoFactorChallenge() {
         setCode('');
     };
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

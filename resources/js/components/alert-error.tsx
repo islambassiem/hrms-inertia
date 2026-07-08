@@ -9,7 +9,7 @@ export default function AlertError({
     errors: string[];
     title?: string;
 }) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <Alert variant="destructive">

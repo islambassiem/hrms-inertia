@@ -5,7 +5,7 @@ import Heading from '@/components/heading';
 import { edit as editAppearance } from '@/routes/appearance';
 
 export default function Appearance() {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

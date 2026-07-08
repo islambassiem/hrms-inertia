@@ -26,6 +26,7 @@ final class DepartmentSeeder extends Seeder
                 $department->update([
                     'parent_id' => null,
                 ]);
+
                 continue;
             }
 

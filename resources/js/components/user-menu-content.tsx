@@ -25,7 +25,7 @@ export function UserMenuContent({ user }: Props) {
         router.flushAll();
     };
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

@@ -111,5 +111,9 @@
   "Position": "المنصب",
   "Nationality": "الجنسية",
   "Gender": "الجنس",
+  "Status": "الحالة",
+  "Resignation Date": "تاريخ الاستقالة",
+  "View": "عرض",
+  "Edit": "تعديل",
   "": ""
 }

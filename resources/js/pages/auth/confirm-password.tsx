@@ -8,7 +8,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/password/confirm';
 
 export default function ConfirmPassword() {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

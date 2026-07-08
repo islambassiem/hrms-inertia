@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export default function Heading({
     title,
@@ -9,7 +9,7 @@ export default function Heading({
     description?: string;
     variant?: 'default' | 'small';
 }) {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <header className={variant === 'small' ? '' : 'mb-8 space-y-0.5'}>
@@ -23,7 +23,9 @@ export default function Heading({
                 {t(title)}
             </h2>
             {description && (
-                <p className="text-sm text-muted-foreground">{t(description)}</p>
+                <p className="text-sm text-muted-foreground">
+                    {t(description)}
+                </p>
             )}
         </header>
     );

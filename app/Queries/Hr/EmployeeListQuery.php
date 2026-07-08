@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Queries\Hr;
 
+use App\Data\DateRangeData;
 use App\Data\EmploeeFilterData;
 use App\Domain\Employee\Models\Employee;
-use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Models\Department;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -21,11 +21,13 @@ final class EmployeeListQuery
             ->with($this->getWith())
             ->select($this->getFields())
             ->when($filter->search !== '',
-                fn (Builder $query) => $this->applySearchFilter($query, $filter->search ?? ''),
-                $this->applyActiveFilter(...)
+                fn (Builder $query) => $this->applySearchFilter($query, $filter->search ?? '')
+            )
+            ->when($filter->statuses,
+                fn (Builder $query) => $this->filterStatus($query, $filter->statuses ?? [])
             )
             ->when($filter->entities,
-                fn (Builder $query) => $this->filterEntity($query, $filter->entities ?? [])
+                fn (Builder $query) => $this->filterEntity($query, $filter->entities ?? []),
             )
             ->when($filter->colleges,
                 fn (Builder $query) => $this->filterCollege($query, $filter->colleges ?? [])
@@ -50,6 +52,12 @@ final class EmployeeListQuery
             )
             ->when($filter->genders,
                 fn (Builder $query) => $this->filterGender($query, $filter->genders ?? [])
+            )
+            ->when($filter->joining,
+                fn (Builder $query): Builder => $this->filterJoiningDate($query, $filter->joining)
+            )
+            ->when($filter->resignation,
+                fn (Builder $query): Builder => $this->filterResignationDate($query, $filter->resignation)
             );
     }
 
@@ -118,7 +126,7 @@ final class EmployeeListQuery
      */
     private function filterAcademicRanks(Builder $builder, array $academicRanks): void
     {
-        $builder->whereHas('organizationAttribute', function ($query) use ($academicRanks) {
+        $builder->whereHas('organizationAttribute', function ($query) use ($academicRanks): void {
             $query->whereIn('attribute_id', $academicRanks)
                 ->whereNull('end_date');
         });
@@ -130,7 +138,7 @@ final class EmployeeListQuery
      */
     private function filterPosition(Builder $builder, array $positions): void
     {
-        $builder->whereHas('organizationAttribute', function ($query) use ($positions) {
+        $builder->whereHas('organizationAttribute', function ($query) use ($positions): void {
             $query->whereIn('attribute_id', $positions)
                 ->whereNull('end_date');
         });
@@ -160,7 +168,7 @@ final class EmployeeListQuery
      */
     private function filterSponsorship(Builder $builder, array $sponsorships): void
     {
-        $builder->whereHas('organizationAttribute', function ($query) use ($sponsorships) {
+        $builder->whereHas('organizationAttribute', function ($query) use ($sponsorships): void {
             $query->whereIn('attribute_id', $sponsorships)
                 ->whereNull('end_date');
         });
@@ -177,10 +185,45 @@ final class EmployeeListQuery
 
     /**
      * @param  Builder<Employee>  $builder
+     * @param  int[]  $statuses
      */
-    private function applyActiveFilter(Builder $builder): void
+    private function filterStatus(Builder $builder, array $statuses): void
     {
-        $builder->where('is_active', true);
+        $builder->where('is_active', $statuses);
+    }
+
+    /**
+     * @param  Builder<Employee>  $builder
+     * @return Builder<Employee>
+     */
+    private function filterJoiningDate(Builder $builder, DateRangeData $joining): Builder
+    {
+        return $builder
+            ->when(
+                filled($joining->from ?? null),
+                fn (Builder $q) => $q->whereDate('joining_date', '>=', $joining->from)
+            )
+            ->when(
+                filled($joining->to ?? null),
+                fn (Builder $q) => $q->whereDate('joining_date', '<=', $joining->to)
+            );
+    }
+
+    /**
+     * @param  Builder<Employee>  $builder
+     * @return Builder<Employee>
+     */
+    private function filterResignationDate(Builder $builder, DateRangeData $resignation): Builder
+    {
+        return $builder
+            ->when(
+                filled($resignation->from ?? null),
+                fn (Builder $q) => $q->whereDate('resignation_date', '>=', $resignation->from)
+            )
+            ->when(
+                filled($resignation->to ?? null),
+                fn (Builder $q) => $q->whereDate('resignation_date', '<=', $resignation->to)
+            );
     }
 
     /**

@@ -111,5 +111,9 @@
     "Position": "Position",
     "Nationality": "Nationality",
     "Gender": "Gender",
+    "Status": "Status",
+    "Resignation Date": "Resignation Date",
+    "View": "View",
+    "Edit": "Edit",
     "": ""
 }

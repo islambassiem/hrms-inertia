@@ -18,12 +18,12 @@ final class EmployeeOrganizationAttributeSeeder extends Seeder
     {
         $attributes = Attribute::query()->get();
 
-        foreach($attributes as $attribute){
+        foreach ($attributes as $attribute) {
             EmployeeOrganizationAttribute::factory(100)->create([
                 'employee_id' => fn () => Employee::query()->inRandomOrder()->value('id'),
                 'attribute_id' => $attribute->id,
             ]);
-        };
+        }
 
     }
 }

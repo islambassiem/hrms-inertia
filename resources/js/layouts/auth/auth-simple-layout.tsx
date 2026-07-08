@@ -16,7 +16,7 @@ export default function AuthSimpleLayout({
     return (
         <div className="min-h-svh bg-background">
             {/* Top bar */}
-            <div className="border-b dark:border-b-white/50 shadow-md h-14">
+            <div className="h-14 border-b shadow-md dark:border-b-white/50">
                 <div className="mx-auto flex h-full items-center justify-end gap-2 px-4 md:max-w-7xl">
                     <ThemeSwitcher />
                     <LanguageSwitcher />
@@ -35,7 +35,9 @@ export default function AuthSimpleLayout({
                                 <div className="mb-1 flex size-12 items-center justify-center rounded-md">
                                     <AppLogoIcon />
                                 </div>
-                                <span className="sr-only">{t(title ?? '')}</span>
+                                <span className="sr-only">
+                                    {t(title ?? '')}
+                                </span>
                             </Link>
 
                             <div className="space-y-2 text-center">

@@ -52,7 +52,7 @@ export default function Security({
         prevTwoFactorEnabled.current = twoFactorEnabled;
     }, [twoFactorEnabled, clearTwoFactorAuthData]);
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>
@@ -109,7 +109,9 @@ export default function Security({
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="password">{t('New password')}</Label>
+                                <Label htmlFor="password">
+                                    {t('New password')}
+                                </Label>
 
                                 <PasswordInput
                                     id="password"
@@ -166,7 +168,9 @@ export default function Security({
                     {twoFactorEnabled ? (
                         <div className="flex flex-col items-start justify-start space-y-4">
                             <p className="text-sm text-muted-foreground">
-                                {('You will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.')}
+                                {
+                                    'You will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.'
+                                }
                             </p>
 
                             <div className="relative inline">
@@ -192,7 +196,9 @@ export default function Security({
                     ) : (
                         <div className="flex flex-col items-start justify-start space-y-4">
                             <p className="text-sm text-muted-foreground">
-                                {t('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.')}
+                                {t(
+                                    'When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.',
+                                )}
                             </p>
 
                             <div>

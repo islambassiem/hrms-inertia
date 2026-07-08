@@ -1,10 +1,10 @@
-import saFlag from "@assets/svg/sa.svg";
-import usFlag from "@assets/svg/us.svg";
-import { router, usePage } from "@inertiajs/react";
-import { Check } from "lucide-react";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
+import saFlag from '@assets/svg/sa.svg';
+import usFlag from '@assets/svg/us.svg';
+import { router, usePage } from '@inertiajs/react';
+import { Check } from 'lucide-react';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,19 +12,18 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 const languages = [
     {
-        code: "en",
-        label: "English",
+        code: 'en',
+        label: 'English',
         flag: usFlag,
     },
     {
-        code: "ar",
-        label: "العربية",
+        code: 'ar',
+        label: 'العربية',
         flag: saFlag, // or 🇦🇪 if that's a better fit for your audience
     },
 ];
@@ -39,12 +38,16 @@ export default function LanguageSwitcher() {
     const changeLanguage = (lang: string) => {
         i18n.changeLanguage(lang);
 
-        localStorage.setItem("lang", lang);
+        localStorage.setItem('lang', lang);
 
-        router.post(`/language/${lang}`, {}, {
-            preserveScroll: true,
-            preserveState: true,
-        });
+        router.post(
+            `/language/${lang}`,
+            {},
+            {
+                preserveScroll: true,
+                preserveState: true,
+            },
+        );
     };
 
     useEffect(() => {
@@ -63,14 +66,15 @@ export default function LanguageSwitcher() {
                         className="h-7 w-7 rounded-md"
                         aria-hidden
                     />
-                    <span className="sr-only">{t("Language")}</span>
+                    <span className="sr-only">{t('Language')}</span>
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align={locale === "en" ? "end" : "start"} className="w-48">
-                <DropdownMenuLabel>
-                    {t("Language")}
-                </DropdownMenuLabel>
+            <DropdownMenuContent
+                align={locale === 'en' ? 'end' : 'start'}
+                className="w-48"
+            >
+                <DropdownMenuLabel>{t('Language')}</DropdownMenuLabel>
 
                 <DropdownMenuSeparator />
 
@@ -82,8 +86,10 @@ export default function LanguageSwitcher() {
                     >
                         <Check
                             className={cn(
-                                "size-4",
-                                i18n.language === lang.code ? "opacity-100" : "opacity-0"
+                                'size-4',
+                                i18n.language === lang.code
+                                    ? 'opacity-100'
+                                    : 'opacity-0',
                             )}
                         />
 
