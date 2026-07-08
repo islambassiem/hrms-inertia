@@ -88,6 +88,7 @@ const FilterDrawer = ({
     const gendersDropDown = genders.data.map((gender) => gender.attributes);
 
     const handleFilters = () => {
+        console.log(data);
         get(index.url(), {
             preserveState: true,
             preserveScroll: true,

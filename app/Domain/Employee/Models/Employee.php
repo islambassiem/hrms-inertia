@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Models;
 
+use App\Domain\Employee\Models\EmployeeOrganizationAttribute;
 use App\Domain\Identity\Enums\IdentityEnum;
 use App\Domain\Identity\Models\Identity;
+use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
 use App\Domain\Shared\Models\Gender;
@@ -134,6 +136,14 @@ final class Employee extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return HasMany<EmployeeOrganizationAttribute, $this>
+     */
+    public function organizationAttribute(): HasMany
+    {
+        return $this->hasMany(EmployeeOrganizationAttribute::class);
     }
 
     /**

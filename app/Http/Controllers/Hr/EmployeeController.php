@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Hr;
 
+use App\Data\EmploeeFilterData;
 use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Http\Controllers\Controller;
@@ -30,11 +31,59 @@ final class EmployeeController extends Controller
      */
     public function index(Request $request): Response
     {
-        $employees = resolve(EmployeeListQuery::class)->build($request->string('search')->value())
+        logger('request', $request->toArray());
+
+        /** @var array<int>|null $entities */
+        $entities = $request->array('entities');
+
+        /** @var array<int>|null $colleges */
+        $colleges = $request->array('colleges');
+
+        /** @var array<int>|null $departments */
+        $departments = $request->array('departments');
+
+        /** @var array<int>|null $academicRanks */
+        $academicRanks = $request->array('academicRanks');
+
+        /** @var array<int>|null $positions */
+        $positions = $request->array('positions');
+
+        /** @var array<int>|null $genders */
+        $genders = $request->array('genders');
+
+        /** @var array<int>|null $categories */
+        $categories = $request->array('categories');
+
+        /** @var array<int>|null $sponsorships */
+        $sponsorships = $request->array('sponsorships');
+
+        /** @var array<int>|null $nationalities */
+        $nationalities = $request->array('nationalities');
+
+        /** @var array<int>|null $joiningDate */
+        $joiningDate = $request->array('joining');
+
+        $data = new EmploeeFilterData(
+            search: $request->string('search')->value(),
+            entities: $entities,
+            colleges: $colleges,
+            departments: $departments,
+            academicRanks: $academicRanks,
+            positions: $positions,
+            genders: $genders,
+            categories: $categories,
+            sponsorships: $sponsorships,
+            nationalities: $nationalities,
+            joiningDate: $joiningDate
+        );
+
+        $employeesQuery = resolve(EmployeeListQuery::class)->build($data);
+
+        $employees = $employeesQuery
             ->paginate()
             ->withQueryString()
             ->onEachSide(1);
-        $employeesCount = resolve(EmployeeListQuery::class)->build($request->string('search')->value())->count();
+        $employeesCount = $employeesQuery->count();
         $departments = resolve(DepartmentListQuery::class)->build(DepartmentType::DEPARTMENT)->get();
         $colleges = resolve(DepartmentListQuery::class)->build(DepartmentType::COLLEGE)->get();
         $entities = resolve(DepartmentListQuery::class)->build(DepartmentType::ENTITY)->get();

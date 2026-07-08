@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 
 #[Fillable([
@@ -38,6 +39,33 @@ final class Department extends Model
     /** @var array<string> */
     public array $translatable = ['name'];
 
+    /**
+     * @param  int[]  $departmentIds
+     * @param  int[]  $visited
+     * @return int[]
+     */
+    public static function allDescendantIds(array $departmentIds, array &$visited = []): array
+    {
+        $departmentIds = array_diff($departmentIds, $visited);
+
+        if ($departmentIds === []) {
+            return [];
+        }
+
+        /** @var int[] $visited */
+        $visited = [...$visited, ...$departmentIds];
+
+        /** @var int[] $children */
+        $children = self::query()
+            ->whereIn('parent_id', $departmentIds)
+            ->pluck('id')
+            ->all();
+
+        self::allDescendantIds($children, $visited);
+
+        return array_values(array_unique($visited));
+    }
+
     public function casts(): array
     {
         return [
@@ -45,6 +73,14 @@ final class Department extends Model
             'type' => DepartmentType::class,
             'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * @return HasMany<Department, $this>
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     protected static function newFactory(): DepartmentFactory

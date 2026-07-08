@@ -21,8 +21,18 @@ final class DepartmentSeeder extends Seeder
         ]);
         $departments = Department::all();
 
-        foreach ($departments as $department) {
-            $parent = $departments->where('id', '!=', $department->id)->random();
+        foreach ($departments as $index => $department) {
+            if ($index === 0) {
+                $department->update([
+                    'parent_id' => null,
+                ]);
+                continue;
+            }
+
+            $parent = $departments
+                ->take($index)
+                ->random();
+
             $department->update([
                 'parent_id' => $parent->id,
             ]);

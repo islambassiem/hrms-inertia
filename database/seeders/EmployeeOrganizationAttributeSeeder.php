@@ -16,9 +16,14 @@ final class EmployeeOrganizationAttributeSeeder extends Seeder
      */
     public function run(): void
     {
-        EmployeeOrganizationAttribute::factory(100)->create([
-            'employee_id' => fn () => Employee::query()->inRandomOrder()->value('id'),
-            'attribute_id' => Attribute::query()->inRandomOrder()->value('id'),
-        ]);
+        $attributes = Attribute::query()->get();
+
+        foreach($attributes as $attribute){
+            EmployeeOrganizationAttribute::factory(100)->create([
+                'employee_id' => fn () => Employee::query()->inRandomOrder()->value('id'),
+                'attribute_id' => $attribute->id,
+            ]);
+        };
+
     }
 }
