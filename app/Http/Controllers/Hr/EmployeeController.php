@@ -7,13 +7,13 @@ namespace App\Http\Controllers\Hr;
 use App\Data\EmploeeFilterData;
 use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Enums\DepartmentType;
+use App\Domain\Shared\Queries\CountriesListQuery;
+use App\Domain\Shared\Queries\MaritalStatusListQuery;
+use App\Domain\Shared\Queries\ReligionListQuery;
+use App\Domain\Shared\Queries\SpecialNeedsListQuery;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Hr\CategoryListResource;
-use App\Http\Resources\Hr\DepartmentListResource;
 use App\Http\Resources\Hr\EmployeeListResource;
-use App\Http\Resources\Hr\EmployeeNationalityListResource;
-use App\Http\Resources\Hr\GenderListResource;
-use App\Http\Resources\Hr\OrganizationAttributeListResource;
+use App\Http\Resources\ListResource;
 use App\Queries\Hr\CategoryListQuery;
 use App\Queries\Hr\DepartmentListQuery;
 use App\Queries\Hr\EmployeeListQuery;
@@ -49,15 +49,15 @@ final class EmployeeController extends Controller
         return Inertia::render('hr/employees/index', [
             'employees' => EmployeeListResource::collection($employees),
             'employeesCount' => $employeesCount,
-            'departments' => DepartmentListResource::collection($departments),
-            'colleges' => DepartmentListResource::collection($colleges),
-            'entities' => DepartmentListResource::collection($entities),
-            'categories' => CategoryListResource::collection($categories),
-            'academicRanks' => OrganizationAttributeListResource::collection($academicRanks),
-            'sponsorships' => OrganizationAttributeListResource::collection($sponsorships),
-            'positions' => OrganizationAttributeListResource::collection($positions),
-            'nationalities' => EmployeeNationalityListResource::collection($nationalities),
-            'genders' => GenderListResource::collection($genders),
+            'departments' => ListResource::collection($departments),
+            'colleges' => ListResource::collection($colleges),
+            'entities' => ListResource::collection($entities),
+            'categories' => ListResource::collection($categories),
+            'academicRanks' => ListResource::collection($academicRanks),
+            'sponsorships' => ListResource::collection($sponsorships),
+            'positions' => ListResource::collection($positions),
+            'nationalities' => ListResource::collection($nationalities),
+            'genders' => ListResource::collection($genders),
             'filters' => $data,
         ]);
     }
@@ -65,9 +65,25 @@ final class EmployeeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): void
+    public function create(): Response
     {
-        //
+        $departments = resolve(DepartmentListQuery::class)->build(DepartmentType::DEPARTMENT)->get();
+        $categories = resolve(CategoryListQuery::class)->build()->get();
+        $countries = resolve(CountriesListQuery::class)->build()->get();
+        $genders = resolve(GenderListQuery::class)->build()->get();
+        $religions = resolve(ReligionListQuery::class)->build()->get();
+        $maritalStatuses = resolve(MaritalStatusListQuery::class)->build()->get();
+        $specialNeeds = resolve(SpecialNeedsListQuery::class)->build()->get();
+
+        return Inertia::render('hr/employees/create', [
+            'departments' => ListResource::collection($departments),
+            'categories' => ListResource::collection($categories),
+            'countries' => ListResource::collection($countries),
+            'genders' => ListResource::collection($genders),
+            'religions' => ListResource::collection($religions),
+            'maritalStatuses' => ListResource::collection($maritalStatuses),
+            'specialNeeds' => ListResource::collection($specialNeeds),
+        ]);
     }
 
     /**

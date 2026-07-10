@@ -77,6 +77,7 @@ const FilterDrawer = ({
     positions,
     nationalities,
     genders,
+    statuses,
 }: FilterDrawerProps) => {
     const { t } = useTranslation();
     const { locale } = usePage().props;
@@ -121,16 +122,7 @@ const FilterDrawer = ({
         (nationality) => nationality.attributes,
     );
     const gendersDropDown = genders.data.map((gender) => gender.attributes);
-    const statusesDropDown = [
-        {
-            name: t('Active'),
-            id: 1,
-        },
-        {
-            name: t('Inactive'),
-            id: 0,
-        },
-    ];
+    const statusesDropDown = statuses.data.map((status) => status.attributes);
 
     const handleFilters = () => {
         get(index.url(), {

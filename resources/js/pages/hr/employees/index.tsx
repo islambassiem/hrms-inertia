@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import Pagination from '@/components/ui/Pagination';
 import { useDebounce } from '@/hooks/useDebounce';
-import { index } from '@/routes/hr/employees';
+import { index, create } from '@/routes/hr/employees';
 import type { Resource } from '@/types';
 import type { ResourceList, EmployeeList } from '@/types/hr';
 
@@ -99,6 +99,27 @@ const Index = ({
         );
     };
 
+    const statuses = {
+        data: [
+            {
+                id: '1',
+                type: 'stasuses',
+                attributes: {
+                    id: 1,
+                    name: t('Active'),
+                },
+            },
+            {
+                id: '2',
+                type: 'stasuses',
+                attributes: {
+                    id: 0,
+                    name: t('Inactive'),
+                },
+            },
+        ],
+    };
+
     return (
         <div>
             <div className="relative mx-3 mt-10 max-w-2xs">
@@ -139,9 +160,10 @@ const Index = ({
                             positions={positions}
                             nationalities={nationalities}
                             genders={genders}
+                            statuses={statuses}
                         />
                         <Button asChild>
-                            <Link href="/employees/add">
+                            <Link href={create.url()}>
                                 <Plus className="mr-2 h-4 w-4" />
                                 {t('Add Employee')}
                             </Link>

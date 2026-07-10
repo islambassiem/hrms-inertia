@@ -32,6 +32,7 @@ export default defineConfig({
         alias: {
             '@lang': '/lang',
             '@assets': '/public',
+            '@contexts': '/resources/js/contexts',
         }
     }
 });
