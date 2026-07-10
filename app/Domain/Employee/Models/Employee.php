@@ -65,6 +65,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Identity|null $nationalId
  * @property string[] $extentions
  * @property Identity|null $passport
+ * @property Salary $currentSalary
  */
 #[Table('employees')]
 final class Employee extends Model
@@ -177,6 +178,47 @@ final class Employee extends Model
     public function extentions(): HasMany
     {
         return $this->hasMany(EmployeeExtention::class);
+    }
+
+    /**
+     * @return HasMany<Salary, $this>
+     */
+    public function salaries(): HasMany
+    {
+        return $this->hasMany(Salary::class);
+    }
+
+    /**
+     * @return HasOne<Salary, $this>
+     */
+    public function currentSalary(): HasOne
+    {
+        return $this->hasOne(Salary::class)
+            ->whereNull('effective_to');
+    }
+
+    /**
+     * @return HasMany<Allowance, $this>
+     */
+    public function allowances(): HasMany
+    {
+        return $this->hasMany(Allowance::class);
+    }
+
+    /**
+     * @return HasMany<Allowance, $this>
+     */
+    public function currentAllowances(): HasMany
+    {
+        return $this->hasMany(Allowance::class)
+            ->whereNull('effective_to');
+    }
+
+    public function currentAllowanceAmount(AllowanceType $type): ?Allowance
+    {
+        return $this->currentAllowances()
+            ->where('allowance_type_id', $type->id)
+            ->first();
     }
 
     protected static function newFactory(): EmployeeFactory
