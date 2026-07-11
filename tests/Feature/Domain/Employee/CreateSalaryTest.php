@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Date;
 use App\Domain\Employee\Actions\CreateSalaryAction;
 use App\Domain\Employee\Data\SalaryData;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Employee\Models\Salary;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Validation\ValidationException;
 
 use function Pest\Laravel\assertDatabaseHas;

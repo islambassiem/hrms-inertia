@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Date;
 use App\Domain\Employee\Actions\CreateAllowanceAction;
 use App\Domain\Employee\Data\AllowanceData;
 use App\Domain\Employee\Models\Allowance;
 use App\Domain\Employee\Models\AllowanceType;
 use App\Domain\Employee\Models\Employee;
+use Illuminate\Support\Facades\Date;
 
 use function Pest\Laravel\assertDatabaseHas;
 

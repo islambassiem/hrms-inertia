@@ -102,23 +102,16 @@ const Index = ({
     const statuses = {
         data: [
             {
-                id: '1',
-                type: 'stasuses',
-                attributes: {
-                    id: 1,
-                    name: t('Active'),
-                },
+                id: 1,
+                name: t('Active'),
             },
             {
-                id: '2',
-                type: 'stasuses',
-                attributes: {
-                    id: 0,
-                    name: t('Inactive'),
-                },
+                id: 0,
+                name: t('Inactive'),
             },
         ],
     };
+    console.log(employees);
 
     return (
         <div>

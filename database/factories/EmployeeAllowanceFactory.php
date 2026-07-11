@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use Illuminate\Support\Facades\Date;
 use App\Domain\Employee\Models\Allowance;
 use App\Domain\Employee\Models\AllowanceType;
 use App\Domain\Employee\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Date;
 
 /**
  * @extends Factory<Allowance>

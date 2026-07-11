@@ -26,6 +26,10 @@ use Spatie\Translatable\HasTranslations;
     'updated_by',
 ])]
 #[Table('organization_departments')]
+/**
+ * @property int $id
+ * @property TranslatedNameData $name
+ */
 final class Department extends Model
 {
     /** @use HasFactory<DepartmentFactory> */

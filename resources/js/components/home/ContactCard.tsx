@@ -1,4 +1,3 @@
-import { usePage } from '@inertiajs/react';
 import { Mail, PhoneForwarded } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
@@ -9,10 +8,6 @@ import { Badge } from '../ui/badge';
 import { Card, CardContent } from '../ui/card';
 
 function ContactCard({ employee }: { employee: Employee }) {
-    const { auth } = usePage().props;
-
-    console.log(auth);
-
     return (
         <Card
             className={cn(

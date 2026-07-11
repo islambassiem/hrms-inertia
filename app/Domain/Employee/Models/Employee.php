@@ -6,6 +6,7 @@ namespace App\Domain\Employee\Models;
 
 use App\Domain\Identity\Enums\IdentityEnum;
 use App\Domain\Identity\Models\Identity;
+use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Models\Department;
 use App\Domain\Shared\Models\Country;
 use App\Domain\Shared\Models\Gender;
@@ -59,6 +60,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @property int $id
  * @property int $head_id
+ * @property Employee $head
  * @property string $full_name
  * @property string $full_name_en
  * @property string $full_name_ar
@@ -66,6 +68,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string[] $extentions
  * @property Identity|null $passport
  * @property Salary $currentSalary
+ * @property EmployeeOrganizationAttribute $position
+ * @property EmployeeOrganizationAttribute $jobTitle
+ * @property-read Department|null $department
  */
 #[Table('employees')]
 final class Employee extends Model
@@ -219,6 +224,25 @@ final class Employee extends Model
         return $this->currentAllowances()
             ->where('allowance_type_id', $type->id)
             ->first();
+    }
+
+    /**
+     * @return HasOne<EmployeeOrganizationAttribute, $this>
+     */
+    public function position(): HasOne
+    {
+        return $this->hasOne(EmployeeOrganizationAttribute::class)
+            ->where('attribute_id', AttributeType::POSITION);
+    }
+
+    /**
+     * @return HasOne<EmployeeOrganizationAttribute, $this>
+     */
+    public function jobTitle(): HasOne
+    {
+        return $this->hasOne(EmployeeOrganizationAttribute::class)
+            ->whereNull('end_date')
+            ->where('type_id', AttributeType::JOB_TITLE);
     }
 
     protected static function newFactory(): EmployeeFactory

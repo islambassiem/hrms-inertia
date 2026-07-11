@@ -51,7 +51,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                 </div>
 
                 {/* Name */}
-                <div className="mt-4 flex-1 text-center">
+                <div className="mt-4 text-center">
                     <EmployeeName
                         name_en={employee.name_en}
                         name_ar={employee.name_ar}

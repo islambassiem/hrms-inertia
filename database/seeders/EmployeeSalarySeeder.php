@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\Date;
 use App\Domain\Employee\Models\Employee;
 use App\Domain\Employee\Models\Salary;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Date;
 
 final class EmployeeSalarySeeder extends Seeder
 {

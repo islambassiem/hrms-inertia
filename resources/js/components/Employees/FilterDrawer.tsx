@@ -101,28 +101,28 @@ const FilterDrawer = ({
     const { data, setData, get, transform } =
         useForm<EmployeeFilters>(initialData);
 
-    const departmentDropDown = departments.data.map(
-        (department) => department.attributes,
-    );
-    const collegeDropDown = colleges.data.map((college) => college.attributes);
-    const entityDropDown = entities.data.map((entity) => entity.attributes);
-    const categoryDropDown = categories.data.map(
-        (category) => category.attributes,
-    );
-    const academicRankDropDown = academicRanks.data.map(
-        (academicRank) => academicRank.attributes,
-    );
-    const sponsorshipDropDown = sponsorships.data.map(
-        (sponsorship) => sponsorship.attributes,
-    );
-    const positionDropDown = positions.data.map(
-        (position) => position.attributes,
-    );
-    const nationalityDropDown = nationalities.data.map(
-        (nationality) => nationality.attributes,
-    );
-    const gendersDropDown = genders.data.map((gender) => gender.attributes);
-    const statusesDropDown = statuses.data.map((status) => status.attributes);
+    // const departmentDropDown = departments.data.map(
+    //     (department) => department.attributes,
+    // );
+    // const collegeDropDown = colleges.data.map((college) => college.attributes);
+    // const entityDropDown = entities.data.map((entity) => entity.attributes);
+    // const categoryDropDown = categories.data.map(
+    //     (category) => category.attributes,
+    // );
+    // const academicRankDropDown = academicRanks.data.map(
+    //     (academicRank) => academicRank.attributes,
+    // );
+    // const sponsorshipDropDown = sponsorships.data.map(
+    //     (sponsorship) => sponsorship.attributes,
+    // );
+    // const positionDropDown = positions.data.map(
+    //     (position) => position.attributes,
+    // );
+    // const nationalityDropDown = nationalities.data.map(
+    //     (nationality) => nationality.attributes,
+    // );
+    // const gendersDropDown = genders.data.map((gender) => gender.attributes);
+    // const statusesDropDown = statuses.data.map((status) => status.attributes);
 
     const handleFilters = () => {
         get(index.url(), {
@@ -201,7 +201,7 @@ const FilterDrawer = ({
                     <div className="mx-4 mt-6 flex-1 space-y-5">
                         <MultiSelect
                             showSelectAll
-                            options={entityDropDown}
+                            options={entities}
                             value={data.entities}
                             onValueChange={(v) => setData('entities', v)}
                         >
@@ -211,7 +211,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={collegeDropDown}
+                            options={colleges}
                             value={data.colleges}
                             onValueChange={(v) => setData('colleges', v)}
                         >
@@ -221,7 +221,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={departmentDropDown}
+                            options={departments}
                             value={data.departments}
                             onValueChange={(v) => setData('departments', v)}
                         >
@@ -231,7 +231,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={categoryDropDown}
+                            options={categories}
                             value={data.categories}
                             onValueChange={(v) => setData('categories', v)}
                         >
@@ -241,7 +241,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={academicRankDropDown}
+                            options={academicRanks}
                             value={data.academicRanks}
                             onValueChange={(v) => setData('academicRanks', v)}
                         >
@@ -251,7 +251,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={sponsorshipDropDown}
+                            options={sponsorships}
                             value={data.sponsorships}
                             onValueChange={(v) => setData('sponsorships', v)}
                         >
@@ -261,7 +261,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={positionDropDown}
+                            options={positions}
                             value={data.positions}
                             onValueChange={(v) => setData('positions', v)}
                         >
@@ -271,7 +271,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={nationalityDropDown}
+                            options={nationalities}
                             value={data.nationalities}
                             onValueChange={(v) => setData('nationalities', v)}
                         >
@@ -281,7 +281,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={gendersDropDown}
+                            options={genders}
                             value={data.genders}
                             onValueChange={(v) => setData('genders', v)}
                         >
@@ -291,7 +291,7 @@ const FilterDrawer = ({
 
                         <MultiSelect
                             showSelectAll
-                            options={statusesDropDown}
+                            options={statuses}
                             value={data.statuses}
                             onValueChange={(v) => setData('statuses', v)}
                         >

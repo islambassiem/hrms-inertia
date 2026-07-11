@@ -15,14 +15,12 @@ import {
 } from "@/components/ui/command"
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import type { ResourceList } from "@/types/hr";
 
 
 interface MultiSelectProps {
     children?: React.ReactNode;
-    options: {
-        id: number;
-        name: string;
-    }[];
+    options: ResourceList;
     showSelectAll: boolean,
     value: number[];
     onValueChange: (value: number[]) => void;
@@ -39,17 +37,18 @@ export function MultiSelect({
     const [open, setOpen] = useState(false)
     const { t } = useTranslation();
 
-    const allSelected =
-        options.length > 0 &&
-        value.length === options.length;
 
-    const selected = options.filter((o) => value.includes(o.id));
+    const allSelected =
+        options.data.length > 0 &&
+        value.length === options.data.length;
+
+    const selected = options.data.filter((o) => value.includes(o.id));
 
     const toggleAll = () => {
         if (allSelected) {
             onValueChange([]);
         } else {
-            onValueChange(options.map((o) => o.id));
+            onValueChange(options.data.map((o) => o.id));
         }
     };
 
@@ -106,7 +105,7 @@ export function MultiSelect({
                             )}
                         </CommandGroup>
 
-                        {options.map((option) => (
+                        {options.data.map((option) => (
                             <CommandItem
                                 key={option.id}
                                 onSelect={() => toggle(option.id)}

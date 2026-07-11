@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Hr;
 
 use App\Data\EmploeeFilterData;
+use App\Domain\Employee\Models\Employee;
 use App\Domain\Organization\Enums\AttributeType;
 use App\Domain\Organization\Enums\DepartmentType;
 use App\Domain\Shared\Queries\CountriesListQuery;
@@ -12,8 +13,16 @@ use App\Domain\Shared\Queries\MaritalStatusListQuery;
 use App\Domain\Shared\Queries\ReligionListQuery;
 use App\Domain\Shared\Queries\SpecialNeedsListQuery;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hr\CategoryListResource;
+use App\Http\Resources\Hr\CountryListResource;
+use App\Http\Resources\Hr\DepartmentListResource;
 use App\Http\Resources\Hr\EmployeeListResource;
-use App\Http\Resources\ListResource;
+use App\Http\Resources\Hr\EmployeeProfileResource;
+use App\Http\Resources\Hr\GenderListResource;
+use App\Http\Resources\Hr\MaritalStatusListResource;
+use App\Http\Resources\Hr\OrganizationAttributeListResource;
+use App\Http\Resources\Hr\ReligionListResource;
+use App\Http\Resources\Hr\SpecialNeedsListResource;
 use App\Queries\Hr\CategoryListQuery;
 use App\Queries\Hr\DepartmentListQuery;
 use App\Queries\Hr\EmployeeListQuery;
@@ -49,15 +58,15 @@ final class EmployeeController extends Controller
         return Inertia::render('hr/employees/index', [
             'employees' => EmployeeListResource::collection($employees),
             'employeesCount' => $employeesCount,
-            'departments' => ListResource::collection($departments),
-            'colleges' => ListResource::collection($colleges),
-            'entities' => ListResource::collection($entities),
-            'categories' => ListResource::collection($categories),
-            'academicRanks' => ListResource::collection($academicRanks),
-            'sponsorships' => ListResource::collection($sponsorships),
-            'positions' => ListResource::collection($positions),
-            'nationalities' => ListResource::collection($nationalities),
-            'genders' => ListResource::collection($genders),
+            'departments' => DepartmentListResource::collection($departments),
+            'colleges' => DepartmentListResource::collection($colleges),
+            'entities' => DepartmentListResource::collection($entities),
+            'categories' => CategoryListResource::collection($categories),
+            'academicRanks' => OrganizationAttributeListResource::collection($academicRanks),
+            'sponsorships' => OrganizationAttributeListResource::collection($sponsorships),
+            'positions' => OrganizationAttributeListResource::collection($positions),
+            'nationalities' => CountryListResource::collection($nationalities),
+            'genders' => GenderListResource::collection($genders),
             'filters' => $data,
         ]);
     }
@@ -76,13 +85,13 @@ final class EmployeeController extends Controller
         $specialNeeds = resolve(SpecialNeedsListQuery::class)->build()->get();
 
         return Inertia::render('hr/employees/create', [
-            'departments' => ListResource::collection($departments),
-            'categories' => ListResource::collection($categories),
-            'countries' => ListResource::collection($countries),
-            'genders' => ListResource::collection($genders),
-            'religions' => ListResource::collection($religions),
-            'maritalStatuses' => ListResource::collection($maritalStatuses),
-            'specialNeeds' => ListResource::collection($specialNeeds),
+            'departments' => DepartmentListResource::collection($departments),
+            'categories' => CategoryListResource::collection($categories),
+            'countries' => CountryListResource::collection($countries),
+            'genders' => GenderListResource::collection($genders),
+            'religions' => ReligionListResource::collection($religions),
+            'maritalStatuses' => MaritalStatusListResource::collection($maritalStatuses),
+            'specialNeeds' => SpecialNeedsListResource::collection($specialNeeds),
         ]);
     }
 
@@ -97,9 +106,11 @@ final class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): void
+    public function show(Employee $employee, Request $request): Response
     {
-        //
+        return Inertia::render('hr/employees/show/Index', [
+            'employee' => EmployeeProfileResource::make($employee),
+        ]);
     }
 
     /**

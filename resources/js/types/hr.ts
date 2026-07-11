@@ -16,11 +16,7 @@ export interface EmployeeList {
 
 export interface ResourceList {
     data: {
-        id: string;
-        type: string;
-        attributes: {
-            id: number;
-            name: string;
-        };
+        id: number;
+        name: string;
     }[];
 }
