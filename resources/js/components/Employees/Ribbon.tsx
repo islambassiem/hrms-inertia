@@ -9,10 +9,12 @@ export default function Ribbon({ label, variant = 'active' }: RibbonProps) {
     return (
         <div
             className={cn(
-                'absolute top-0 left-0 z-10 px-3 py-1 text-xs font-medium text-white',
-                'rounded-br-md',
-                variant === 'active' && 'bg-green-600',
-                variant === 'inactive' && 'bg-red-600',
+                'absolute -left-10 top-4 w-32 -rotate-45 bg-green-600 py-1 text-center text-xs font-bold text-white shadow',
+                'before:border-r-transparent',
+                variant === 'active' &&
+                'bg-green-600 before:border-t-green-800',
+                variant === 'inactive' &&
+                'bg-red-600 before:border-t-red-800',
             )}
         >
             {label}

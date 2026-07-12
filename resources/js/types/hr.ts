@@ -1,5 +1,5 @@
 export interface EmployeeList {
-    id: string;
+    id: number;
     employee_code: string;
     name_en: string;
     name_ar: string;

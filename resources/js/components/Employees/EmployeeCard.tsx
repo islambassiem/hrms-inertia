@@ -1,17 +1,12 @@
-import { Mail, Phone, MoreVertical, PhoneForwarded } from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import { Mail, Phone, PhoneForwarded, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-} from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { show } from '@/routes/hr/employees';
 import type { EmployeeList } from '@/types/hr';
 import { Badge } from '../ui/badge';
 import EmployeeName from './EmployeeName';
@@ -24,17 +19,35 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
     return (
         <Card
             className={cn(
-                'relative flex h-full flex-col gap-0 overflow-hidden pb-4 transition hover:shadow-lg',
-                !isActive && 'bg-muted/30 opacity-80',
+                'relative flex h-full flex-col overflow-hidden pb-4 transition',
+                isActive
+                    ? 'hover:shadow-lg'
+                    : 'border-red-300 border-s-4 border-s-red-600 bg-red-50/50 dark:border-red-900 dark:border-s-red-500 dark:bg-red-950/20',
             )}
         >
-            {/* Ribbon */}
+            {/* Status Ribbon */}
             <Ribbon
                 label={isActive ? t('Active') : t('Inactive')}
                 variant={isActive ? 'active' : 'inactive'}
             />
 
-            <CardContent className="flex flex-1 flex-col p-6">
+            {/* Watermark */}
+            {!isActive && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                    <span className="rotate-[-30deg] select-none text-3xl rtl:text-6xl font-black tracking-[0.4em] text-red-500/10 uppercase">
+                        {t('Inactive')}
+                    </span>
+                </div>
+            )}
+
+            <CardContent className="relative z-10 flex flex-1 flex-col p-6">
+                {/* View Button */}
+                <div className="absolute top-4 right-4">
+                    <Link href={show(employee.id)}>
+                        <Eye className="size-6 hover:text-muted-foreground" />
+                    </Link>
+                </div>
+
                 {/* Avatar */}
                 <div className="flex justify-center">
                     <Avatar
@@ -43,15 +56,20 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                             !isActive && 'grayscale',
                         )}
                     >
-                        <AvatarImage src={`https://picsum.photos/200/300`} />
+                        <AvatarImage src="https://picsum.photos/200/300" />
                         <AvatarFallback>
                             {employee.name_en?.slice(0, 2)}
                         </AvatarFallback>
                     </Avatar>
                 </div>
 
-                {/* Name */}
-                <div className="mt-4 text-center">
+                {/* Identity */}
+                <div
+                    className={cn(
+                        'mt-4 text-center',
+                        !isActive && 'text-muted-foreground line-through',
+                    )}
+                >
                     <EmployeeName
                         name_en={employee.name_en}
                         name_ar={employee.name_ar}
@@ -64,21 +82,6 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                     <p className="mt-1 text-xs text-muted-foreground">
                         {employee.national_id}
                     </p>
-                </div>
-
-                <div className="absolute top-4 right-4">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                                <MoreVertical className="h-4 w-4" />
-                            </Button>
-                        </DropdownMenuTrigger>
-
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem>{t('View')}</DropdownMenuItem>
-                            <DropdownMenuItem>{t('Edit')}</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
                 </div>
 
                 <Separator className="my-5" />
@@ -97,7 +100,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
 
                     {employee.extentions.length > 0 && (
                         <div className="flex flex-wrap items-center gap-1.5">
-                            <PhoneForwarded className="h-3.5 w-3.5" />
+                            <PhoneForwarded className="h-3.5 w-3.5 text-muted-foreground" />
                             {employee.extentions.map((ext, index) => (
                                 <Badge
                                     key={index}
@@ -112,13 +115,18 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                 </div>
             </CardContent>
 
-            <CardFooter className="flex justify-between border-t px-6 pt-2">
-                <div>
-                    {isActive ? t('Joining Date') : t('Resignation Date')}
-                </div>
-                <div>
-                    {isActive ? employee.joining_date : employee.leaving_date}
-                </div>
+            <CardFooter className="relative z-10 flex justify-between border-t px-6 pt-3">
+                <span className="text-muted-foreground">
+                    {isActive
+                        ? t('Joining Date')
+                        : t('Resignation Date')}
+                </span>
+
+                <span className="font-medium">
+                    {isActive
+                        ? employee.joining_date
+                        : employee.leaving_date}
+                </span>
             </CardFooter>
         </Card>
     );

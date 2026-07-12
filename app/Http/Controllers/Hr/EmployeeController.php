@@ -106,11 +106,9 @@ final class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee, Request $request): Response
+    public function show(Employee $employee): Response
     {
-        return Inertia::render('hr/employees/show/Index', [
-            'employee' => EmployeeProfileResource::make($employee),
-        ]);
+        dd($employee);
     }
 
     /**

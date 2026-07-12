@@ -14,6 +14,6 @@ Route::prefix('hr')
             ->name('dashboard');
 
         Route::resource('employees', EmployeeController::class)
-            ->only(['index', 'create', 'store', 'edit', 'update'])
+            ->only(['index', 'create', 'store', 'show', 'update'])
             ->names('employees');
     });
