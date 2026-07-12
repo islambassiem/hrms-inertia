@@ -11,71 +11,76 @@ import {
     Clock3,
     NotebookPen,
 } from "lucide-react";
+import { show as overview} from "@/actions/App/Http/Controllers/Hr/EmployeeController";
+import { show as personal} from "@/actions/App/Http/Controllers/Hr/PersonalInfoController";
 import { useCurrentUrl } from "@/hooks/use-current-url";
+import type { EmployeeHeaderProps } from "@/types/hr";
 
 
-const items = [
-    {
-        title: "Overview",
-        icon: LayoutDashboard,
-        route: "employees.show",
-    },
-    {
-        title: "Personal",
-        icon: User,
-        route: "employees.personal",
-    },
-    {
-        title: "Employment",
-        icon: BriefcaseBusiness,
-        route: "employees.employment",
-    },
-    {
-        title: "Qualifications",
-        icon: GraduationCap,
-        route: "employees.qualifications",
-    },
-    {
-        title: "Experience",
-        icon: Building2,
-        route: "employees.experience",
-    },
-    {
-        title: "Documents",
-        icon: FolderClosed,
-        route: "employees.documents",
-    },
-    {
-        title: "Payroll",
-        icon: Wallet,
-        route: "employees.payroll",
-    },
-    {
-        title: "Attendance",
-        icon: Clock3,
-        route: "employees.attendance",
-    },
-    {
-        title: "Notes",
-        icon: NotebookPen,
-        route: "employees.notes",
-    },
-];
 
-export default function EmployeeNavigation() {
+export default function EmployeeNavigation({ employee }: { employee: EmployeeHeaderProps }) {
     const { isCurrentOrParentUrl } = useCurrentUrl();
+
+    const items = [
+        {
+            title: "Overview",
+            icon: LayoutDashboard,
+            route: overview(employee.data.id),
+        },
+        {
+            title: "Personal",
+            icon: User,
+            route: personal(employee.data.id),
+        },
+        {
+            title: "Employment",
+            icon: BriefcaseBusiness,
+            route: "employees.employment",
+        },
+        {
+            title: "Qualifications",
+            icon: GraduationCap,
+            route: "employees.qualifications",
+        },
+        {
+            title: "Experience",
+            icon: Building2,
+            route: "employees.experience",
+        },
+        {
+            title: "Documents",
+            icon: FolderClosed,
+            route: "employees.documents",
+        },
+        {
+            title: "Payroll",
+            icon: Wallet,
+            route: "employees.payroll",
+        },
+        {
+            title: "Attendance",
+            icon: Clock3,
+            route: "employees.attendance",
+        },
+        {
+            title: "Notes",
+            icon: NotebookPen,
+            route: "employees.notes",
+        },
+    ];
+    console.log(employee);
 
     return (
         <div className="overflow-x-auto">
             <nav className="flex min-w-max gap-2">
-                {items.map((item) => {
+                {items.map((item, index) => {
                     const Icon = item.icon;
                     const active = isCurrentOrParentUrl(item.route);
 
                     return (
                         <Link
-                            key={item.route}
-                            href={`link`}
+                            key={index}
+                            href={item.route}
                             className={clsx(
                                 "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap",
                                 active

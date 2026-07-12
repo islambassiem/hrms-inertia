@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Hr\EmployeeController;
 use App\Http\Controllers\Hr\HomeController;
+use App\Http\Controllers\Hr\PersonalInfoController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::prefix('hr')
     ->middleware(['auth', 'verified', 'hr'])
@@ -16,4 +18,7 @@ Route::prefix('hr')
         Route::resource('employees', EmployeeController::class)
             ->only(['index', 'create', 'store', 'show', 'update'])
             ->names('employees');
+
+        Route::get('employees/personal/{employee}', [PersonalInfoController::class, 'show'])
+            ->name('employee.show.personal');
     });

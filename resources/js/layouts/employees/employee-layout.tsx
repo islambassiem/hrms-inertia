@@ -16,7 +16,7 @@ export default function EmployeeLayout({
     return (
         <div className="space-y-6">
             <EmployeeHeader employee={employee} />
-            <EmployeeNavigation />
+            <EmployeeNavigation employee={employee}/>
             <main className="rounded-xl border bg-background p-6">
                 {children}
             </main>

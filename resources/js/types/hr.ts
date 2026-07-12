@@ -23,6 +23,7 @@ export interface ResourceList {
 
 export interface EmployeeHeaderProps {
     data: {
+        id: number;
         employee_code: string;
         full_name: string;
         full_name_en: string;

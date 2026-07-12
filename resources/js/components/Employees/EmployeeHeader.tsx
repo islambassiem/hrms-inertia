@@ -5,11 +5,11 @@ import { Separator } from "@/components/ui/separator";
 import type { EmployeeHeaderProps } from "@/types/hr";
 
 export default function EmployeeHeader({
-    employee,
-}: {
-    employee: EmployeeHeaderProps;
+    employee
+} : {
+    employee: EmployeeHeaderProps
 }) {
-    console.log(employee);
+
 
     return (
         <div className="rounded-xl border bg-card text-card-foreground shadow-sm mt-4">
@@ -54,51 +54,6 @@ export default function EmployeeHeader({
             </div>
 
             <Separator />
-
-            {/* <div className="grid gap-4 p-6 md:grid-cols-2 xl:grid-cols-4">
-                <InfoItem
-                    icon={<Building2 className="h-4 w-4" />}
-                    title="Department"
-                    value={employee.data.department}
-                />
-                <InfoItem
-                    icon={<MapPin className="h-4 w-4" />}
-                    title="Branch"
-                    value={'employee.branch'}
-                />
-                <InfoItem
-                    icon={<BriefcaseBusiness className="h-4 w-4" />}
-                    title="Employment"
-                    value={'employee.employment_type'}
-                />
-                <InfoItem
-                    icon={<CalendarDays className="h-4 w-4" />}
-                    title="Hire Date"
-                    value={employee.data.joining_date}
-                />
-            </div> */}
         </div>
     );
 }
-
-// function InfoItem({
-//     icon,
-//     title,
-//     value,
-// }: any) {
-//     return (
-//         <div className="flex items-center gap-3 rounded-lg border p-4">
-//             <div className="text-muted-foreground">
-//                 {icon}
-//             </div>
-//             <div>
-//                 <p className="text-xs text-muted-foreground">
-//                     {title}
-//                 </p>
-//                 <p className="font-medium">
-//                     {value}
-//                 </p>
-//             </div>
-//         </div>
-//     );
-// }
