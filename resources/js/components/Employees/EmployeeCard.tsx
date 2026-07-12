@@ -56,7 +56,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                             !isActive && 'grayscale',
                         )}
                     >
-                        <AvatarImage src="https://picsum.photos/200/300" />
+                        <AvatarImage src={employee.image} />
                         <AvatarFallback>
                             {employee.name_en?.slice(0, 2)}
                         </AvatarFallback>

@@ -43,6 +43,7 @@ final class ContactsQuery
                 'employees.full_name_ar',
                 'employees.employee_code',
                 'employees.image',
+                'employees.gender_id',
                 'user_id',
                 'employees.id',
                 'phone',

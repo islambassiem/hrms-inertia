@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Hr;
 
+use App\Actions\GetProfileImageAction;
 use App\Domain\Employee\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -18,6 +19,9 @@ final class EmployeeProfileResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        /** @var Employee $employee */
+        $employee = $this->resource;
+        $image = resolve(GetProfileImageAction::class)->handle($employee);
 
         return [
             'id' => $this->id,
@@ -25,7 +29,7 @@ final class EmployeeProfileResource extends JsonResource
             'full_name_en' => $this->full_name_en,
             'full_name_ar' => $this->full_name_ar,
             'full_name' => $this->full_name,
-            'image' => $this->image,
+            'image' => asset($image),
             'is_active' => $this->is_active,
             'joining_date' => $this->joining_date,
             'date_of_birth' => $this->date_of_birth,

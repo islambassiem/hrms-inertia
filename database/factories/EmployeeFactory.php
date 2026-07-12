@@ -13,7 +13,6 @@ use App\Domain\Shared\Models\ReferenceValue;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Http\UploadedFile;
 
 /**
  * @extends Factory<Employee>
@@ -55,9 +54,6 @@ final class EmployeeFactory extends Factory
 
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->numerify('5########'),
-            'image' => $this->faker->optional(0.5)->passthrough(
-                UploadedFile::fake()->image('avatar.jpg')
-            ),
 
             'date_of_birth' => fake()->date(),
             'joining_date' => fake()->date(),

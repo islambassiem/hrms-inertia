@@ -8,6 +8,8 @@ import { Badge } from '../ui/badge';
 import { Card, CardContent } from '../ui/card';
 
 function ContactCard({ employee }: { employee: Employee }) {
+    console.log(employee);
+
     return (
         <Card
             className={cn(
@@ -22,7 +24,7 @@ function ContactCard({ employee }: { employee: Employee }) {
                             'h-24 w-24 shadow-md ring-4 ring-background',
                         )}
                     >
-                        <AvatarImage src={`https://picsum.photos/200/300`} />
+                        <AvatarImage src={employee.image} />
                         <AvatarFallback></AvatarFallback>
                     </Avatar>
                 </div>

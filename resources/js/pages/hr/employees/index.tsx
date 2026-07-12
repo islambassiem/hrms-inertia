@@ -111,7 +111,6 @@ const Index = ({
             },
         ],
     };
-    console.log(employees);
 
     return (
         <div>

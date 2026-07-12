@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Actions\GetProfileImageAction;
 use App\Domain\Employee\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
@@ -20,13 +21,17 @@ final class ContactResource extends JsonApiResource
      */
     public function toAttributes(Request $request): array
     {
+        /** @var Employee $employee */
+        $employee = $this->resource;
+        $image = resolve(GetProfileImageAction::class)->handle($employee);
+
         return [
             'id' => $this->id,
             'employee_code' => $this->employee_code,
             'name_en' => $this->full_name_en,
             'name_ar' => $this->full_name_ar,
             'phone' => $this->phone,
-            'image' => asset($this->image ?? ''),
+            'image' => asset($image),
             'email' => $this->user?->email,
             'extentions' => $this->extentions->pluck('extention')->toArray(),
         ];

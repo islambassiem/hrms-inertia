@@ -258,6 +258,7 @@ final class EmployeeListQuery
             'full_name_ar',
             'employee_code',
             'department_id',
+            'gender_id',
             'user_id',
             'phone',
             'joining_date',

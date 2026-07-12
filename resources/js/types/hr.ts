@@ -20,3 +20,18 @@ export interface ResourceList {
         name: string;
     }[];
 }
+
+export interface EmployeeHeaderProps {
+    data: {
+        employee_code: string;
+        full_name: string;
+        full_name_en: string;
+        full_name_ar: string;
+        department: string;
+        email: string;
+        job_title: string;
+        image: string;
+        joining_date: string;
+        is_active: boolean;
+    }
+}

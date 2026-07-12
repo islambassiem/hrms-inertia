@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Hr;
 
+use App\Actions\GetProfileImageAction;
 use App\Domain\Employee\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\JsonApi\JsonApiResource;
@@ -21,6 +22,10 @@ final class EmployeeListResource extends JsonApiResource
      */
     public function toAttributes(Request $request): array
     {
+        /** @var Employee $employee */
+        $employee = $this->resource;
+        $image = resolve(GetProfileImageAction::class)->handle($employee);
+
         return [
             'id' => $this->id,
             'name_en' => $this->full_name_en,
@@ -31,7 +36,7 @@ final class EmployeeListResource extends JsonApiResource
             'phone' => $this->phone,
             'joining_date' => Date::parse($this->joining_date)->format('Y-m-d'),
             'leaving_date' => $this->leaving_date ? Date::parse($this->leaving_date)->format('Y-m-d') : null,
-            'image' => $this->image ? asset($this->image) : null,
+            'image' => asset($image),
             'is_active' => $this->is_active,
 
             'department' => $this->loadMissing('department')->department?->getAttribute('name'),
