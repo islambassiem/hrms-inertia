@@ -22,7 +22,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
                 'relative flex h-full flex-col overflow-hidden pb-4 transition',
                 isActive
                     ? 'hover:shadow-lg'
-                    : 'border-red-300 border-s-4 border-s-red-600 bg-red-50/50 dark:border-red-900 dark:border-s-red-500 dark:bg-red-950/20',
+                    : 'border-s-4 border-red-300 border-s-red-600 bg-red-50/50 dark:border-red-900 dark:border-s-red-500 dark:bg-red-950/20',
             )}
         >
             {/* Status Ribbon */}
@@ -34,7 +34,7 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
             {/* Watermark */}
             {!isActive && (
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                    <span className="rotate-[-30deg] select-none text-3xl rtl:text-6xl font-black tracking-[0.4em] text-red-500/10 uppercase">
+                    <span className="rotate-[-30deg] text-3xl font-black tracking-[0.4em] text-red-500/10 uppercase select-none rtl:text-6xl">
                         {t('Inactive')}
                     </span>
                 </div>
@@ -117,15 +117,11 @@ export default function EmployeeCard({ employee }: { employee: EmployeeList }) {
 
             <CardFooter className="relative z-10 flex justify-between border-t px-6 pt-3">
                 <span className="text-muted-foreground">
-                    {isActive
-                        ? t('Joining Date')
-                        : t('Resignation Date')}
+                    {isActive ? t('Joining Date') : t('Resignation Date')}
                 </span>
 
                 <span className="font-medium">
-                    {isActive
-                        ? employee.joining_date
-                        : employee.leaving_date}
+                    {isActive ? employee.joining_date : employee.leaving_date}
                 </span>
             </CardFooter>
         </Card>

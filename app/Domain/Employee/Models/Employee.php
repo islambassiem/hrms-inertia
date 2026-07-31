@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Employee\Models;
 
+use App\Domain\Address\Models\Address;
 use App\Domain\Identity\Enums\IdentityEnum;
 use App\Domain\Identity\Models\Identity;
 use App\Domain\Organization\Enums\AttributeType;
@@ -71,6 +72,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property EmployeeOrganizationAttribute $position
  * @property EmployeeOrganizationAttribute $jobTitle
  * @property-read Department|null $department
+ * @property \Carbon\CarbonImmutable|null $date_of_birth
+ * @property \Carbon\CarbonImmutable|null $joining_date
+ * @property \Carbon\CarbonImmutable|null $leaving_date
  */
 #[Table('employees')]
 final class Employee extends Model
@@ -165,6 +169,23 @@ final class Employee extends Model
     {
         return $this->hasOne(Identity::class)
             ->where('identity_type_id', IdentityEnum::NATIONAL_IDENTITY->value);
+    }
+
+    /**
+     * @return HasOne<Identity, $this>
+     */
+    public function passport(): HasOne
+    {
+        return $this->hasOne(Identity::class)
+            ->where('identity_type_id', IdentityEnum::PASSPORT->value);
+    }
+
+    /**
+     * @return HasOne<Address, $this>
+     */
+    public function address(): HasOne
+    {
+        return $this->hasOne(Address::class);
     }
 
     public function casts(): array

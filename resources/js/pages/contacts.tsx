@@ -65,7 +65,7 @@ const Contacts = ({ employees, filters }: PageProps) => {
             },
         );
     };
-    
+
     return (
         <>
             <Head title="Contacts" />

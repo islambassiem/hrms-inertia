@@ -1,5 +1,5 @@
-import { Link } from "@inertiajs/react";
-import clsx from "clsx";
+import { Link } from '@inertiajs/react';
+import clsx from 'clsx';
 import {
     LayoutDashboard,
     User,
@@ -10,62 +10,64 @@ import {
     Wallet,
     Clock3,
     NotebookPen,
-} from "lucide-react";
-import { show as overview} from "@/actions/App/Http/Controllers/Hr/EmployeeController";
-import { show as personal} from "@/actions/App/Http/Controllers/Hr/PersonalInfoController";
-import { useCurrentUrl } from "@/hooks/use-current-url";
-import type { EmployeeHeaderProps } from "@/types/hr";
+} from 'lucide-react';
+import { show as overview } from '@/actions/App/Http/Controllers/Hr/EmployeeController';
+import { show as personal } from '@/actions/App/Http/Controllers/Hr/PersonalInfoController';
+import { useCurrentUrl } from '@/hooks/use-current-url';
+import type { EmployeeHeaderProps } from '@/types/hr';
 
-
-
-export default function EmployeeNavigation({ employee }: { employee: EmployeeHeaderProps }) {
+export default function EmployeeNavigation({
+    employee,
+}: {
+    employee: EmployeeHeaderProps;
+}) {
     const { isCurrentOrParentUrl } = useCurrentUrl();
 
     const items = [
         {
-            title: "Overview",
+            title: 'Overview',
             icon: LayoutDashboard,
             route: overview(employee.data.id),
         },
         {
-            title: "Personal",
+            title: 'Personal',
             icon: User,
             route: personal(employee.data.id),
         },
         {
-            title: "Employment",
+            title: 'Employment',
             icon: BriefcaseBusiness,
-            route: "employees.employment",
+            route: 'employees.employment',
         },
         {
-            title: "Qualifications",
+            title: 'Qualifications',
             icon: GraduationCap,
-            route: "employees.qualifications",
+            route: 'employees.qualifications',
         },
         {
-            title: "Experience",
+            title: 'Experience',
             icon: Building2,
-            route: "employees.experience",
+            route: 'employees.experience',
         },
         {
-            title: "Documents",
+            title: 'Documents',
             icon: FolderClosed,
-            route: "employees.documents",
+            route: 'employees.documents',
         },
         {
-            title: "Payroll",
+            title: 'Payroll',
             icon: Wallet,
-            route: "employees.payroll",
+            route: 'employees.payroll',
         },
         {
-            title: "Attendance",
+            title: 'Attendance',
             icon: Clock3,
-            route: "employees.attendance",
+            route: 'employees.attendance',
         },
         {
-            title: "Notes",
+            title: 'Notes',
             icon: NotebookPen,
-            route: "employees.notes",
+            route: 'employees.notes',
         },
     ];
     console.log(employee);
@@ -82,10 +84,10 @@ export default function EmployeeNavigation({ employee }: { employee: EmployeeHea
                             key={index}
                             href={item.route}
                             className={clsx(
-                                "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap",
+                                'inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors',
                                 active
-                                    ? "bg-primary text-primary-foreground"
-                                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
                             )}
                         >
                             <Icon className="h-4 w-4" />

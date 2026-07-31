@@ -9,35 +9,26 @@ import {
     ShieldCheck,
     User,
     Users,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import AppLayout from "@/layouts/app-layout";
-import EmployeeLayout from "@/layouts/employees/employee-layout";
+} from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import AppLayout from '@/layouts/app-layout';
+import EmployeeLayout from '@/layouts/employees/employee-layout';
 
 function EmployeeOverview() {
     return (
         <div className="space-y-6">
-
             {/* Header */}
 
             <Card>
                 <CardContent className="flex flex-col gap-6 p-6 lg:flex-row lg:items-center lg:justify-between">
-
                     <div className="flex items-center gap-4">
-
                         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted">
                             <User className="h-9 w-9 text-muted-foreground" />
                         </div>
 
                         <div className="space-y-2">
-
                             <div className="flex flex-wrap items-center gap-2">
                                 <h1 className="text-2xl font-bold">
                                     Ahmed Mohamed
@@ -55,28 +46,20 @@ function EmployeeOverview() {
                                 <span>Engineering</span>
                                 <span>Joined 15 Mar 2022</span>
                             </div>
-
                         </div>
-
                     </div>
 
                     <div className="flex flex-wrap gap-2">
                         <Button>Edit</Button>
-                        <Button variant="outline">
-                            Promote
-                        </Button>
-                        <Button variant="outline">
-                            Transfer
-                        </Button>
+                        <Button variant="outline">Promote</Button>
+                        <Button variant="outline">Transfer</Button>
                     </div>
-
                 </CardContent>
             </Card>
 
             {/* Summary Cards */}
 
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-
                 <SummaryCard
                     icon={<Briefcase className="h-5 w-5" />}
                     title="Employment"
@@ -104,15 +87,12 @@ function EmployeeOverview() {
                     value="Active"
                     subtitle="Currently Working"
                 />
-
             </div>
 
             {/* Main Grid */}
 
             <div className="grid gap-6 xl:grid-cols-12">
-
                 <div className="space-y-6 xl:col-span-8">
-
                     <InfoCard
                         title="Current Assignment"
                         icon={<Briefcase className="h-4 w-4" />}
@@ -135,15 +115,9 @@ function EmployeeOverview() {
                                 value="Exceeds Expectations"
                             />
 
-                            <Item
-                                label="Next Review"
-                                value="Oct 2026"
-                            />
+                            <Item label="Next Review" value="Oct 2026" />
 
-                            <Item
-                                label="Goals"
-                                value="6 Active"
-                            />
+                            <Item label="Goals" value="6 Active" />
                         </div>
                     </InfoCard>
 
@@ -152,7 +126,6 @@ function EmployeeOverview() {
                         icon={<Calendar className="h-4 w-4" />}
                     >
                         <div className="space-y-5">
-
                             <TimelineItem
                                 title="Leave Approved"
                                 date="Yesterday"
@@ -173,25 +146,20 @@ function EmployeeOverview() {
                                 date="March 2026"
                                 last
                             />
-
                         </div>
                     </InfoCard>
-
                 </div>
 
                 <div className="space-y-6 xl:col-span-4">
-
                     <InfoCard
                         title="Quick Stats"
                         icon={<User className="h-4 w-4" />}
                     >
                         <div className="grid grid-cols-2 gap-4">
-
                             <Stat value="3.4" label="Years" />
                             <Stat value="12" label="Projects" />
                             <Stat value="9" label="Trainings" />
                             <Stat value="6" label="Leaves" />
-
                         </div>
                     </InfoCard>
 
@@ -217,11 +185,8 @@ function EmployeeOverview() {
                             <Item label="Medical" value="Expires in 20 days" />
                         </div>
                     </InfoCard>
-
                 </div>
-
             </div>
-
         </div>
     );
 }
@@ -240,22 +205,14 @@ function SummaryCard({
     return (
         <Card>
             <CardContent className="flex items-start gap-4 p-6">
-                <div className="rounded-lg bg-muted p-3">
-                    {icon}
-                </div>
+                <div className="rounded-lg bg-muted p-3">{icon}</div>
 
                 <div>
-                    <p className="text-sm text-muted-foreground">
-                        {title}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{title}</p>
 
-                    <h3 className="font-semibold">
-                        {value}
-                    </h3>
+                    <h3 className="font-semibold">{value}</h3>
 
-                    <p className="text-sm text-muted-foreground">
-                        {subtitle}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{subtitle}</p>
                 </div>
             </CardContent>
         </Card>
@@ -275,9 +232,7 @@ function InfoCard({
         <Card>
             <CardHeader className="flex flex-row items-center gap-2">
                 {icon}
-                <CardTitle className="text-base">
-                    {title}
-                </CardTitle>
+                <CardTitle className="text-base">{title}</CardTitle>
             </CardHeader>
 
             <CardContent>{children}</CardContent>
@@ -285,42 +240,22 @@ function InfoCard({
     );
 }
 
-function Item({
-    label,
-    value,
-}: {
-    label: string;
-    value: string;
-}) {
+function Item({ label, value }: { label: string; value: string }) {
     return (
         <div>
-            <p className="text-sm text-muted-foreground">
-                {label}
-            </p>
+            <p className="text-sm text-muted-foreground">{label}</p>
 
-            <p className="font-medium">
-                {value}
-            </p>
+            <p className="font-medium">{value}</p>
         </div>
     );
 }
 
-function Stat({
-    value,
-    label,
-}: {
-    value: string;
-    label: string;
-}) {
+function Stat({ value, label }: { value: string; label: string }) {
     return (
         <div className="rounded-lg border p-4 text-center">
-            <p className="text-2xl font-bold">
-                {value}
-            </p>
+            <p className="text-2xl font-bold">{value}</p>
 
-            <p className="mt-1 text-sm text-muted-foreground">
-                {label}
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">{label}</p>
         </div>
     );
 }
@@ -337,19 +272,15 @@ function TimelineItem({
     return (
         <div className="relative flex gap-4">
             {!last && (
-                <div className="absolute start-[7px] top-4 h-full w-px bg-border" />
+                <div className="absolute inset-s-1.75 top-4 h-full w-px bg-border" />
             )}
 
             <div className="mt-1 h-4 w-4 rounded-full border-2 border-primary bg-background" />
 
             <div>
-                <p className="font-medium">
-                    {title}
-                </p>
+                <p className="font-medium">{title}</p>
 
-                <p className="text-sm text-muted-foreground">
-                    {date}
-                </p>
+                <p className="text-sm text-muted-foreground">{date}</p>
             </div>
         </div>
     );

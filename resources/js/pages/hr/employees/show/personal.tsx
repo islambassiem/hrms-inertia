@@ -1,17 +1,59 @@
+import { Edit } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import AppLayout from '@/layouts/app-layout';
+import EmployeeLayout from '@/layouts/employees/employee-layout';
 
-import { Edit } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import AppLayout from "@/layouts/app-layout";
-import EmployeeLayout from "@/layouts/employees/employee-layout";
+interface Employee {
+    data: {
+        id: number;
+        employee_code: string;
+        profile: {
+            full_name: string;
+            prefered_name: string;
+            image: string;
+        };
+        contacts: {
+            official_email: string;
+            personal_email: string;
+            phone: string;
+            extentions: string[];
+        };
+        personal: {
+            gender: string;
+            nationality: string;
+            marital_status: string;
+            religion: string;
+            date_of_birth: string;
+        };
+        official: {
+            is_active: boolean;
+            joining_date: string;
+            department: string;
+            category: string;
+            head: string;
+            position: string;
+        };
+        identification: {
+            identity_number: string;
+            place_of_issue: string;
+            issue_date: string;
+            expiry_date: string;
+        };
+        passport: {
+            identity_number: string;
+            place_of_issue: string;
+            issue_date: string;
+            expiry_date: string;
+        };
+    };
+}
 
-function EmployeePersonalPage() {
+function EmployeePersonalPage({ employee }: { employee: Employee }) {
+    console.log(employee.data);
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -33,51 +75,69 @@ function EmployeePersonalPage() {
 
             <div className="grid gap-6 xl:grid-cols-2">
                 <SectionCard title="Basic Information">
-                    <DetailItem label="Employee ID" value="EMP-1004" />
-                    <DetailItem label="Full Name" value="Ahmed Mohamed" />
-                    <DetailItem label="Preferred Name" value="Ahmed" />
-                    <DetailItem label="Gender" value="Male" />
-                    <DetailItem label="Date of Birth" value="15 Mar 1995" />
-                    <DetailItem label="Nationality" value="Egyptian" />
-                    <DetailItem label="Marital Status" value="Married" />
-                    <DetailItem label="Religion" value="Muslim" />
+                    <DetailItem
+                        label="Preferd Name"
+                        value={employee.data.profile.prefered_name}
+                    />
+                    <DetailItem
+                        label="Gender"
+                        value={employee.data.personal.gender}
+                    />
+                    <DetailItem
+                        label="Date of Birth"
+                        value={employee.data.personal.date_of_birth}
+                    />
+                    <DetailItem
+                        label="Nationality"
+                        value={employee.data.personal.nationality}
+                    />
+                    <DetailItem
+                        label="Marital Status"
+                        value={employee.data.personal.marital_status}
+                    />
+                    <DetailItem
+                        label="Religion"
+                        value={employee.data.personal.religion}
+                    />
                 </SectionCard>
 
                 <SectionCard title="Contact Information">
                     <DetailItem
                         label="Email"
-                        value="ahmed@example.com"
+                        value={employee.data.contacts.official_email}
                     />
 
                     <DetailItem
                         label="Phone"
-                        value="+966 50 123 4567"
+                        value={employee.data.contacts.phone}
                     />
 
                     <DetailItem
-                        label="Emergency Contact"
-                        value="Sara Mohamed"
+                        label="Personal Email"
+                        value={employee.data.contacts.personal_email}
                     />
 
-                    <DetailItem
-                        label="Emergency Phone"
-                        value="+966 55 987 6543"
-                    />
+                    <div className="space-y-1">
+                        <p className="text-sm text-muted-foreground">
+                            Extentions
+                        </p>
 
-                    <DetailItem
-                        label="Address"
-                        value="King Fahd Road"
-                    />
-
-                    <DetailItem
-                        label="City"
-                        value="Riyadh"
-                    />
-
-                    <DetailItem
-                        label="Country"
-                        value="Saudi Arabia"
-                    />
+                        <p className="font-medium wrap-break-word">
+                            {employee.data.contacts.extentions.length > 0
+                                ? employee.data.contacts.extentions.map(
+                                      (ext, index) => (
+                                          <Badge
+                                              key={index}
+                                              variant="outline"
+                                              className="bg-background font-mono"
+                                          >
+                                              {ext}
+                                          </Badge>
+                                      ),
+                                  )
+                                : '-'}
+                        </p>
+                    </div>
                 </SectionCard>
             </div>
 
@@ -85,68 +145,56 @@ function EmployeePersonalPage() {
                 <SectionCard title="Identification">
                     <DetailItem
                         label="National ID"
-                        value="1234567890"
+                        value={employee.data.identification.identity_number}
                     />
 
                     <DetailItem
-                        label="Passport Number"
-                        value="A12345678"
+                        label="Place of Issue"
+                        value={employee.data.identification.place_of_issue}
                     />
 
                     <DetailItem
-                        label="Passport Expiry"
-                        value="12 May 2030"
+                        label="Issue Date"
+                        value={employee.data.identification.issue_date}
                     />
 
                     <DetailItem
-                        label="Issuing Country"
-                        value="Egypt"
+                        label="Expiry Date"
+                        value={employee.data.identification.expiry_date}
                     />
                 </SectionCard>
 
-                <SectionCard title="Work Authorization">
+                <SectionCard title="Passport">
                     <DetailItem
-                        label="Visa Number"
-                        value="VISA-001245"
+                        label="Passport Number"
+                        value={employee.data.passport.identity_number}
                     />
 
                     <DetailItem
-                        label="Visa Expiry"
-                        value="10 Feb 2028"
+                        label="Place of Issue"
+                        value={employee.data.passport.place_of_issue}
                     />
 
                     <DetailItem
-                        label="Work Permit"
-                        value="WP-445566"
+                        label="Issue Date"
+                        value={employee.data.passport.issue_date}
                     />
 
                     <DetailItem
-                        label="Permit Expiry"
-                        value="10 Feb 2028"
+                        label="Expiry Date"
+                        value={employee.data.passport.expiry_date}
                     />
                 </SectionCard>
             </div>
 
             <SectionCard title="Banking Information">
-                <DetailItem
-                    label="Bank"
-                    value="Al Rajhi Bank"
-                />
+                <DetailItem label="Bank" value="Al Rajhi Bank" />
 
-                <DetailItem
-                    label="Account Holder"
-                    value="Ahmed Mohamed"
-                />
+                <DetailItem label="Account Holder" value="Ahmed Mohamed" />
 
-                <DetailItem
-                    label="IBAN"
-                    value="SA0380000000608010167519"
-                />
+                <DetailItem label="IBAN" value="SA0380000000608010167519" />
 
-                <DetailItem
-                    label="SWIFT"
-                    value="RJHISARI"
-                />
+                <DetailItem label="SWIFT" value="RJHISARI" />
             </SectionCard>
 
             <Card>
@@ -169,10 +217,7 @@ interface SectionCardProps {
     children: React.ReactNode;
 }
 
-function SectionCard({
-    title,
-    children,
-}: SectionCardProps) {
+function SectionCard({ title, children }: SectionCardProps) {
     return (
         <Card>
             <CardHeader>
@@ -181,7 +226,7 @@ function SectionCard({
 
             <Separator />
 
-            <CardContent className="grid gap-6 pt-6 sm:grid-cols-2">
+            <CardContent className="grid gap-6 sm:grid-cols-2">
                 {children}
             </CardContent>
         </Card>
@@ -193,19 +238,12 @@ interface DetailItemProps {
     value?: React.ReactNode;
 }
 
-function DetailItem({
-    label,
-    value,
-}: DetailItemProps) {
+function DetailItem({ label, value }: DetailItemProps) {
     return (
         <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">
-                {label}
-            </p>
+            <p className="text-sm text-muted-foreground">{label}</p>
 
-            <p className="font-medium wrap-break-word">
-                {value ?? "—"}
-            </p>
+            <p className="font-medium wrap-break-word">{value ?? '—'}</p>
         </div>
     );
 }

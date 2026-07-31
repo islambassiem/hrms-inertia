@@ -7,7 +7,6 @@ use App\Http\Controllers\Hr\HomeController;
 use App\Http\Controllers\Hr\PersonalInfoController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::prefix('hr')
     ->middleware(['auth', 'verified', 'hr'])
     ->name('hr.')

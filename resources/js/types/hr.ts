@@ -25,14 +25,14 @@ export interface EmployeeHeaderProps {
     data: {
         id: number;
         employee_code: string;
-        full_name: string;
-        full_name_en: string;
-        full_name_ar: string;
+        profile: {
+            full_name: string;
+            image: string;
+        };
         department: string;
         email: string;
         job_title: string;
-        image: string;
         joining_date: string;
         is_active: boolean;
-    }
+    };
 }
