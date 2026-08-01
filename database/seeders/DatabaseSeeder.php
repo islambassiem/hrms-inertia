@@ -53,6 +53,7 @@ final class DatabaseSeeder extends Seeder
             EmployeeAllowanceTypeSeeder::class,
             EmployeeSalarySeeder::class,
             EmployeeAllowanceSeeder::class,
+            EmployeeBankSeeder::class,
         ]);
     }
 }

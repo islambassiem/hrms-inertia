@@ -1,0 +1,90 @@
+[
+    {
+        "code": "ALBI",
+        "name": {
+            "en": "Albilad Bank",
+            "ar": "بنك البلاد"
+        },
+        "sort_order": 6
+    },
+    {
+        "code": "ARNB",
+        "name": {
+            "en": "Arab National Bank",
+            "ar": "البنك العربي الوطني"
+        },
+        "sort_order": 1
+    },
+    {
+        "code": "BJAZ",
+        "name": {
+            "en": "Aljazeera Bank",
+            "ar": "بنك الجزيرة"
+        },
+        "sort_order": 10
+    },
+    {
+        "code": "BSFR",
+        "name": {
+            "en": "Saudi Faransi Bank",
+            "ar": "البنك السعودي الفرنسي"
+        },
+        "sort_order": 8
+    },
+    {
+        "code": "INMA",
+        "name": {
+            "en": "Inmaa Bank",
+            "ar": "بنك الانماء"
+        },
+        "sort_order": 4
+    },
+    {
+        "code": "NCBK",
+        "name": {
+            "en": "National Commercial Bank",
+            "ar": "البنك الأهلي التجاري"
+        },
+        "sort_order": 3
+    },
+    {
+        "code": "RIBL",
+        "name": {
+            "en": "Riyadh Bank",
+            "ar": "بنك الرياض"
+        },
+        "sort_order": 5
+    },
+    {
+        "code": "RJHI",
+        "name": {
+            "en": "Alrajhi Bank",
+            "ar": "بنك الراجحي"
+        },
+        "sort_order": 2
+    },
+    {
+        "code": "SABB",
+        "name": {
+            "en": "Saudi British Bank",
+            "ar": "البنك السعودي البريطاني"
+        },
+        "sort_order": 7
+    },
+    {
+        "code": "SAMB",
+        "name": {
+            "en": "Samba",
+            "ar": "بنك سامبا"
+        },
+        "sort_order": 9
+    },
+    {
+        "code": "SIBC",
+        "name": {
+            "en": "Saudi Investment Bank",
+            "ar": "البنك السعودي للاستثمار"
+        },
+        "sort_order": 11
+    }
+]

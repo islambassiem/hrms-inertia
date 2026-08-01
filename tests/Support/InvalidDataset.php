@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
+use InvalidArgumentException;
+
 final class InvalidDataset
 {
     private array $rules = [];
@@ -203,6 +205,22 @@ final class InvalidDataset
 
         $this->rules[$this->field.' must be digits'] = [
             [$this->field => str_repeat('a', $length)],
+            [$this->field],
+        ];
+
+        return $this;
+    }
+
+    public function invalidRegex(string $pattern, string $value, ?string $label = null): self
+    {
+        if (preg_match($pattern, $value) === 1) {
+            throw new InvalidArgumentException(
+                \sprintf('The value "%s" matches the pattern "%s".', $value, $pattern)
+            );
+        }
+
+        $this->rules[$label ?? \sprintf('%s has an invalid format', $this->field)] = [
+            [$this->field => $value],
             [$this->field],
         ];
 

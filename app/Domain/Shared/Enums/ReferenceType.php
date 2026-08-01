@@ -52,4 +52,6 @@ enum ReferenceType: int
     case WORKFLOW = 20;
 
     case LEAVE_TYPE = 21;
+
+    case BANK = 22;
 }
